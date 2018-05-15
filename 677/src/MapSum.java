@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-// 
+//
 public class MapSum {
 
     private class Node {
