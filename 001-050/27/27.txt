@@ -1,0 +1,19 @@
+网址：https://leetcode.com/problems/remove-element/
+原题：
+
+Given an array and a value, remove all instances of that value in-place and return the new length.
+
+Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+
+The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+
+Example:
+
+Given nums = [3,2,2,3], val = 3,
+
+Your function should return length = 2, with the first two elements of nums being 2.
+
+解释：删除数组指定的元素 2，不能使用额外的空间。
+思考：遍历一遍就要完成元素的删除。
+编码：设置一个指针 j，遍历过程中遇到要删除的元素，跳到下一个，遇到保留元素，j 位置赋值，并且 j 索引 + 1，最后不要忘记遍历完成以后，删除 索引 j 后面的所有元素。
+时间：2018 年 3 月 21 日
