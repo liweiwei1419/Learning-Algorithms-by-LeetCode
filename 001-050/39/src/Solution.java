@@ -9,20 +9,25 @@ public class Solution {
     private int[] candidates;
     private int len;
 
-    private void findCombinationSum(int target, int start, Stack<Integer> pre) {
-        if (target < 0) {
+    // residue 定义为剩余，这个剩余一开始等于 target，在递归中，它的值会越来越小
+    // 因为题目中说了"所有数字（包括 target）都是正整数"。
+    private void findCombinationSum(int residue, int start, Stack<Integer> pre) {
+        // 因为可以无限选取，所以 residue 只能小于 0 或者等于 0
+        if (residue < 0) {
             return;
         }
-        if (target == 0) {
+        // 一定是剩下的那个数为 0 了，才表示我们所选的数字的和刚好等于 target
+        if (residue == 0) {
             res.add(new ArrayList<>(pre));
             return;
         }
         for (int i = start; i < len; i++) {
+            // 每个数有选择和不选择，因此尝试了一种解的可能以后要进行状态重置
             pre.add(candidates[i]);
-            findCombinationSum(target - candidates[i], i, pre);
+            // 【关键】因为元素可以重复使用，这里递归传递下去的是 i 而不是 i + 1
+            findCombinationSum(residue - candidates[i], i, pre);
             pre.pop();
         }
-
     }
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {

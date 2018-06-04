@@ -36,7 +36,6 @@ public class Solution3 {
             result.add(new ArrayList<>(integers));
             return;
         }
-
         for (int i = 0; i < nums.length; i++) {
             if (!used[i]) {
                 used[i] = true;
@@ -49,8 +48,8 @@ public class Solution3 {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
-        List<List<Integer>> permute = solution.permute(new int[]{1, 2, 3, 4});
+        Solution4 solution4 = new Solution4();
+        List<List<Integer>> permute = solution4.permute(new int[]{1, 2, 3, 4});
         System.out.println(permute);
         System.out.println(permute.size());
     }

@@ -25,7 +25,7 @@ public class Solution4 {
      * @param pre   已经构成的数字数组
      */
     private void generateCombinations(int n, int k, int start, List<Integer> pre) {
-        if (pre.size() == k) { // pre.size() == k
+        if (pre.size() == k) {
             result.add(new ArrayList<>(pre));
             return;
         }

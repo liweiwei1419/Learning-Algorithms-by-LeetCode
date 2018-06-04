@@ -1,21 +1,17 @@
 import java.util.HashMap;
-import java.util.Map;
+import java.util.Set;
 
+// https://leetcode-cn.com/problems/add-and-search-word-data-structure-design/description/
 public class WordDictionary {
 
     private Node root;
 
     private class Node {
         private boolean isWord;
-        private Map<Character, Node> next;
-
-        public Node(boolean isWord) {
-            this.isWord = isWord;
-            next = new HashMap<>();
-        }
+        private HashMap<Character, Node> next;
 
         public Node() {
-            this(false);
+            this.next = new HashMap<>();
         }
     }
 
@@ -23,74 +19,70 @@ public class WordDictionary {
      * Initialize your data structure here.
      */
     public WordDictionary() {
-        this.root = new Node();
+        root = new Node();
     }
 
     /**
      * Adds a word into the data structure.
      */
     public void addWord(String word) {
-        Node curr = root;
-        Character c;
+        Node curNode = root;
         for (int i = 0; i < word.length(); i++) {
-            c = word.charAt(i);
-            if (curr.next.get(c) == null) {
-                curr.next.put(c, new Node());
+            Character c = word.charAt(i);
+            if (!curNode.next.containsKey(c)) {
+                curNode.next.put(c, new Node());
             }
-            curr = curr.next.get(c);
+            curNode = curNode.next.get(c);
         }
-        curr.isWord = true;
+        if (!curNode.isWord) {
+            curNode.isWord = true;
+        }
     }
 
     /**
      * Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter.
      */
     public boolean search(String word) {
-        return match(root, word, 0);
+        return search(root, word, 0);
     }
 
-    // 不要循环和递归一起用
-    private boolean match(Node node, String word, int index) {
-        // 递归终止条件比较容易忘记
-        if (index == word.length()) {
+    private boolean search(Node node, String word, int depth) {
+        if (depth == word.length()) {
+            // 只要能搜索到最后，就表示文本与模式匹配
+            // 这一步很容易被忽视
             return node.isWord;
         }
-        Character currC = word.charAt(index);
-        if (currC == '.') {
-            for (Character c : node.next.keySet()) {
-                if(match(node.next.get(c), word, index + 1)){
+        Character c = word.charAt(depth);
+        if (c == '.') {
+            Set<Character> keys = node.next.keySet();
+            for (Character key : keys) {
+                Node nextNode = node.next.get(key);
+                if (search(nextNode, word, depth + 1)) {
                     return true;
                 }
             }
+            // 循环都走完都没有找到，那就说明没有
             return false;
-        } else {// currC!='.'
-            if (node.next.get(currC) == null) {
+        } else {
+            if (!node.next.containsKey(c)) {
                 return false;
             }
-            return match(node.next.get(currC), word, index + 1);
+            return search(node.next.get(c), word, depth + 1);
         }
     }
 
     public static void main(String[] args) {
-        WordDictionary obj = new WordDictionary();
-        obj.addWord("a");
-        obj.addWord("a");
-        boolean search = obj.search(".");
-        System.out.println(search);
-        boolean search1 = obj.search("a");
+        WordDictionary wordDictionary = new WordDictionary();
+        wordDictionary.addWord("bad");
+        wordDictionary.addWord("dad");
+        wordDictionary.addWord("mad");
+        boolean search1 = wordDictionary.search("pad");// -> false
         System.out.println(search1);
-
-        boolean search2 = obj.search("aa");
+        boolean search2 = wordDictionary.search("bad"); // -> true
         System.out.println(search2);
-
-        boolean search3 = obj.search("a");
+        boolean search3 = wordDictionary.search(".ad"); // -> true
         System.out.println(search3);
-
-        boolean search4 = obj.search(".a");
+        boolean search4 = wordDictionary.search("b.."); //-> true
         System.out.println(search4);
-
-        boolean search5 = obj.search("a.");
-        System.out.println(search5);
-
     }
 }

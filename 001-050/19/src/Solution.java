@@ -1,4 +1,3 @@
-
 class ListNode {
     int val;
     ListNode next;
@@ -6,33 +5,67 @@ class ListNode {
     ListNode(int x) {
         val = x;
     }
+
+    public ListNode(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            throw new IllegalArgumentException("arr can not be empty");
+        }
+        this.val = nums[0];
+        ListNode curr = this;
+        for (int i = 1; i < nums.length; i++) {
+            curr.next = new ListNode(nums[i]);
+            curr = curr.next;
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        ListNode cur = this;
+        while (cur != null) {
+            s.append(cur.val + " -> ");
+            cur = cur.next;
+        }
+        s.append("NULL");
+        return s.toString();
+    }
 }
-// https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/description/
+
+/**
+ * https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/description/
+ *
+ * @author liwei
+ */
 public class Solution {
 
-    // 假设删除的是倒数第 3 个节点 4
-    // -1 1 2 3 4 5 6
-    // p  e
-    //          e
-    //    p       e
-    //      p       e
-    //        p       e
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummyNode = new ListNode(-1);
         dummyNode.next = head;
+        ListNode curNode = dummyNode;
+        // 要走 n 步
+        while (curNode != null && n != -1) {
+            curNode = curNode.next;
+            n--;
+        }
         ListNode pre = dummyNode;
-        ListNode end = head;
-        for (int i = 0; i < n; i++) {
-            end = end.next;
-        }
-        while (end != null) {
+        while (curNode != null) {
             pre = pre.next;
-            end = end.next;
+            curNode = curNode.next;
         }
-        ListNode delete = pre.next;
-        pre.next = delete.next;
-        delete.next = null;
+        // 走到这里 curNode == null ，即 来到了链表的尾结点
+        // 并且 pre 来到了要删除结点的下一个结点
+        ListNode deleteNode = pre.next;
+        pre.next = deleteNode.next;
+        deleteNode.next = null;
         return dummyNode.next;
     }
 
+    public static void main(String[] args) {
+        int[] nums = new int[]{1, 2};
+        int n = 2;
+        ListNode head = new ListNode(nums);
+        Solution solution = new Solution();
+        ListNode removeNthFromEnd = solution.removeNthFromEnd(head, n);
+        System.out.println(removeNthFromEnd);
+    }
 }

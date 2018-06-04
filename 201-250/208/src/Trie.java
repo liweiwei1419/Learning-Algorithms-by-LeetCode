@@ -5,51 +5,42 @@ import java.util.HashMap;
 public class Trie {
 
     private Node root;
-    private int size;
 
-    public int getSize() {
-        return size;
-    }
-
+    // 只在内部使用，因此访问控制符是 root
     private class Node {
         private boolean isWord;
+        // 不要忘记写上构造方法初始化 next 所对应的 Hash 表
         private HashMap<Character, Node> next;
 
-        public Node(boolean isWord) {
-            this.isWord = isWord;
-            next = new HashMap<>();
-        }
-
         public Node() {
-            this(false);
+            this.isWord = false;
+            this.next = new HashMap<>();
         }
     }
-
 
     /**
      * Initialize your data structure here.
      */
     public Trie() {
+        // 根节点不表示任何字符
         root = new Node();
-        size = 0;
     }
 
     /**
      * Inserts a word into the trie.
      */
     public void insert(String word) {
-        Node currNode = root;
-        Character currC;
+        Node curNode = root;
         for (int i = 0; i < word.length(); i++) {
-            currC = word.charAt(i);
-            if (currNode.next.get(currC) == null) {
-                currNode.next.put(currC, new Node());
+            Character c = word.charAt(i);
+            if (!curNode.next.containsKey(c)) {
+                curNode.next.put(c, new Node());
             }
-            currNode = currNode.next.get(currC);
+            curNode = curNode.next.get(c);
         }
-        if (!currNode.isWord) {
-            currNode.isWord = true;
-            size++;
+        // 如果之前没有设置过，才设置成 true
+        if (!curNode.isWord) {
+            curNode.isWord = true;
         }
     }
 
@@ -57,56 +48,46 @@ public class Trie {
      * Returns if the word is in the trie.
      */
     public boolean search(String word) {
-        Node currNode = root;
-        Character currC;
+        Node curNode = root;
         for (int i = 0; i < word.length(); i++) {
-            currC = word.charAt(i);
-            if (currNode.next.get(currC) == null) {
-                return false;
+            Character c = word.charAt(i);
+            if (curNode.next.containsKey(c)) {
+                curNode = curNode.next.get(c);
+            } else {
+                return false; // 中途就出错了
             }
-            currNode = currNode.next.get(currC);
         }
-        return currNode.isWord;
+        return curNode.isWord; // 到了末尾还要判断一下
     }
 
     /**
      * Returns if there is any word in the trie that starts with the given prefix.
      */
     public boolean startsWith(String prefix) {
-        Node currNode = root;
-        Character currC;
+        Node curNode = root;
         for (int i = 0; i < prefix.length(); i++) {
-            currC = prefix.charAt(i);
-            if (currNode.next.get(currC) == null) {
+            Character c = prefix.charAt(i);
+            if (curNode.next.containsKey(c)) {
+                curNode = curNode.next.get(c);
+            } else {
                 return false;
             }
-            currNode = currNode.next.get(currC);
         }
+        // 能走完就说明有这个前缀
         return true;
     }
 
     public static void main(String[] args) {
-        // Your Trie object will be instantiated and called as such:
-//        Trie obj = new Trie();
-//        String word = "hello";
-//        obj.insert(word);
-//        boolean param_2 = obj.search(word);
-//        System.out.println(param_2);
-//
-//        String prefix = "hel";
-//        boolean param_3 = obj.startsWith(prefix);
-//        System.out.println(param_3);
-
         Trie trie = new Trie();
-        trie.insert("abc");
-        boolean search = trie.search("abc");
-        System.out.println(search);
-        boolean abc = trie.search("ab");
-        System.out.println(abc);
-
-        trie.insert("ab");
-
-        boolean ab = trie.search("ab");
-        System.out.println(ab);
+        trie.insert("apple");
+        boolean search1 = trie.search("apple");// 返回 true
+        System.out.println(search1);
+        boolean search2 = trie.search("app");     // 返回 false
+        System.out.println(search2);
+        boolean startsWith = trie.startsWith("app");// 返回 true
+        System.out.println(startsWith);
+        trie.insert("app");
+        boolean search3 = trie.search("app");     // 返回 true
+        System.out.println(search3);
     }
 }

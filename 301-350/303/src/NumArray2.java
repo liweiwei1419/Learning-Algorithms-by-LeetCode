@@ -1,27 +1,31 @@
-public class NumArray {
+/**
+ * https://leetcode-cn.com/problems/range-sum-query-immutable/description/
+ *
+ * @author liwei
+ */
+public class NumArray2 {
 
     private SegmentTree<Integer> segmentTree;
 
-    public NumArray(int[] nums) {
+    public NumArray2(int[] nums) {
         // 把数组传给线段树
-        if(nums.length>0){
+        if (nums.length > 0) {
             Integer[] data = new Integer[nums.length];
             for (int i = 0; i < nums.length; i++) {
                 data[i] = nums[i];
             }
             segmentTree = new SegmentTree<>(data, (a, b) -> a + b);
         }
-
     }
 
     public int sumRange(int i, int j) {
-        if(segmentTree==null){
+        if (segmentTree == null) {
             throw new IllegalArgumentException("Segment Tree is null");
         }
         return segmentTree.query(i, j);
     }
 
-    private interface Merge<E> {
+    private interface Merger<E> {
         E merge(E e1, E e2);
     }
 
@@ -29,12 +33,11 @@ public class NumArray {
 
         private E[] tree;
         private E[] data;
-        private Merge<E> merge;
+        private Merger<E> merger;
 
-
-        public SegmentTree(E[] arr, Merge<E> merge) {
+        public SegmentTree(E[] arr, Merger<E> merger) {
             this.data = data;
-            this.merge = merge;
+            this.merger = merger;
             data = (E[]) new Object[arr.length];
             for (int i = 0; i < arr.length; i++) {
                 data[i] = arr[i];
@@ -43,10 +46,10 @@ public class NumArray {
             buildSegmentTree(0, 0, arr.length - 1);
         }
 
-
         private void buildSegmentTree(int treeIndex, int l, int r) {
             if (l == r) {
-                tree[treeIndex] = data[l]; // data[r]，此时对应叶子节点的情况
+                // data[r]，此时对应叶子节点的情况
+                tree[treeIndex] = data[l];
                 return;// return 不能忘记
             }
             int mid = l + (r - l) / 2;
@@ -54,7 +57,7 @@ public class NumArray {
             int rightChild = rightChild(treeIndex);
             buildSegmentTree(leftChild, l, mid);
             buildSegmentTree(rightChild, mid + 1, r);
-            tree[treeIndex] = merge.merge(tree[leftChild], tree[rightChild]);
+            tree[treeIndex] = merger.merge(tree[leftChild], tree[rightChild]);
         }
 
         // 在一棵子树里做区间查询
@@ -80,9 +83,8 @@ public class NumArray {
             }
             E leftResult = query(leftChildIndex, l, mid, dataL, mid);
             E rightResult = query(rightChildIndex, mid + 1, r, mid + 1, dataR);
-            return merge.merge(leftResult, rightResult);
+            return merger.merge(leftResult, rightResult);
         }
-
 
         public int getSize() {
             return data.length;
@@ -95,18 +97,12 @@ public class NumArray {
             return data[index];
         }
 
-
         public int leftChild(int index) {
             return 2 * index + 1;
         }
 
-
         public int rightChild(int index) {
             return 2 * index + 2;
         }
-
-
     }
-
-
 }

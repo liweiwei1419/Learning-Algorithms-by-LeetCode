@@ -12,9 +12,9 @@ public class Solution3 {
         Queue<String> queue = new LinkedList<>();
         Map<String, Integer> map = new HashMap<>();
         map.put(beginWord, 1);
-        queue.offer(beginWord);
+        queue.offer(beginWord);// 添加到末尾
         while (!queue.isEmpty()) {
-            String word = queue.poll();
+            String word = queue.poll();// 从队列首出队
             int curStep = map.get(word);
             for (int i = 0; i < word.length(); i++) {
                 // 相当于每次只更改一个位置的字母
@@ -40,7 +40,6 @@ public class Solution3 {
 
     public static void main(String[] args) {
         // 测试用例
-
         List<String> wordList = new ArrayList<>();
         String[] words = {"hot", "dot", "dog", "lot", "log", "cog"};
         for (String word : words) {

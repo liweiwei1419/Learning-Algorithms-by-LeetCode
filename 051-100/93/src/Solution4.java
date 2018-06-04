@@ -1,12 +1,7 @@
-package leetcode.q93;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by liwei on 17/9/28.
- * 192.168.114.112
- */
 public class Solution4 {
 
     private List<String> resInt = new ArrayList<>();

@@ -43,7 +43,8 @@ public class Solution2 {
     }
 
     public static void main(String[] args) {
-        List<String> result = new Solution2().letterCombinations("234");
+        Solution2 solution2 = new Solution2();
+        List<String> result = solution2.letterCombinations("234");
         System.out.println(result);
     }
 }

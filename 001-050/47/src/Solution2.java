@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,9 +45,10 @@ public class Solution2 {
     }
 
     public static void main(String[] args) {
-        // int[] nums = {1,2,3};
+        // int[] nums = {1, 2, 3};
         int[] nums = {1, 1, 2};
-        List<List<Integer>> lists = new Solution2().permuteUnique(nums);
+        Solution2 solution2 = new Solution2();
+        List<List<Integer>> lists = solution2.permuteUnique(nums);
         System.out.println(lists);
     }
 }

@@ -6,8 +6,35 @@ class ListNode {
     ListNode(int x) {
         val = x;
     }
+
+    ListNode(Integer[] nums) {
+        ListNode currNode = this;
+        currNode.val = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            currNode.next = new ListNode(nums[i]);
+            currNode = currNode.next;
+        }
+    }
+
+    @Override
+    public String toString() {
+        ListNode currNode = this;
+        StringBuilder s = new StringBuilder();
+        while (currNode != null) {
+            s.append(currNode.val);
+            s.append(" -> ");
+            currNode = currNode.next;
+        }
+        s.append("NULL");
+        return s.toString();
+    }
 }
-// https://leetcode-cn.com/problems/delete-node-in-a-linked-list/description/
+
+/**
+ * https://leetcode-cn.com/problems/delete-node-in-a-linked-list/description/
+ *
+ * @author liwei
+ */
 public class Solution {
 
     //   3
@@ -24,14 +51,10 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        // write your code here
-
         ListNode node1 = new ListNode(0);
         ListNode node2 = new ListNode(1);
         node1.next = node2;
         Solution s = new Solution();
         s.deleteNode(node1);
-
-
     }
 }
