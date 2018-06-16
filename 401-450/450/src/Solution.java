@@ -8,9 +8,12 @@ class TreeNode {
     }
 }
 
-// https://leetcode-cn.com/problems/delete-node-in-a-bst/description/
+/**
+ * https://leetcode-cn.com/problems/delete-node-in-a-bst/description/
+ *
+ * @author liwei
+ */
 public class Solution {
-
 
     private TreeNode minNode(TreeNode node) {
         while (node.left != null) {
@@ -19,9 +22,13 @@ public class Solution {
         return node;
     }
 
-
-    // 删除一个二分搜索树中最小的节点，把新的二分搜索树的根返回回去
-    // 使用递归，要特别注意，定义的递归函数，返回的是，删除了最小值节点以后的新的二分搜索树的根
+    /**
+     * 删除一个二分搜索树中最小的节点，把新的二分搜索树的根返回回去
+     * 使用递归，要特别注意，定义的递归函数，返回的是，删除了最小值节点以后的新的二分搜索树的根
+     *
+     * @param node
+     * @return
+     */
     private TreeNode removeMin(TreeNode node) {
         if (node.left == null) {
             // 就是那个我们要删除的节点
@@ -32,7 +39,6 @@ public class Solution {
         node.left = removeMin(node.left);
         return node;
     }
-
 
     public TreeNode deleteNode(TreeNode root, int key) {
         if (root == null) {
@@ -65,11 +71,5 @@ public class Solution {
             root.right = null;
             return successor;
         }
-
-    }
-
-
-    public static void main(String[] args) {
-        // write your code here
     }
 }

@@ -18,10 +18,12 @@ public class Solution2 {
         if (head == null) {
             return head;
         }
-        // head = removeElements(head,val);
         head.next = removeElements(head.next, val);
         return head.val == val ? head.next : head;
     }
+
+
+
 
     // 这是一个递归方法，首先处理递归到底的情况
     public ListNode removeElements3(ListNode head, int val) {
@@ -41,11 +43,5 @@ public class Solution2 {
         }
     }
 
-    public ListNode removeElements4(ListNode head, int val) {
-        if (head == null) {
-            return head;
-        }
-        head.next = removeElements(head.next, val);
-        return head.val == val ? head.next : head;
-    }
+
 }

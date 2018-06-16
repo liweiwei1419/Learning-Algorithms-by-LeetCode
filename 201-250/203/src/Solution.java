@@ -52,26 +52,10 @@ public class Solution {
         ListNode cur = dummyNode;
         while (cur.next != null) {
             if (cur.next.val == val) {
+                // 待删除的结点
                 ListNode delete = cur.next;
                 cur.next = delete.next;
                 delete.next = null;
-            } else {
-                cur = cur.next;
-            }
-        }
-        return dummyNode.next;
-    }
-
-    public ListNode removeElements2(ListNode head, int val) {
-        ListNode dummyNode = new ListNode(-1);
-        dummyNode.next = head;
-        ListNode cur = dummyNode;
-        ListNode next;
-        while (cur.next != null) {
-            if (cur.next.val == val) {
-                next = cur.next;
-                cur.next = next.next;
-                next.next = null;
             } else {
                 cur = cur.next;
             }

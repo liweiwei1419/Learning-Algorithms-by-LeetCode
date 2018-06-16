@@ -41,13 +41,12 @@ public class Solution {
     // 1 3 5 7
     // 指向它下一节点的下一个节点
     // 把下一个节点的值复制给自己
-
     public void deleteNode(ListNode node) {
         // 因为题目已经明确说了，不是最后一个节点，因此 node.next 一定非空
-        ListNode next = node.next;
-        node.next = next.next;
-        node.val = next.val;
-        next.next = null;
+        ListNode deleteNode = node.next;
+        node.val = deleteNode.val;
+        node.next = deleteNode.next;
+        deleteNode.next = null;
     }
 
     public static void main(String[] args) {

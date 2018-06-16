@@ -62,16 +62,6 @@ public class NumArray2 {
         int sumRange2 = numArray2.sumRange(2, 4);
         System.out.println(sumRange2);
     }
-
-//    public static void main(String[] args) {
-//        int[] nums = new int[]{1, 2, 3, 4, 5};
-//        NumArray numArray = new NumArray(nums);
-//        int sumRange = numArray.sumRange(2, 4);
-//        System.out.println(sumRange);
-//        numArray.update(2, 0);
-//        int sumRange2 = numArray.sumRange(2, 4);
-//        System.out.println(sumRange2);
-//    }
 }
 
 /**

@@ -1,31 +1,26 @@
-package study.palindrome.number;
-
 /**
- * 是否是回文数字
- * 9. Palindrome Number
- * Created by liwei on 17/9/26.
+ * @author liwei
  */
-public class Main {
+public class Solution2 {
+
+    public boolean isPalindrome(int x) {
+        int origin = x;
+        int res = 0;
+        // 每次得到的余数
+        int y;
+        while (x > 0) {
+            // 得到个位数
+            y = x % 10;
+            x = x / 10;
+            res = res * 10 + y;
+        }
+        return res == origin;
+    }
 
     public static void main(String[] args) {
-        int num = 12345;
-
-        isPalindromeNumber(num);
-
-
+        Solution2 solution2 = new Solution2();
+        int x = 12321;
+        boolean palindrome = solution2.isPalindrome(x);
+        System.out.println(palindrome);
     }
-
-    private static boolean isPalindromeNumber(int num){
-        int origin = num;
-        int modNum = 0;
-        while (num!=0){
-            modNum = modNum * 10 + num %10;
-            // modNum = num %10;
-            // y = modNum * 10 + num %10;
-            num = num / 10;
-            System.out.println(modNum + " " + num);
-        }
-        return false;
-    }
-
 }
