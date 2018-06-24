@@ -1,4 +1,3 @@
-// https://leetcode-cn.com/problems/reverse-linked-list/description/
 class ListNode {
     int val;
     ListNode next;
@@ -32,11 +31,17 @@ class ListNode {
     }
 }
 
-// 很常规的一道问题，关键在于画图分析
-// 每一次遍历都要保证设立的 3 个指针的相对关系
-// 注意，最后应该把 pre 指针返回
 
-// 这个解法的时间复杂度是 O(n)，因为它仅仅遍历了一次链表，空间复杂度是 O(1)，因为这里仅仅使用了有限个的“指针”，帮助我们完成了链表的反转操作。
+/**
+ * 很常规的一道问题，穿针引线关键在于画图分析
+ * 每一次遍历都要保证设立的 3 个指针的相对关系
+ * 注意，最后应该把 pre 指针返回
+ * 这个解法的时间复杂度是 O(n)，因为它仅仅遍历了一次链表，空间复杂度是 O(1)，
+ * 因为这里仅仅使用了有限个的“指针”，帮助我们完成了链表的反转操作。
+ * https://leetcode-cn.com/problems/reverse-linked-list/description/
+ *
+ * @author liwei
+ */
 public class Solution {
 
     public ListNode reverseList(ListNode head) {
@@ -61,7 +66,7 @@ public class Solution {
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 3, 4, 5};
-        ListNode head = new  ListNode(nums);
+        ListNode head = new ListNode(nums);
         System.out.println(head);
         Solution solution = new Solution();
         ListNode reverseList = solution.reverseList(head);

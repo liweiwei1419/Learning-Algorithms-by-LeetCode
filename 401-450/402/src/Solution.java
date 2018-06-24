@@ -2,6 +2,9 @@
 // 402. 移掉K位数字
 // Solution 和 Solution2 都是一样的
 // 参考资料：https://blog.csdn.net/mebiuw/article/details/52576884
+// https://blog.csdn.net/qq508618087/article/details/52584133
+// 
+// 
 public class Solution {
     // 这道题细节很多，要注意
     // 思路：一个一个地删除

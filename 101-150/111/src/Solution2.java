@@ -1,27 +1,12 @@
-package leetcode.q111;
-
-
-/**
- * Created by liwei on 17/9/26.
- */
-
-/**
- * Definition for a binary tree node.
- */
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-        val = x;
-    }
-}
-
-public class Solution {
-
+public class Solution2 {
 
     public int minDepth(TreeNode root) {
-        return 0;
+        if (root == null) {
+            return 0;
+        }
+        if (root.left == null || root.right == null) {
+            return Math.max(minDepth(root.left), minDepth(root.right)) + 1;
+        }
+        return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
     }
 }

@@ -1,40 +1,48 @@
-// https://leetcode-cn.com/problems/range-sum-query-mutable/description/
+/**
+ * 自上而下使用递归构建线段树
+ * https://leetcode-cn.com/problems/range-sum-query-mutable/description/
+ *
+ * @author liwei
+ */
 public class NumArray {
 
     private SegmentTree<Integer> segmentTree;
 
     public NumArray(int[] nums) {
-        if(nums.length!=0){
+        if (nums.length != 0) {
             Integer[] data = new Integer[nums.length];
             for (int i = 0; i < nums.length; i++) {
                 data[i] = nums[i];
             }
-            segmentTree= new SegmentTree<>(data,(a,b)->a+b);
+            segmentTree = new SegmentTree<>(data, (a, b) -> a + b);
         }
     }
 
     public void update(int i, int val) {
-        segmentTree.set(i,val);
+        segmentTree.set(i, val);
     }
 
     public int sumRange(int i, int j) {
-        return segmentTree.query(i,j);
+        return segmentTree.query(i, j);
     }
 
-
-    private interface Merge<E> {
+    private interface Merger<E> {
         E merge(E e1, E e2);
     }
 
-
-
+    /**
+     * 内部类是一个线段树
+     *
+     * @param <E>
+     */
     private class SegmentTree<E> {
         private E[] tree;
         private E[] data;
-        private Merge<E> merge;
-        public SegmentTree(E[] arr, Merge<E> merge) {
+        private Merger<E> merger;
+
+        public SegmentTree(E[] arr, Merger<E> merger) {
             this.data = data;
-            this.merge = merge;
+            this.merger = merger;
             data = (E[]) new Object[arr.length];
             for (int i = 0; i < arr.length; i++) {
                 data[i] = arr[i];
@@ -42,6 +50,7 @@ public class NumArray {
             tree = (E[]) new Object[4 * arr.length];
             buildSegmentTree(0, 0, arr.length - 1);
         }
+
         private void buildSegmentTree(int treeIndex, int l, int r) {
             if (l == r) {
                 tree[treeIndex] = data[l];
@@ -52,7 +61,7 @@ public class NumArray {
             int rightChild = rightChild(treeIndex);
             buildSegmentTree(leftChild, l, mid);
             buildSegmentTree(rightChild, mid + 1, r);
-            tree[treeIndex] = merge.merge(tree[leftChild], tree[rightChild]);
+            tree[treeIndex] = merger.merge(tree[leftChild], tree[rightChild]);
         }
 
         public E query(int dataL, int dataR) {
@@ -77,7 +86,7 @@ public class NumArray {
             }
             E leftResult = query(leftChildIndex, l, mid, dataL, mid);
             E rightResult = query(rightChildIndex, mid + 1, r, mid + 1, dataR);
-            return merge.merge(leftResult, rightResult);
+            return merger.merge(leftResult, rightResult);
         }
 
 
@@ -104,7 +113,7 @@ public class NumArray {
             if (dataIndex <= mid) {
                 set(leftTreeIndex, l, mid, dataIndex, val);
             }
-            tree[treeIndex] = merge.merge(tree[leftTreeIndex], tree[rightTreeIndex]);
+            tree[treeIndex] = merger.merge(tree[leftTreeIndex], tree[rightTreeIndex]);
         }
 
         public int getSize() {
@@ -126,9 +135,6 @@ public class NumArray {
             return 2 * index + 2;
         }
     }
-
-
-
 }
 
 /**

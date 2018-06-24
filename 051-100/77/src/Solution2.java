@@ -9,7 +9,6 @@ public class Solution2 {
         if (n <= 0 && k <= 0 && k > n) {
             return result;
         }
-
         // 从 1 开始
         generateCombinations(n, k, 1, new ArrayList<>());
         return result;

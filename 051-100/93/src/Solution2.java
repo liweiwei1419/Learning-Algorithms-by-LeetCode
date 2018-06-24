@@ -15,7 +15,6 @@ public class Solution2 {
         return res;
     }
 
-
     private void splitStringToIp(String s, int start, int splitTime, List<String> pre) {
         // 这道题我失误在递归终止条件没有想清楚
         if (splitTime == 4) {

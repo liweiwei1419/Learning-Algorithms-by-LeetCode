@@ -1,4 +1,6 @@
-// https://leetcode-cn.com/problems/merge-two-sorted-lists/description/
+/**
+ * https://leetcode-cn.com/problems/merge-two-sorted-lists/description/
+ */
 class ListNode {
     int val;
     ListNode next;
@@ -32,7 +34,9 @@ class ListNode {
     }
 }
 
-
+/**
+ * @author liwei
+ */
 public class Solution {
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
@@ -40,12 +44,15 @@ public class Solution {
         ListNode p1 = l1;
         ListNode p2 = l2;
         ListNode curNode = dummyNode;
-        while (p1 != null && p2 != null) { // 两者都不为空的时候，才有必要进行比较
+        // 两者都不为空的时候，才有必要进行比较
+        while (p1 != null && p2 != null) {
             if (p1.val < p2.val) {
-                curNode.next = p1; // 指针修改发生在这里
+                // 指针修改发生在这里
+                curNode.next = p1;
                 p1 = p1.next;
             } else {
-                curNode.next = p2;// 指针修改发生在这里
+                // 指针修改发生在这里
+                curNode.next = p2;
                 p2 = p2.next;
             }
             curNode = curNode.next;

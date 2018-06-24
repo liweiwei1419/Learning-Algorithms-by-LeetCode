@@ -2,6 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * https://leetcode-cn.com/problems/binary-tree-preorder-traversal/description/
+ * 144. 二叉树的前序遍历
+ *
+ * @author liwei
+ */
 public class Solution2 {
 
     // 二叉树的前序遍历（教科书一样的写法）

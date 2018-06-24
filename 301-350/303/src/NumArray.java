@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class NumArray {
     // cumsum 实现
     // [1,2,3,4]
@@ -17,7 +15,6 @@ public class NumArray {
     public int sumRange(int i, int j) {
         return nums[j] - (i - 1 < 0 ? 0 : nums[i - 1]);
     }
-
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 3, 4};

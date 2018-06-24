@@ -1,4 +1,3 @@
-import java.util.Stack;
 
 class ListNode {
     int val;
@@ -7,47 +6,53 @@ class ListNode {
     ListNode(int x) {
         val = x;
     }
-}
 
-// https://leetcode-cn.com/problems/palindrome-linked-list/description/
-public class Solution {
+    public ListNode(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            throw new IllegalArgumentException("arr can not be empty");
+        }
+        this.val = nums[0];
+        ListNode curr = this;
+        for (int i = 1; i < nums.length; i++) {
+            curr.next = new ListNode(nums[i]);
+            curr = curr.next;
+        }
+    }
 
-    private ListNode createListNode(int[] num) {
-        ListNode head = new ListNode(num[0]);
-        ListNode cur = head;
-        for (int i = 1; i < num.length; i++) {
-            cur.next = new ListNode(num[i]);
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        ListNode cur = this;
+        while (cur != null) {
+            s.append(cur.val + " -> ");
             cur = cur.next;
         }
-        return head;
+        s.append("NULL");
+        return s.toString();
     }
+}
 
 
-    private void printListNode(ListNode head) {
-
-        while (head != null) {
-            System.out.print(head.val);
-            System.out.print(" -> ");
-            head = head.next;
-        }
-        System.out.println(" NULL ");
-
-    }
-
+/**
+ * https://leetcode-cn.com/problems/palindrome-linked-list/description/
+ *
+ * @author liwei
+ */
+public class Solution {
 
     public boolean isPalindrome(ListNode head) {
         if (head == null || head.next == null) {
             return true;
         }
-        ListNode n1 = head;
-        ListNode n2 = head;
-        while (n2.next != null && n2.next.next != null) {
-            n1 = n1.next;
-            n2 = n2.next.next;
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        // n1 的下一个就是新链表，反转它
-        ListNode cur = n1.next;
-        n1.next = null;
+        // slow 的下一个就是新链表，反转它
+        ListNode cur = slow.next;
+        slow.next = null;
         ListNode pre = null;
         while (cur != null) {
             ListNode next = cur.next;
@@ -67,10 +72,9 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        // write your code here
         int[] nums = {1, 2, 0, 2, 1};
         Solution solution = new Solution();
-        ListNode head = solution.createListNode(nums);
+        ListNode head = new ListNode(nums);
         boolean palindrome = solution.isPalindrome(head);
         System.out.println(palindrome);
     }

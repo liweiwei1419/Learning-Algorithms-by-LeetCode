@@ -4,7 +4,7 @@ import java.util.*;
 public class Solution {
 
     private List<String> wordList;
-    private Set<String> used = new HashSet<>();
+    private Set<String> marked = new HashSet<>(); // 广度优先遍历要记录结点被遍历的情况，所以要使用一个 Set
 
     private class Pair {
         private String word;
@@ -21,8 +21,8 @@ public class Solution {
         // 遇到最短路径问题，想都不要想，先来一个队列，写成栈就全部错误了
         LinkedList<Pair> queue = new LinkedList<>();
         queue.addLast(new Pair(beginWord, 1));
-        used.add(beginWord);
-        Integer targetNums = null;
+        marked.add(beginWord);
+
         while (!queue.isEmpty()) {
             Pair curPair = queue.removeFirst();
             String curWord = curPair.word;
@@ -34,13 +34,13 @@ public class Solution {
                     return step;
                 }
                 queue.addLast(new Pair(nextWord, step));
-                used.add(nextWord); // 千万不要忘了
+                marked.add(nextWord); // 千万不要忘了
             }
         }
         return 0;
     }
 
-    // 与 word 一个字母的 wordList 的元素有哪些
+    // 与 word 相差一个字母的 wordList 的元素有哪些
     // 并且要保证没有使用过
     public List<String> onlyChangeOne(String word) {
         List<String> res = new ArrayList<>();
@@ -57,7 +57,7 @@ public class Solution {
                     }
                 }
             }
-            if (count == 1 && !used.contains(match)) {
+            if (count == 1 && !marked.contains(match)) {
                 res.add(match);
             }
         }
@@ -72,11 +72,9 @@ public class Solution {
             wordList.add(word);
         }
         Solution solution = new Solution();
-
         String beginWord = "hit";
         String endWord = "cog";
         int ladderLength = solution.ladderLength(beginWord, endWord, wordList);
         System.out.println(String.format("从 %s 到 %s 的最短转换序列的长度：%d。", beginWord, endWord, ladderLength));
-
     }
 }

@@ -9,7 +9,8 @@ public class Solution3 {
     }
 
     public ListNode sort(ListNode[] lists, int l, int r) {
-        if (l >= r) {
+        // 思考这里为什么取等于？这是因为根据下文对 sort 的递归调用情况，区间最窄的时候，只可能是左右端点重合
+        if (l == r) {
             return lists[l];
         }
         int mid = (r - l) / 2 + l;

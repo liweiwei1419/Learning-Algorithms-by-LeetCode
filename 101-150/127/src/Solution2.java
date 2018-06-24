@@ -43,8 +43,6 @@ public class Solution2 {
     }
 
     public static void main(String[] args) {
-        // 测试用例
-
         List<String> wordList = new ArrayList<>();
         String[] words = {"hot", "dot", "dog", "lot", "log", "cog"};
         for (String word : words) {
@@ -56,6 +54,5 @@ public class Solution2 {
         String endWord = "cog";
         int ladderLength = solution.ladderLength(beginWord, endWord, wordList);
         System.out.println(String.format("从 %s 到 %s 的最短转换序列的长度：%d。", beginWord, endWord, ladderLength));
-
     }
 }

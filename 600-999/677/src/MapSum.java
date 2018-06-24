@@ -1,24 +1,22 @@
 import java.util.HashMap;
-import java.util.Map;
 
-//
 public class MapSum {
 
-    private class Node {
-        private int val;
-        private Map<Character, Node> next;
+    private Node root;
 
-        public Node(boolean isWord, int val) {
-            this.val = val;
-            this.next = new HashMap<>();
-        }
+    private class Node {
+        private int value;
+        private HashMap<Character, Node> next;
 
         public Node() {
-            this(false, 0);
+            this(0);
+        }
+
+        public Node(int value) {
+            this.value = value;
+            this.next = new HashMap<>();
         }
     }
-
-    private Node root;
 
     /**
      * Initialize your data structure here.
@@ -28,52 +26,52 @@ public class MapSum {
     }
 
     public void insert(String key, int val) {
-        Node currNode = root;
-        Character c;
+        Node curNode = root;
         for (int i = 0; i < key.length(); i++) {
-            c = key.charAt(i);
-            if (currNode.next.get(c) == null) {
-                currNode.next.put(c, new Node());
+            Character c = key.charAt(i);
+            if (!curNode.next.containsKey(c)) {
+                curNode.next.put(c, new Node());
             }
-            currNode = currNode.next.get(c);
+            curNode = curNode.next.get(c);
         }
-        currNode.val = val;
+        curNode.value = val;
     }
 
+    // 设计一个递归函数去完成它
     public int sum(String prefix) {
-        Node node = root;
-        Character c;
+        Node curNode = root;
         for (int i = 0; i < prefix.length(); i++) {
-            c = prefix.charAt(i);
-            if (node.next.get(c) == null) {
+            Character c = prefix.charAt(i);
+            if (curNode.next.containsKey(c)) {
+                curNode = curNode.next.get(c);
+            } else {
                 return 0;
             }
-            node = node.next.get(c);
         }
-        return find(node);
+        return sum(curNode);
     }
 
-    // node 为 root 的 val 的和
-    // 我把问题想复杂了
-    private int find(Node node) {
-        // 很关键，起始点不是 0
-        int sum = node.val;
-        for (Character c : node.next.keySet()) {
-            sum += find(node.next.get(c));
+    // 计算以 node 为根节点的所有 value 值的和
+    private int sum(Node node) {
+        int res = node.value;
+        for (Character key : node.next.keySet()) {
+            // 一直找到根节点
+            res += sum(node.next.get(key));
         }
-        return sum;
+        return res;
     }
 
     public static void main(String[] args) {
-        // write your code here
-        MapSum mapSum = new MapSum();
-
+        // 输入: insert("apple", 3), 输出: Null
+        // 输入: sum("ap"), 输出: 3
+        // 输入: insert("app", 2), 输出: Null
+        // 输入: sum("ap"), 输出: 5
+        MapSum2 mapSum = new MapSum2();
         mapSum.insert("apple", 3);
-        int sum1 = mapSum.sum("ap");// Output: 3
-
+        int sum1 = mapSum.sum("ap");
         System.out.println(sum1);
-        mapSum.insert("app", 2); //Output: Null
-        int sum2 = mapSum.sum("ap");//Output: 5
+        mapSum.insert("app", 2);
+        int sum2 = mapSum.sum("ap");
         System.out.println(sum2);
     }
 }

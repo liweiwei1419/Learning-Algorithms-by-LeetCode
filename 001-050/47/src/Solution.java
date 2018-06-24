@@ -1,67 +1,51 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 // https://leetcode-cn.com/problems/permutations-ii/
 public class Solution {
 
-    private int[] nums;
-    private int length;
-    private boolean[] used;
-    private List<List<Integer>> result = new ArrayList<>();
+    private List<List<Integer>> res = new ArrayList<>();
+    private boolean[] marked;
 
-    public List<List<Integer>> permuteUnique(int[] nums) {
-        this.nums = nums;
-        this.length = nums.length;
-        if (length == 0) {
-            return result;
-        }
-        used = new boolean[length];
-        generatePermutation(0, new ArrayList<>());
-        return result;
-    }
-
-    private void generatePermutation(int index, List<Integer> p) {
-        if (index == length) {
-            // 如果和以前有的排列不重复，才添加到结果集中
-            if (!judgeDuplicate(p)) {
-                result.add(new ArrayList<>(p));
-            }
+    private void findPermuteUnique(int[] nums, int depth, Stack<Integer> stack) {
+        if (depth == nums.length) {
+            res.add(new ArrayList<>(stack));
             return;
         }
-        for (int i = 0; i < length; i++) {
-            if (!used[i]) {
-                used[i] = true;
-                p.add(nums[i]);
-                generatePermutation(index + 1, p);
-                p.remove(p.size() - 1);
-                used[i] = false;
+        for (int i = 0; i < nums.length; i++) {
+            if (!marked[i]) {
+                // i > 0 是为了保证 marked[i - 1] 有意义，事实上 i = 0 是一定在解当中的
+                // 相当于树被剪枝，重点体会这一步剪枝操作是为什么，其实画个图就非常清楚了
+                if (i > 0 && nums[i] == nums[i - 1] && !marked[i - 1]) {
+                    continue;
+                }
+                marked[i] = true;
+                stack.add(nums[i]);
+                findPermuteUnique(nums, depth + 1, stack);
+                stack.pop();
+                marked[i] = false;
             }
         }
     }
 
-    private boolean judgeDuplicate(List<Integer> p) {
-        List<Integer> currentList;
-        for (int i = 0; i < result.size(); i++) {
-            currentList = result.get(i);
-            for (int j = 0; j < length; j++) {
-                if (p.get(j) != currentList.get(j)) {
-                    break;
-                } else {
-                    // p.get(j) == currentList.get(j)
-                    if (j == length - 1) {
-                        // 如果此时已经比较到第 3 个数字都相等了，就说明已经重复了
-                        return true;
-                    }
-                }
-            }
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        int len = nums.length;
+        if (len == 0) {
+            return res;
         }
-        return false;
+        // 这一步很关键，是后面剪枝的基础
+        Arrays.sort(nums);
+        marked = new boolean[len];
+        findPermuteUnique(nums, 0, new Stack<>());
+        return res;
     }
 
     public static void main(String[] args) {
-        // int[] nums = {1,2,3};
         int[] nums = {1, 1, 2};
-        List<List<Integer>> lists = new Solution().permuteUnique(nums);
-        System.out.println(lists);
+        Solution solution = new Solution();
+        List<List<Integer>> permuteUnique = solution.permuteUnique(nums);
+        System.out.println(permuteUnique);
     }
 }
