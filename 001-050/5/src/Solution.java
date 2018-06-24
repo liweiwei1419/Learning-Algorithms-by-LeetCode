@@ -5,7 +5,6 @@
  */
 public class Solution {
 
-
     public String longestPalindrome(String s) {
         int len = s.length();
         if (len == 0) {

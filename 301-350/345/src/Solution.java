@@ -1,7 +1,4 @@
-package leetcode.q345;
-
 /**
- * Created by liwei on 17/9/23.
  * <p>
  * Example 1:
  * Given s = "hello", return "holle".
@@ -17,7 +14,11 @@ public class Solution {
      * @return
      */
     public String reverseVowels(String s) {
-        if (s.length() == 0) return "";
+        int len = s.length();
+        if (len < 2) {
+            return s;
+        }
+        ;
         char[] chars = s.toCharArray();
         int i = 0;
         int j = chars.length - 1;
@@ -40,7 +41,9 @@ public class Solution {
     }
 
     private void swap(char[] chars, int index1, int index2) {
-        if (index1 == index2) return;
+        if (index1 == index2) {
+            return;
+        }
         char temp = chars[index1];
         chars[index1] = chars[index2];
         chars[index2] = temp;
@@ -48,7 +51,7 @@ public class Solution {
 
     private boolean checkVowels(char c) {
         if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
-                c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U'   ) {
+                c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
             return true;
         } else {
             return false;
@@ -57,13 +60,11 @@ public class Solution {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        //String result1 = solution.reverseVowels("hello");
-        //System.out.println(result1);
-        //String result2 = solution.reverseVowels("leetcode");
-        //System.out.println(result2);
-
+        String result1 = solution.reverseVowels("hello");
+        System.out.println(result1);
+        String result2 = solution.reverseVowels("leetcode");
+        System.out.println(result2);
         String result3 = solution.reverseVowels(" ");
         System.out.println(result3);
-
     }
 }

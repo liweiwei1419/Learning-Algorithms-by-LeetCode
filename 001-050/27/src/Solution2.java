@@ -4,7 +4,7 @@ public class Solution2 {
         int i = 0;
         int j = 0;
         for (; i < nums.length; i++) {
-            if(nums[i]==val){
+            if (nums[i] == val) {
                 continue;
             }
             nums[j] = nums[i];
@@ -17,7 +17,7 @@ public class Solution2 {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int result = solution.removeElement(new int[]{3,2,2,3},2);
+        int result = solution.removeElement(new int[]{3, 2, 2, 3}, 2);
         System.out.println(result);
     }
 }

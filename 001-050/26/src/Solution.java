@@ -7,10 +7,14 @@ public class Solution {
     // [1,1,2,3,4,4]
     // [1,2,3,4,4]
     public int removeDuplicates(int[] nums) {
-        if (nums.length == 0) return 0;
+
+        int len = nums.length;
+        if (len == 0) {
+            return 0;
+        }
         int pre = nums[0];
         int j = 0;
-        for (int i = 1; i < nums.length; i++) {
+        for (int i = 1; i < len; i++) {
             if (nums[i] != pre) {
                 pre = nums[i];
                 j++;

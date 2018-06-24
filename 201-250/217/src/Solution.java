@@ -1,27 +1,22 @@
 import java.util.HashSet;
-import java.util.Set;
 
-// https://leetcode-cn.com/problems/contains-duplicate/description/
+/**
+ * 使用 hash 表进行检查
+ */
 public class Solution {
-
     public boolean containsDuplicate(int[] nums) {
-        Set<Integer> set = new HashSet<>();
+        int len = nums.length;
+        if (len == 0) {
+            return false;
+        }
+        HashSet<Integer> set = new HashSet<>();
         for (int num : nums) {
-            if (set.contains(num)) {
-                return true;
-            } else {
+            if (!set.contains(num)) {
                 set.add(num);
+            } else {
+                return true;
             }
         }
         return false;
-    }
-
-    public static void main(String[] args) {
-        // write your code here
-
-        Solution solution = new Solution();
-        int[] nums = new int[0];
-        boolean containsDuplicate = solution.containsDuplicate(nums);
-        System.out.println(containsDuplicate);
     }
 }
