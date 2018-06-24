@@ -1,4 +1,4 @@
-class Solution2 {
+public class Solution5 {
     public int integerBreak(int n) {
         if (n <= 2) {
             return 1;

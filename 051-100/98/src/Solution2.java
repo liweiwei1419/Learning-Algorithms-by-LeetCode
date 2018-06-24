@@ -1,8 +1,4 @@
-
-
-
 public class Solution2 {
-
     private boolean dfs(TreeNode node, int val, boolean ifLeft) {
         if (node == null) {
             return true;

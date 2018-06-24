@@ -1,4 +1,4 @@
-public class Trie {
+public class Trie3 {
 
     private Node root;
 
@@ -15,7 +15,7 @@ public class Trie {
     /**
      * Initialize your data structure here.
      */
-    public Trie() {
+    public Trie3() {
         root = new Node();
     }
 
@@ -76,14 +76,14 @@ public class Trie {
     }
 
     public static void main(String[] args) {
-        Trie trie = new Trie();
-        trie.insert("helloworld");
-        boolean startsWith = trie.startsWith("hello");
+        Trie3 trie3 = new Trie3();
+        trie3.insert("helloworld");
+        boolean startsWith = trie3.startsWith("hello");
         System.out.println(startsWith);
-        boolean search1 = trie.search("helloworld");
+        boolean search1 = trie3.search("helloworld");
         System.out.println(search1);
 
-        boolean search2 = trie.search("hello");
+        boolean search2 = trie3.search("hello");
         System.out.println(search2);
     }
 }

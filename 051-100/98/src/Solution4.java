@@ -1,23 +1,27 @@
-package leetcode.q98;
+import java.util.ArrayList;
 
-/**
- * Created by liwei on 17/9/26.
- */
-/**
- * Definition for a binary tree node.
- */
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-        val = x;
-    }
-}
-
-public class Solution {
+public class Solution4 {
     public boolean isValidBST(TreeNode root) {
-        return false;
+        if (root == null) {
+            return true;
+        }
+        ArrayList<Integer> list = new ArrayList<>();
+        inOrder(root, list);
+        int len = list.size();
+        for (int i = 0; i < len - 1; i++) {
+            if (list.get(i) >= list.get(i + 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void inOrder(TreeNode treeNode, ArrayList<Integer> list) {
+        if (treeNode == null) {
+            return;
+        }
+        inOrder(treeNode.left, list);
+        list.add(treeNode.val);
+        inOrder(treeNode.right, list);
     }
 }

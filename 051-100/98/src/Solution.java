@@ -36,6 +36,4 @@ public class Solution {
                 dfs(root.right, root.val, false) &&
                 isValidBST(root.left) && isValidBST(root.right);
     }
-
-
 }

@@ -10,6 +10,18 @@ public class Solution {
         return res;
     }
 
+    public int singleNumber2(int[] nums) {
+        int len = nums.length;
+        if (len == 0) {
+            throw new RuntimeException("数组元素为空，没有只出现一次的数字");
+        }
+        int res = nums[0];
+        for (int i = 1; i < len; i++) {
+            res ^= nums[i];
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         int[] nums = {2, 2, 1};
         Solution solution = new Solution();

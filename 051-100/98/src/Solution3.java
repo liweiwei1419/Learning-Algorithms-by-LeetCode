@@ -1,6 +1,3 @@
-
-
-
 public class Solution3 {
 
     private boolean helper(TreeNode node, Integer min, Integer max) {

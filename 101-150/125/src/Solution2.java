@@ -1,7 +1,6 @@
 // 作为练习
 public class Solution2 {
 
-
     public boolean isPalindrome(String s) {
         int len = s.length();
         if (len == 0) {
