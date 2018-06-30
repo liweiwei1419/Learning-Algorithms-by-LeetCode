@@ -5,8 +5,8 @@ public class Solution {
             return false;
         }
         String binaryString = Integer.toBinaryString(num);
-        System.out.println(binaryString);
         int len = binaryString.length();
+        // 二进制的长度是奇数，即后面 0 的个数是偶数
         return len % 2 == 1 && (num & 1 << (len - 1)) == num;
     }
 

@@ -43,6 +43,5 @@ public class Solution2 {
         Solution2 solution2 = new Solution2();
         int eraseOverlapIntervals = solution2.eraseOverlapIntervals(intervals);
         System.out.println(eraseOverlapIntervals);
-
     }
 }

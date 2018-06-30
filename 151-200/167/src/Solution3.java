@@ -1,6 +1,7 @@
 import java.util.Arrays;
 
 /**
+ * 同 Solution
  * 我个人觉得指针对撞的解法思路清晰，表意明确，代码量也少
  */
 public class Solution3 {

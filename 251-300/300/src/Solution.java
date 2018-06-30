@@ -1,8 +1,10 @@
 import java.util.Arrays;
 
-// 最长上升子序列问题
-// 300. 最长上升子序列
-// https://leetcode-cn.com/problems/longest-increasing-subsequence/description/
+/**
+ * 最长上升子序列问题
+ * 300. 最长上升子序列
+ * https://leetcode-cn.com/problems/longest-increasing-subsequence/description/
+ */
 public class Solution {
 
     //【关键】将 dp 数组定义为：以 nums[i] 结尾的最长上升子序列的长度
@@ -18,10 +20,13 @@ public class Solution {
         // 状态的定义是：以 i 结尾的最长上升子序列的长度
         // 状态转移方程：之前比最后那个数字小的最长上升子序列的长度 + 1
         int[] dp = new int[len];
-        Arrays.fill(dp, 1); // 如果只有 1 个元素，那么这个元素自己就构成了最长上升子序列，所以设置为 1 是合理的
-        for (int i = 1; i < len; i++) { // 从第 2 个元素开始，逐个写出 dp 数组的元素的值
+        // 如果只有 1 个元素，那么这个元素自己就构成了最长上升子序列，所以设置为 1 是合理的
+        Arrays.fill(dp, 1);
+        // 从第 2 个元素开始，逐个写出 dp 数组的元素的值
+        for (int i = 1; i < len; i++) {
             int curVal = nums[i];
-            for (int j = 0; j < i; j++) { // 找出比当前元素小的哪些元素的最小值
+            // 找出比当前元素小的哪些元素的最小值
+            for (int j = 0; j < i; j++) {
                 if (curVal > nums[j]) {
                     dp[i] = Integer.max(dp[j] + 1, dp[i]);
                 }

@@ -10,9 +10,11 @@ import java.util.Arrays;
  */
 public class Solution2 {
     public int[] twoSum(int[] numbers, int target) {
+        // 最后一个数不会成为起始的数字
         for (int i = 0; i < numbers.length - 1; i++) {
             int num1 = numbers[i];
             int num2 = target - num1;
+            // 挨个二分查找
             int index2 = binarySearch(numbers, i + 1, numbers.length - 1, num2);
             if (index2 != 0) {
                 return new int[]{i + 1, index2 + 1};

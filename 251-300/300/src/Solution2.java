@@ -1,6 +1,8 @@
 import java.util.Arrays;
 
-// https://leetcode.com/problems/longest-increasing-subsequence/description/
+/**
+ * 作为练习，同 Solution
+ */
 public class Solution2 {
     public int lengthOfLIS(int[] nums) {
         int len = nums.length;
@@ -8,7 +10,8 @@ public class Solution2 {
             return 0;
         }
         int[] dp = new int[len];
-        Arrays.fill(dp, 1); // 至少都是自己这个元素，默认值设置为 1 是合理的
+        // 至少都是自己这个元素，默认值设置为 1 是合理的
+        Arrays.fill(dp, 1);
         for (int i = 1; i < len; i++) {
             int curVal = nums[i];
             // 把之前的都找过去，找到最大的 + 1

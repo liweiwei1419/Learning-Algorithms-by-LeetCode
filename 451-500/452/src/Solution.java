@@ -3,6 +3,12 @@ import java.util.Comparator;
 
 public class Solution {
 
+    /**
+     * 使用贪心算法，画图分析
+     *
+     * @param points
+     * @return
+     */
     public int findMinArrowShots(int[][] points) {
         int plen = points.length;
         if (plen == 0) {
@@ -18,6 +24,7 @@ public class Solution {
             }
         });
         int count = 1;
+        // 第 1 个区间的末尾，目前线段能够达到的最远位置
         int allowLimit = points[0][1];
         // 贪心法，基于上一个箭，记录当前能够射穿的所有的区间
         for (int i = 1; i < plen; i++) {

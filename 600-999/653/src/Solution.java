@@ -17,10 +17,13 @@ public class Solution {
             return false;
         }
         List<Integer> list = new ArrayList<>();
+        // 使用中序遍历，得到一个顺序数组
         inOrder(root, list);
         int len = list.size();
         int l = 0;
         int r = len - 1;
+
+        // 在顺序数组中，使用二分查找法
         while (l < r) {
             int sum = list.get(l) + list.get(r);
 
