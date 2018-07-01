@@ -3,54 +3,49 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
-// https://leetcode-cn.com/problems/subsets-ii/description/
+/**
+ * https://leetcode-cn.com/problems/subsets-ii/description/
+ */
 public class Solution {
 
-    private List<List<Integer>> res = new ArrayList<>();
-    private int[] nums;
-    private int len;
-    private boolean[] used;
-
-
-    private void findSubsetsWithDup(int maxCount, int begin, Stack<Integer> stack) {
+    private void findSubsetsWithDup(int[] nums, int maxCount, int begin, int len,
+                                    boolean[] marked, Stack<Integer> stack,
+                                    List<List<Integer>> res) {
         if (maxCount == stack.size()) {
             res.add(new ArrayList<>(stack));
             return;
         }
         for (int i = begin; i < len; i++) {
-            if (!used[i]) {
+            if (!marked[i]) {
+                // 留意
                 if (i > begin && nums[i] == nums[i - 1]) {
                     continue;
                 }
-                used[i] = true;
+                marked[i] = true;
                 stack.add(nums[i]);
-                findSubsetsWithDup(maxCount, i + 1, stack);
+                findSubsetsWithDup(nums, maxCount, i + 1, len, marked, stack, res);
                 stack.pop();
-                used[i] = false;
+                marked[i] = false;
             }
         }
-
     }
 
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         int len = nums.length;
+        List<List<Integer>> res = new ArrayList<>();
         if (len == 0) {
             return res;
         }
-        this.len = len;
-
+        // 排序很关键
         Arrays.sort(nums);
-        this.nums = nums;
-        used = new boolean[len];
-        for (int i = 0; i <= len ; i++) {
-            findSubsetsWithDup(i, 0, new Stack<>());
+        boolean[] marked = new boolean[len];
+        for (int i = 0; i <= len; i++) {
+            findSubsetsWithDup(nums, i, 0, len, marked, new Stack<>(), res);
         }
         return res;
     }
 
     public static void main(String[] args) {
-        // write your code here
-
         Solution solution = new Solution();
         int[] nums = {1, 2, 2};
         List<List<Integer>> subsetsWithDup = solution.subsetsWithDup(nums);

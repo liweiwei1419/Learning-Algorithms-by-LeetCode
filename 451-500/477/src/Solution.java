@@ -1,40 +1,33 @@
-// https://leetcode-cn.com/problems/ones-and-zeroes/description/
+/**
+ * 计算任意汉明距离总和
+ */
 public class Solution {
 
-    private int[] calcZeroAndOne(String str) {
-        int[] res = new int[2];
-        for (char c : str.toCharArray()) {
-            res[c - '0']++;
+    public int totalHammingDistance(int[] nums) {
+        int len = nums.length;
+        if (len == 0) {
+            return 0;
         }
-        return res;
-    }
-
-    public int findMaxForm(String[] strs, int m, int n) {
-        int[][] dp = new int[m + 1][n + 1];
-        dp[0][0] = 0;
-        for (String s : strs) {
-            int[] zeroAndOne = calcZeroAndOne(s);
-            int zeros = zeroAndOne[0];
-            int ones = zeroAndOne[1];
-            for (int i = m; i >= zeros; i--) {
-                for (int j = n; j >= ones; j--) {
-                    // 一点一点填空
-                    dp[i][j] = Integer.max(dp[i][j], dp[i - zeros][j - ones] + 1);
+        int mask = 1;
+        int total = 0;
+        for (int i = 0; i < 32; i++) {
+            // 在这个数位上有多少个 1
+            int oneCount = 0;
+            for (int num : nums) {
+                if ((num & mask) > 0) {
+                    oneCount++;
                 }
             }
+            total += ((len - oneCount) * oneCount);
+            mask <<= 1;
         }
-        return dp[m][n];
+        return total;
     }
 
     public static void main(String[] args) {
-        // write your code here
-        String[] strs = {"10", "0001", "111001", "1", "0"};
+        int[] nums = new int[]{4, 14, 2};
         Solution solution = new Solution();
-        int m = 5;
-        int n = 3;
-        int maxForm = solution.findMaxForm(strs, m, n);
-        System.out.println(maxForm);
-
-
+        int totalHammingDistance = solution.totalHammingDistance(nums);
+        System.out.println(totalHammingDistance);
     }
 }

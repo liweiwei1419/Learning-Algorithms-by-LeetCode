@@ -2,7 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-// https://leetcode-cn.com/problems/subsets/description/
+/**
+ * 这一版的结果看起来更整齐一些
+ * https://leetcode-cn.com/problems/subsets/description/
+ */
 public class Solution {
 
     private List<List<Integer>> res = new ArrayList<>();

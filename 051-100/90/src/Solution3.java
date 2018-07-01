@@ -1,11 +1,7 @@
-package leetcode.q90;
-
 import java.util.List;
 
-/**
- * Created by liwei on 17/9/28.
- */
-public class Solution {
+// 留做练习
+public class Solution3 {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         return null;
     }
