@@ -6,7 +6,6 @@
  * 1, 3, -1, 2, 0, 0, 0 i=1,j=4,k=3
  * 1, 2, -1, 3, 0, 0, 0 i=2,j=4,k=4
  * 1, 2, -1, 3, 0, 0, 0 i=2,j=3,k=5
- * Created by liwei on 17/9/19.
  */
 public class Solution2 {
 

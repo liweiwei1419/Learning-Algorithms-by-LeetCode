@@ -4,11 +4,13 @@
  * @author liwei
  */
 public class Solution {
+
     // 常规问题：使用快速排序的思路就可以完成
-    // 解题思路：这道题可以借用 partition 和二分查找法的思想
+    // 解题思路：这道题可以借用 partition 的思想
     // 关键在于理解 partition 的返回值，【返回值是拉通了整个数组的索引值，这一点是非常重要的，不要把问题想得复杂了】
     // [2,5,6,1,4,7] ，一共 6 个元素 找 k = 2，如果返回 4 ，就可以返回了
     // [2,5,6,1,4,7] ，一共 6 个元素 找 k = 2，如果返回 2 ，左边的区间就可以不用看了
+
     public int findKthLargest(int[] nums, int k) {
         int len = nums.length;
         int l = 0;

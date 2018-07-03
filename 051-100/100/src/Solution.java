@@ -10,6 +10,7 @@ class TreeNode {
 
 // https://leetcode-cn.com/problems/same-tree/description/
 public class Solution {
+
     public boolean isSameTree(TreeNode p, TreeNode q) {
         // 先处理最特殊的情况，都为空结点的时候
         if (p == null && q == null) {

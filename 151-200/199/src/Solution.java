@@ -38,8 +38,10 @@ public class Solution {
 
     // 思路：我们按照深度优先遍历的顺序，从右边开始遍历
     // 思路很像前、中、后序遍历（他们都是深度优先遍历），只不过我们先从右边开始遍历
+
     private void dfs(TreeNode node, int level) {
-        if (node == null) { // 如果 node 为空，就直接返回，一定要先写，以减少很多判断
+        // 如果 node 为空，就直接返回，一定要先写，以减少很多判断
+        if (node == null) {
             return;
         }
         if (res.size() == level) {

@@ -10,7 +10,7 @@ public class Solution2 {
         // 因为要在 num1 上修改，把 nums1 返回回去
         // 因此，把 num1 复制一份
         int[] nums3 = new int[m];
-        System.arraycopy(nums1,0,nums3,0,m);
+        System.arraycopy(nums1, 0, nums3, 0, m);
         // 数组3
         int i = 0;
         // 数组2

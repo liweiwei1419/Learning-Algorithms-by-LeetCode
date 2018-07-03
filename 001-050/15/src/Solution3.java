@@ -1,9 +1,15 @@
 import java.util.*;
 
-// https://leetcode-cn.com/problems/3sum/description/
-public class Solution {
+/**
+ * https://leetcode-cn.com/problems/3sum/description/
+ */
+public class Solution3 {
 
-    // nums = [-1, 0, 1, 2, -1, -4]，
+    // 错误的写法
+    // 错误的写法
+    // 错误的写法
+
+
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         int len = nums.length;
@@ -31,9 +37,11 @@ public class Solution {
                     res.add(oneSolver);
                     // 找到了，当前循环就不会再有解了，可以进入下一循环，这里是关键，前提是数组得排好序
                     break;
-                } else if (sum > 0) {// 后面的数太大了，让它往前走一步试试看
+                } else if (sum > 0) {
+                    // 后面的数太大了，让它往前走一步试试看
                     k--;
-                } else { // sum < 0， 前面的数太小了，让它往后走一步试试看
+                } else {
+                    // sum < 0， 前面的数太小了，让它往后走一步试试看
                     j++;
                 }
             }
@@ -42,9 +50,9 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        int[] nums = {-1, 0, 1, 2, -1, -4};
-        Solution solution = new Solution();
-        List<List<Integer>> res = solution.threeSum(nums);
+        int[] nums = {0,0,0,0};
+        Solution3 solution3 = new Solution3();
+        List<List<Integer>> res = solution3.threeSum(nums);
         res.forEach(System.out::println);
     }
 }

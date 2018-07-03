@@ -1,5 +1,5 @@
-import java.util.Arrays;
 
+// 这种写法更简洁一些
 public class Solution2 {
 
     public int removeDuplicates(int[] nums) {
@@ -20,12 +20,4 @@ public class Solution2 {
         return j + 1;
     }
 
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        // int[] nums = new int[]{1,1,1,2,2,2,3,3,3,4,5,6,7,7,7,8,9,10,10};
-        int[] nums = new int[]{1};
-        int result = solution.removeDuplicates(nums);
-        System.out.println(result);
-        System.out.println(Arrays.toString(nums));
-    }
 }

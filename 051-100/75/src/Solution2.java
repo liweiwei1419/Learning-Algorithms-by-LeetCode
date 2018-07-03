@@ -19,11 +19,11 @@ public class Solution2 {
      */
     public void sortColors(int[] nums) {
         int i = 0;
-        int j = 0;
+        int l = 0;
         int r = nums.length;
         while (i < r) {
             if (nums[i] == 0) {
-                swap(nums, i++, j++);
+                swap(nums, i++, l++);
             } else if (nums[i] == 1) {
                 i++;
             } else {

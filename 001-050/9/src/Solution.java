@@ -11,6 +11,7 @@ public class Solution {
         if (x < 0) {
             return false;
         }
+        // 在执行得到反转的过程中，会改变 x 的值，所以用 x 的副本去完成这个逻辑
         return x == reverse(x);
     }
 

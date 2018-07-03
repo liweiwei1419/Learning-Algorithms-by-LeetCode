@@ -7,22 +7,21 @@ public class Solution {
     // [1,1,2,3,4,4]
     // [1,2,3,4,4]
     public int removeDuplicates(int[] nums) {
-
         int len = nums.length;
         if (len == 0) {
             return 0;
         }
         int pre = nums[0];
-        int j = 0;
+        int l = 0;
         for (int i = 1; i < len; i++) {
             if (nums[i] != pre) {
                 pre = nums[i];
-                j++;
-                nums[j] = nums[i];
+                l++;
+                nums[l] = nums[i];
             }
         }
-        // 注意 j 是遍历到的与之前不同元素的个数，要把第 1 个元素算进去，所以要加 1
-        return j + 1;
+        // 注意 l 是遍历到的与之前不同元素的个数，要把第 1 个元素算进去，所以要加 1
+        return l + 1;
     }
 
     public static void main(String[] args) {

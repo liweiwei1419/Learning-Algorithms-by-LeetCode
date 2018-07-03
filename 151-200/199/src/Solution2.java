@@ -29,7 +29,8 @@ public class Solution2 {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
                 TreeNode curNode = queue.removeFirst();
-                if (i == size - 1) { // 如果写成 i == 0 就得到左边的视图
+                // 如果写成 i == 0 就得到左边的视图
+                if (i == size - 1) {
                     res.add(curNode.val);
                 }
                 if (curNode.left != null) {

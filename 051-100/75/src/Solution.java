@@ -14,39 +14,39 @@ public class Solution {
     // 1 的时候不动
     // 0 的时候，移动到 1 的前面
     public void sortColors(int[] nums) {
-        int l =-1;
+        int l = -1;
         int r = nums.length;
         for (int i = 0; i < nums.length; i++) {
-            if(i>=r){
+            if (i >= r) {
                 break;
             }
-            if(nums[i]==0){
+            if (nums[i] == 0) {
                 l++;
-                swap(nums,l,i);
+                swap(nums, l, i);
             }
-            if(nums[i]==1){
+            if (nums[i] == 1) {
                 // 什么都不做
             }
-            if(nums[i]==2){
+            if (nums[i] == 2) {
                 r--;
-                swap(nums,r,i);
+                swap(nums, r, i);
                 i--; //
             }
         }
     }
 
-    private void swap(int[] nums,int index1,int index2){
-        if(index1==index2){
+    private void swap(int[] nums, int index1, int index2) {
+        if (index1 == index2) {
             return;
         }
         int temp = nums[index1];
-        nums[index1] =nums[index2];
+        nums[index1] = nums[index2];
         nums[index2] = temp;
     }
 
     public static void main(String[] args) {
         // write your code here
-        int[] nums = {1,2,0};
+        int[] nums = {1, 2, 0};
         new Solution().sortColors(nums);
         System.out.println(Arrays.toString(nums));
     }

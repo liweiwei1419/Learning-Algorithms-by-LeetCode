@@ -1,4 +1,3 @@
-
 class TreeNode {
     int val;
     TreeNode left;
@@ -9,7 +8,9 @@ class TreeNode {
     }
 }
 
-// https://leetcode-cn.com/problems/sum-of-left-leaves/description/
+/**
+ * https://leetcode-cn.com/problems/sum-of-left-leaves/description/
+ */
 public class Solution {
 
     public int sumOfLeftLeaves(TreeNode root) {
@@ -21,9 +22,5 @@ public class Solution {
             return root.left.val + sumOfLeftLeaves(root.right);
         }
         return sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right);
-    }
-
-    public static void main(String[] args) {
-        // write your code here
     }
 }

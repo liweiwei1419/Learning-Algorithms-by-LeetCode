@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 // https://leetcode-cn.com/problems/binary-tree-right-side-view/description/
@@ -16,8 +18,31 @@ import java.util.List;
 // 留做练习
 public class Solution3 {
 
+    // 使用层序遍历的思想
+
     public List<Integer> rightSideView(TreeNode root) {
-        return null;
+        List<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.addLast(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.removeFirst();
+                if (i == 0) {
+                    res.add(node.val);
+                }
+                if (node.right != null) {
+                    queue.addLast(node.right);
+                }
+                if (node.left != null) {
+                    queue.addLast(node.left);
+                }
+            }
+        }
+        return res;
     }
 
     public static void main(String[] args) {
@@ -36,5 +61,4 @@ public class Solution3 {
         List<Integer> rightSideView = solution3.rightSideView(treeNode1);
         System.out.println(rightSideView);
     }
-
 }

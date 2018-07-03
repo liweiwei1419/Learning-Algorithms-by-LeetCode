@@ -1,17 +1,32 @@
+/**
+ * 快速排序 partition 的思想我认为是最简单的
+ */
 public class Solution {
 
+
+    // 在区间 [0, l) 里，所有的值都非零
+    // 而在区间 [l, i) 里，所有的值都为零
+    // 初始化的时候 l = 0
+
     public void moveZeroes(int[] nums) {
-        // 遍历指针
-        int i = 0;
-        // 一开始都写非零元素，然后都写零元素
-        int j = 0;
-        for (; i < nums.length; i++) {
+        int len = nums.length;
+        // l 表示下一个填写非零元素的索引
+        int l = 0;
+        // i 用于遍历
+        for (int i = 0; i < len; i++) {
             if (nums[i] != 0) {
-                nums[j++] = nums[i];
+                swap(nums, l, i);
+                l++;
             }
         }
-        for (int k = j; k < nums.length; k++) {
-            nums[k] = 0;
+    }
+
+    private void swap(int[] nums, int index1, int index2) {
+        if (index1 == index2) {
+            return;
         }
+        int temp = nums[index1];
+        nums[index1] = nums[index2];
+        nums[index2] = temp;
     }
 }
