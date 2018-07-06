@@ -31,28 +31,38 @@ class ListNode {
     }
 }
 
-// https://leetcode-cn.com/problems/partition-list/description/
-// 思路：创建两个 ListNode ，分别去接遍历到的元素，然后拼在一起。
+
+/**
+ * https://leetcode-cn.com/problems/partition-list/description/
+ * 思路：创建两个 ListNode ，分别去接遍历到的元素，然后拼在一起。
+ */
 public class Solution {
 
     public ListNode partition(ListNode head, int x) {
-        ListNode dummyNodeL = new ListNode(-1); // 比 x 小的虚拟头结点
-        ListNode dummyNodeR = new ListNode(-1); // 大于等于 x 的虚拟头结点
-        ListNode curL = dummyNodeL; // 用于遍历
-        ListNode curR = dummyNodeR; // 用于遍历
+        // 比 x 小的虚拟头结点
+        ListNode dummyNodeL = new ListNode(-1);
+        // 大于等于 x 的虚拟头结点
+        ListNode dummyNodeR = new ListNode(-1);
+        // 用于遍历
+        ListNode curL = dummyNodeL;
+        // 用于遍历
+        ListNode curR = dummyNodeR;
         int val;
         while (head != null) {
             val = head.val;
-            if (val < x) { // 接在 L 的后面
+            // 接在 L 的后面
+            if (val < x) {
                 curL.next = new ListNode(val);
                 curL = curL.next;
-            } else { // 接在 R 的后面
+            } else {
+                // 接在 R 的后面
                 curR.next = new ListNode(val);
                 curR = curR.next;
             }
             head = head.next;
         }
-        curL.next = dummyNodeR.next; // 把较小的链表接在较大的链表后面
+        // 把较小的链表接在较大的链表后面
+        curL.next = dummyNodeR.next;
         return dummyNodeL.next;
     }
 

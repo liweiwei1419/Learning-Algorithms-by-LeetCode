@@ -6,29 +6,36 @@ class ListNode {
     ListNode(int x) {
         val = x;
     }
-}
 
-// https://leetcode-cn.com/problems/swap-nodes-in-pairs/description/
-public class Solution {
-
-    public ListNode createListNode(int[] nums) {
-        ListNode head = new ListNode(nums[0]);
-        ListNode cur = head;
+    public ListNode(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            throw new IllegalArgumentException("arr can not be empty");
+        }
+        this.val = nums[0];
+        ListNode curr = this;
         for (int i = 1; i < nums.length; i++) {
-            cur.next = new ListNode(nums[i]);
+            curr.next = new ListNode(nums[i]);
+            curr = curr.next;
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        ListNode cur = this;
+        while (cur != null) {
+            s.append(cur.val + " -> ");
             cur = cur.next;
         }
-        return head;
+        s.append("NULL");
+        return s.toString();
     }
+}
 
-    public void printListNode(ListNode head) {
-        while (head != null) {
-            System.out.print(head.val + " -> ");
-            head = head.next;
-        }
-        System.out.println(" NULL ");
-    }
-
+/**
+ * https://leetcode-cn.com/problems/swap-nodes-in-pairs/description/
+ */
+public class Solution {
 
     public ListNode swapPairs(ListNode head) {
         if (head == null || head.next == null) {
@@ -36,20 +43,19 @@ public class Solution {
         }
         ListNode p1 = head;
         ListNode p2 = head.next;
+        // 没有必要这么写
         p2.next = swapPairs(p2.next);
         p1.next = p2.next;
         p2.next = p1;
         return p2;
     }
 
-
     public static void main(String[] args) {
-        // write your code here
         // 给定 1->2->3->4, 你应该返回 2->1->4->3.
         int[] nums = {1, 2, 3, 4, 5};
+        ListNode head = new ListNode(nums);
         Solution solution = new Solution();
-        ListNode listNode = solution.createListNode(nums);
-        ListNode result = solution.swapPairs(listNode);
-        solution.printListNode(result);
+        ListNode swapPairs = solution.swapPairs(head);
+        System.out.println(swapPairs);
     }
 }

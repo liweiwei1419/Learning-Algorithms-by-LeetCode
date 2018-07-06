@@ -6,30 +6,36 @@ class ListNode {
     ListNode(int x) {
         val = x;
     }
-}
 
-
-// pre cur next
-public class Solution {
-
-    public ListNode createListNode(int[] nums) {
-        ListNode head = new ListNode(nums[0]);
-        ListNode cur = head;
+    public ListNode(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            throw new IllegalArgumentException("arr can not be empty");
+        }
+        this.val = nums[0];
+        ListNode curr = this;
         for (int i = 1; i < nums.length; i++) {
-            cur.next = new ListNode(nums[i]);
+            curr.next = new ListNode(nums[i]);
+            curr = curr.next;
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        ListNode cur = this;
+        while (cur != null) {
+            s.append(cur.val + " -> ");
             cur = cur.next;
         }
-        return head;
+        s.append("NULL");
+        return s.toString();
     }
+}
 
-    public void printListNode(ListNode head) {
-        while (head != null) {
-            System.out.print(head.val + " -> ");
-            head = head.next;
-        }
-        System.out.println(" NULL ");
-    }
-
+/**
+ * pre cur next
+ */
+public class Solution {
 
     private ListNode reverseListNode(ListNode head) {
         ListNode pre = null;
@@ -44,11 +50,9 @@ public class Solution {
         return pre;
     }
 
-
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode rL1 = reverseListNode(l1);
         ListNode rL2 = reverseListNode(l2);
-
 
         ListNode dummyNode = new ListNode(-1);
         ListNode curr = dummyNode;
@@ -70,20 +74,5 @@ public class Solution {
             curr.next = new ListNode(1);
         }
         return reverseListNode(dummyNode.next);
-    }
-
-    public static void main(String[] args) {
-        // write your code here
-
-        int[] num1 = new int[]{1, 1, 2, 3, 4, 5};
-        int[] num2 = new int[]{1, 2, 3, 4, 4};
-        Solution s = new Solution();
-        ListNode listNode1 = s.createListNode(num1);
-        ListNode listNode2 = s.createListNode(num2);
-        s.printListNode(listNode1);
-        s.printListNode(listNode2);
-
-        ListNode node = s.addTwoNumbers(listNode1, listNode2);
-        s.printListNode(node);
     }
 }

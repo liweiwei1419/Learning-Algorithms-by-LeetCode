@@ -9,7 +9,7 @@ public class Solution2 {
         if (head == null || head.next == null) {
             return head;
         }
-        // 这里设置 64 ，是一个戳戳有余的数字，可以满足结点数量为 2^64 这么多的单链表的排序
+        // 这里设置 64 ，是一个绰绰有余的数字，可以满足结点数量为 2^64 这么多的单链表的排序
         ListNode[] counter = new ListNode[64];
         ListNode curNode = head;
         // 遍历到的最大的 counter 数组的索引

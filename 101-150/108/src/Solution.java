@@ -9,7 +9,6 @@ class TreeNode {
 }
 
 /**
- * 这道问题想也没有多想，就写出来了
  * 108. 将有序数组转换为二叉搜索树
  * https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/description/
  */

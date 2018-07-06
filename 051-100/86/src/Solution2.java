@@ -1,10 +1,16 @@
 public class Solution2 {
 
+    // 空间复杂度为常数的解法：穿针引线
+
     public ListNode partition(ListNode head, int x) {
-        ListNode dummyNodeL = new ListNode(-1); // 比 x 小的虚拟头结点
-        ListNode dummyNodeR = new ListNode(-1); // 大于等于 x 的虚拟头结点
-        ListNode curL = dummyNodeL; // 用于遍历
-        ListNode curR = dummyNodeR; // 用于遍历
+        // 比 x 小的虚拟头结点
+        ListNode dummyNodeL = new ListNode(-1);
+        // 大于等于 x 的虚拟头结点
+        ListNode dummyNodeR = new ListNode(-1);
+        // 用于遍历
+        ListNode curL = dummyNodeL;
+        // 用于遍历
+        ListNode curR = dummyNodeR;
         int val;
         while (head != null) {
             val = head.val;
