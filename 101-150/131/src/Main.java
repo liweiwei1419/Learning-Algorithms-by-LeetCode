@@ -6,7 +6,6 @@ public class Main {
         System.out.println(l);
         for (String ss:s.split("\\.")) {
             System.out.println(ss);
-
         }
     }
 }

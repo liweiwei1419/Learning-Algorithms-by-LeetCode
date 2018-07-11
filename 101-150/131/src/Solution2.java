@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solution {
-
-    private List<List<String>> res = new ArrayList<>();
+// https://leetcode-cn.com/problems/palindrome-partitioning/description/
+public class Solution2 {
 
     // 判断是否回文
-    private boolean judgeIfReverse(String s) {
+    private boolean isPalindrome(String s) {
         int len = s.length();
         if (len == 0 || len == 1) {
             return true;
@@ -29,34 +28,34 @@ public class Solution {
         return res;
     }
 
-    private void findReverse(String s, int begin, String pre) {
+    private void findReverse(String s, int begin, String pre, List<List<String>> res) {
         if (begin == s.length()) {
             res.add(arrConvertList(pre));
             return;
         }
         for (int i = begin + 1; i <= s.length(); i++) {
             String ifReserve = s.substring(begin, i);
-            if (judgeIfReverse(ifReserve)) {
-                findReverse(s, i, pre + ifReserve + ",");
+            if (isPalindrome(ifReserve)) {
+                findReverse(s, i, pre + ifReserve + ",", res);
             }
         }
     }
 
+
     public List<List<String>> partition(String s) {
+        List<List<String>> res = new ArrayList<>();
         int len = s.length();
         if (len == 0) {
             return res;
         }
-        findReverse(s, 0, "");
+        findReverse(s, 0, "", res);
         return res;
     }
 
     public static void main(String[] args) {
-        // write your code here
-        Solution solution = new Solution();
+        Solution2 solution2 = new Solution2();
         String s = "aab";
-        List<List<String>> partition = solution.partition(s);
+        List<List<String>> partition = solution2.partition(s);
         System.out.println(partition);
-
     }
 }

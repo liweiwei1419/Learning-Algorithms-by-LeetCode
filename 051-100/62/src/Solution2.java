@@ -1,7 +1,12 @@
 // https://leetcode-cn.com/problems/unique-paths/description/
 public class Solution2 {
 
+    // 同 Solution
+
     // i,j 的值来源：上面和前面的值之和
+
+    // 空间可以再省
+
     public int uniquePaths(int m, int n) {
         if (m < 0 || n < 0) {
             return 0;
@@ -21,18 +26,13 @@ public class Solution2 {
         return dp[m - 1][n - 1];
     }
 
-
     public static void main(String[] args) {
-        // write your code here
-
-
         // 输入: m = 7, n = 3
         // 输出: 28
-
-        Solution2 solution = new Solution2();
+        Solution2 solution2 = new Solution2();
         int m = 7;
         int n = 3;
-        int uniquePaths = solution.uniquePaths(m, n);
+        int uniquePaths = solution2.uniquePaths(m, n);
         System.out.println(uniquePaths);
     }
 }

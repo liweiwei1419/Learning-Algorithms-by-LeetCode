@@ -12,6 +12,7 @@ public class Solution2 {
         res.add(new ArrayList<>(stack));
         for (int i = begin; i < len; i++) {
             if (!marked[i]) {
+                // 去重都有这一步加上排序
                 if (i > begin && nums[i] == nums[i - 1]) {
                     continue;
                 }

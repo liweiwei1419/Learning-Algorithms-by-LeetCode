@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 // https://leetcode-cn.com/problems/unique-paths-ii/description/
 // 更节省空间的写法
 public class Solution2 {
@@ -28,7 +26,6 @@ public class Solution2 {
         return dp[n - 1];
     }
 
-
     /**
      * [
      * [0,0,0],
@@ -39,10 +36,9 @@ public class Solution2 {
      * @param args
      */
     public static void main(String[] args) {
-        // write your code here
         int[][] obstacleGrid = {{0, 0, 0}, {0, 1, 0}, {0, 0, 0}};
-        Solution2 solution = new Solution2();
-        int uniquePathsWithObstacles = solution.uniquePathsWithObstacles(obstacleGrid);
+        Solution2 solution2 = new Solution2();
+        int uniquePathsWithObstacles = solution2.uniquePathsWithObstacles(obstacleGrid);
         System.out.println(uniquePathsWithObstacles);
     }
 }

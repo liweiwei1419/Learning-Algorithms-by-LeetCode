@@ -5,36 +5,40 @@ import java.util.List;
 // 基本思路和 ip 分割是一样的
 public class Solution {
 
-    private List<List<String>> result = new ArrayList<>();
-    private String s;
-    private int length;
-
+    /**
+     * 主函数
+     *
+     * @param s
+     * @return
+     */
     public List<List<String>> partition(String s) {
+        List<List<String>> result = new ArrayList<>();
         if (s == null || s.length() == 0) {
             return result;
         }
-        this.s = s;
-        this.length = s.length();
-        find(0, "");
+        int len = s.length();
+        dfs(s, len, 0, "", result);
         return result;
     }
 
-    private void find(int begin, String pre) {
-        System.out.println(begin + " " + pre);
-
-        if (begin == length) {
+    private void dfs(String s, int len, int begin, String pre, List<List<String>> result) {
+        // 调试语句
+        // System.out.println(begin + " " + pre);
+        // 起始点站在了字符串最后一个字符的后面
+        if (begin == len) {
             result.add(str2List(pre));
         }
         String reverseStr;
-        for (int i = begin + 1; i <= length; i++) {
+        for (int i = begin + 1; i <= len; i++) {
+            // 每一个可以分割的地方都尝试过去
             reverseStr = s.substring(begin, i);
-            if (judgeIfReverse(reverseStr)) {
-                find(i, pre + reverseStr + ".");
+            if (isPalindrome(reverseStr)) {
+                dfs(s, len, i, pre + reverseStr + ".", result);
             }
         }
     }
 
-    private boolean judgeIfReverse(String s) {
+    private boolean isPalindrome(String s) {
         int length = s.length();
         if (length == 0) {
             return false;
@@ -67,10 +71,9 @@ public class Solution {
         return result;
     }
 
-
     public static void main(String[] args) {
-        // write your code here
-        List<List<String>> result = new Solution().partition("ashsfssdsada");
+        Solution solution = new Solution();
+        List<List<String>> result = solution.partition("ashsfssdsada");
         for (int i = 0; i < result.size(); i++) {
             System.out.println(result.get(i));
         }

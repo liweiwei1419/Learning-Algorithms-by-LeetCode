@@ -9,21 +9,21 @@ import java.util.Stack;
  */
 public class Solution {
 
-    private boolean[] marked;
 
-    // usedCount 表示已经使用过的元素的个数
-    private void findPermution(int[] nums, int usedCount, int n, Stack<Integer> pre, List<List<Integer>> res) {
-        if (usedCount == n) {
-            res.add(new ArrayList<>(pre));
+    // curSize 表示当前的路径 path 里面有多少个元素
+
+    private void generatePermution(int[] nums, boolean[] used, int curSize, int len, Stack<Integer> path, List<List<Integer>> res) {
+        if (curSize == len) {
+            res.add(new ArrayList<>(path));
             return;
         }
-        for (int i = 0; i < n; i++) {
-            if (!marked[i]) {
-                marked[i] = true;
-                pre.push(nums[i]);
-                findPermution(nums, usedCount + 1, n, pre, res);
-                marked[i] = false;
-                pre.pop();
+        for (int i = 0; i < len; i++) {
+            if (!used[i]) {
+                path.push(nums[i]);
+                used[i] = true;
+                generatePermution(nums, used, curSize + 1, len, path, res);
+                path.pop();
+                used[i] = false;
             }
         }
     }
@@ -31,11 +31,11 @@ public class Solution {
     public List<List<Integer>> permute(int[] nums) {
         int len = nums.length;
         List<List<Integer>> res = new ArrayList<>();
-        marked = new boolean[len];
+        boolean[] marked = new boolean[len];
         if (len == 0) {
             return res;
         }
-        findPermution(nums, 0, len, new Stack<>(), res);
+        generatePermution(nums, marked, 0, len, new Stack<>(), res);
         return res;
     }
 

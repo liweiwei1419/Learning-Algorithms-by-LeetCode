@@ -17,14 +17,9 @@ public class Solution3 {
         return dp[n - 1];
     }
 
-
     public static void main(String[] args) {
-        // write your code here
-
-
         // 输入: m = 7, n = 3
         // 输出: 28
-
         Solution3 solution = new Solution3();
         int m = 7;
         int n = 3;

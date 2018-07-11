@@ -1,42 +1,33 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
- * 这一版的结果看起来更整齐一些
  * https://leetcode-cn.com/problems/subsets/description/
  */
 public class Solution {
 
-    private List<List<Integer>> res = new ArrayList<>();
-    private int len;
-    private int[] nums;
-
-    // 辅助函数
-    private void findSubsets(int maxCount, int begin, Stack<Integer> stack) {
-        if (maxCount == stack.size()) {
-            res.add(new ArrayList<>(stack));
-            return;
-        }
-        for (int i = begin; i < len; i++) {
-            stack.add(nums[i]);
-            findSubsets(maxCount, i + 1, stack);
-            stack.pop();
-        }
-    }
-
-    // 主函数
     public List<List<Integer>> subsets(int[] nums) {
         int len = nums.length;
+        List<List<Integer>> res = new ArrayList<>();
         if (len == 0) {
             return res;
         }
-        this.len = len;
-        this.nums = nums;
-        for (int i = 0; i <= len; i++) {
-            findSubsets(i, 0, new Stack<>());
-        }
+        subsets(nums, len, 0, new ArrayList<>(), res);
         return res;
+    }
+
+    private void subsets(int[] nums, int len, int step, List<Integer> path, List<List<Integer>> res) {
+        if (step == len) {
+            res.add(new ArrayList<>(path));
+            return;
+        }
+        // 不选 nums[step]
+        subsets(nums, len, step + 1, path, res);
+        path.add(nums[step]);
+        // 选 nums[step]
+        subsets(nums, len, step + 1, path, res);
+        // 状态重置
+        path.remove(path.size() - 1);
     }
 
     public static void main(String[] args) {

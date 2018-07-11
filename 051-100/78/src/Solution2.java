@@ -8,6 +8,7 @@ import java.util.Stack;
 public class Solution2 {
 
     private void findSubsets(int[] nums, int begin, int len, Stack<Integer> stack, List<List<Integer>> res) {
+        // 在遍历的过程中，收集
         res.add(new ArrayList<>(stack));
         for (int i = begin; i < len; i++) {
             stack.add(nums[i]);
