@@ -1,4 +1,3 @@
-
 class ListNode {
     int val;
     ListNode next;
@@ -41,13 +40,11 @@ public class Solution {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode p1 = head;
-        ListNode p2 = head.next;
-        // 没有必要这么写
-        p2.next = swapPairs(p2.next);
-        p1.next = p2.next;
-        p2.next = p1;
-        return p2;
+        ListNode first = head;
+        ListNode second = head.next;
+        first.next = swapPairs(second.next);
+        second.next = first;
+        return second;
     }
 
     public static void main(String[] args) {

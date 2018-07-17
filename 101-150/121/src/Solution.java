@@ -11,16 +11,16 @@ public class Solution {
         if (len == 0) {
             return 0;
         }
-        int maxProfit = 0;
+        int res = 0;
         // 之前遍历到的所有元素的最小值
         int preMinimum = prices[0];
         // 从索引为 1 的元素开始
         for (int i = 1; i < len; i++) {
             // 当前值减去之前遍历到的元素的最小值，从中取出最大，即为所求
-            maxProfit = Integer.max(maxProfit, prices[i] - preMinimum);
-            preMinimum = Integer.min(preMinimum, prices[i]);
+            res = Math.max(res, prices[i] - preMinimum);
+            preMinimum = Math.min(preMinimum, prices[i]);
         }
-        return maxProfit;
+        return res;
     }
 
     public static void main(String[] args) {

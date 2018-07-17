@@ -19,7 +19,6 @@ public class Solution2 {
         while (x != 0) {
             res = res * 10 + x % 10;
             x /= 10;
-
         }
 
         res *= sign;

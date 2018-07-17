@@ -11,7 +11,7 @@ public class Solution5 {
             if ((n & mask) != 0) {
                 count++;
             }
-            mask<<=1;
+            mask <<= 1;
         }
         return count;
     }

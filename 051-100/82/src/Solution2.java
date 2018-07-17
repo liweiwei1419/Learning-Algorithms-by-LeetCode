@@ -6,6 +6,8 @@
  */
 public class Solution2 {
 
+    // 本质上和 Solution 是一样的，但是语义没有 Solution 清晰
+
     public ListNode deleteDuplicates(ListNode head) {
         ListNode dummyNode = new ListNode(-1);
         dummyNode.next = head;

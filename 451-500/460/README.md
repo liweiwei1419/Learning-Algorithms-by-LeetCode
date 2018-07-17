@@ -14,3 +14,10 @@ LRU 算法是首先淘汰最长时间未被使用的页面，而 LFU 是先淘�
 
 
 比较与 LRU （LeetCode 第 146 题）的区别：
+
+
++ https://blog.csdn.net/jmspan/article/details/54132779
+
++ https://blog.csdn.net/xidiancoder/article/details/77504050
+
++ http://blog.jerkybible.com/2017/01/17/LeetCode-460-LFU-Cache/

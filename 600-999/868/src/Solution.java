@@ -1,30 +1,30 @@
-import java.util.Arrays;
-
 public class Solution {
 
-    public int[][] transpose(int[][] A) {
-        int row = A.length;
-        if (row == 0) {
-            return new int[0][0];
-        }
-        int col = A[0].length;
-        int[][] matrix = new int[col][row];
-        // 遍历还是按照原来的方式遍历
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                // 按照转置的方式填写转置矩阵就可以了
-                matrix[j][i] = A[i][j];
+    // 还可以再节约一些空间
+
+    public int binaryGap(int N) {
+        // 因为是正数，所以 31 位就可以了
+        int[] index = new int[31];
+        // 有数字 1 的索引
+        int oneIndex = 0;
+        int mask = 1;
+        for (int i = 0; i < 31; i++) {
+            if ((N & mask) != 0) {
+                index[oneIndex] = i;
+                oneIndex++;
             }
+            mask <<= 1;
         }
-        return matrix;
+        int res = 0;
+        for (int i = 0; i < oneIndex - 1; i++) {
+            res = Math.max(res, index[i + 1] - index[i]);
+        }
+        return res;
     }
 
     public static void main(String[] args) {
-        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         Solution solution = new Solution();
-        int[][] transpose = solution.transpose(matrix);
-        for (int i = 0; i < transpose.length; i++) {
-            System.out.println(Arrays.toString(transpose[i]));
-        }
+        int binaryGap = solution.binaryGap(22);
+        System.out.println(binaryGap);
     }
 }

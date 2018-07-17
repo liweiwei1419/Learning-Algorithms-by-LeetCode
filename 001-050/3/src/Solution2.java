@@ -6,6 +6,7 @@ import java.util.Map;
  * @date 18/6/22 下午6:46
  */
 public class Solution2 {
+
     public int lengthOfLongestSubstring(String s) {
         if (s.length() == 0) {
             return 0;
