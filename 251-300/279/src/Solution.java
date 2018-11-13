@@ -1,21 +1,26 @@
 import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+
 
 // https://leetcode-cn.com/problems/perfect-squares/description/
 // 广度优先遍历
+
 public class Solution {
+
+    // 使用 BFS 来解决这个问题
 
     public int numSquares(int n) {
         assert n > 0;
-        LinkedList<Integer[]> stack = new LinkedList<>();
+
         boolean[] visited = new boolean[n + 1];
-        stack.addLast(new Integer[]{n, 0});
+
+        LinkedList<Integer[]> queue = new LinkedList<>();
+        queue.addLast(new Integer[]{n, 0});
         visited[n] = true;
+
         int curNum;
         int curStep;
-        while (!stack.isEmpty()) {
-            Integer[] pair = stack.removeFirst();
+        while (!queue.isEmpty()) {
+            Integer[] pair = queue.removeFirst();
             curNum = pair[0];
             curStep = pair[1];
             curStep++;
@@ -28,7 +33,7 @@ public class Solution {
                     if (next == 0) {
                         return curStep;
                     }
-                    stack.addLast(new Integer[]{next, curStep});
+                    queue.addLast(new Integer[]{next, curStep});
                     // 只要添加到队列中，说明我们已经考虑过，就没有必要再添加到队列中
                     visited[next] = true;
                 }
@@ -39,7 +44,6 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        // write your code here
         int n = 7168;
         Solution s = new Solution();
         int numSquares = s.numSquares(n);

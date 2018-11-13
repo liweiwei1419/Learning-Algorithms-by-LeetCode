@@ -52,8 +52,6 @@ public class NestedIterator implements Iterator<Integer> {
         }
         return false;
     }
-
-
 }
 
 // 关于 NestedInteger 的实现类，这部分内容没有必要实现，也没有必要提交到 LeetCode 上

@@ -1,6 +1,5 @@
 
-// https://leetcode-cn.com/problems/valid-anagram/description/
-public class Solution {
+public class Solution4 {
 
     private int[] counter(char[] arr) {
         int[] counter = new int[26];
@@ -12,8 +11,8 @@ public class Solution {
     }
 
     public boolean isAnagram(String s, String t) {
-        int slen = s == null ? 0 : s.length();
-        int tlen = t == null ? 0 : t.length();
+        int slen = s.length();
+        int tlen = t.length();
         if (slen != tlen) {
             return false;
         }
@@ -27,14 +26,5 @@ public class Solution {
             }
         }
         return true;
-    }
-
-    public static void main(String[] args) {
-        // write your code here
-        String s = "anagram";
-        String t = "nagaram";
-        Solution solution = new Solution();
-        solution.isAnagram(s, t);
-
     }
 }

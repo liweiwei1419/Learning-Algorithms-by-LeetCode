@@ -38,5 +38,4 @@ public class Solution2 {
         int solution2Min = solution2.findMin(nums);
         System.out.println(solution2Min);
     }
-
 }

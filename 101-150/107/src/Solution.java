@@ -22,6 +22,7 @@ class TreeNode {
 }
 
 public class Solution {
+
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
         if (root == null) {
@@ -30,23 +31,23 @@ public class Solution {
         Stack<List<Integer>> stack = new Stack<>();
         LinkedList<TreeNode> queue = new LinkedList<>();
         queue.addLast(root);
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             int size = queue.size();
             List<Integer> curLevel = new ArrayList<>();
             for (int i = 0; i < size; i++) {
                 TreeNode node = queue.removeFirst();
                 curLevel.add(node.val);
-                if(node.left!=null){
+                if (node.left != null) {
                     queue.addLast(node.left);
                 }
-                if(node.right!=null){
+                if (node.right != null) {
                     queue.addLast(node.right);
                 }
             }
             stack.add(curLevel);
         }
 
-        while (!stack.empty()){
+        while (!stack.empty()) {
             res.add(stack.pop());
         }
         return res;

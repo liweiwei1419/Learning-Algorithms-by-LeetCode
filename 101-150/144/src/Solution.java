@@ -20,6 +20,8 @@ class TreeNode {
  */
 public class Solution {
 
+    // 该方法体现的思路，可以应用于前序遍历、中序遍历和后序遍历
+
     private enum Action {
         GO, ADDTORESULT
     }

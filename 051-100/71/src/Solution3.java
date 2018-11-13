@@ -15,17 +15,17 @@ public class Solution3 {
                 if (!stack.isEmpty()) {
                     stack.pop();
                 }
-
             } else {
                 stack.push(pathArray[i]);
             }
         }
-        if (stack.isEmpty())
+        if (stack.isEmpty()){
             return "/";
+
+        }
         while (!stack.isEmpty()) {
             result = "/" + stack.pop() + result;
         }
-
         return result;
     }
 }

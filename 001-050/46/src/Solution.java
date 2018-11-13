@@ -12,18 +12,18 @@ public class Solution {
 
     // curSize 表示当前的路径 path 里面有多少个元素
 
-    private void generatePermution(int[] nums, boolean[] used, int curSize, int len, Stack<Integer> path, List<List<Integer>> res) {
+    private void generatePermution(int[] nums, boolean[] visited, int curSize, int len, Stack<Integer> path, List<List<Integer>> res) {
         if (curSize == len) {
             res.add(new ArrayList<>(path));
             return;
         }
         for (int i = 0; i < len; i++) {
-            if (!used[i]) {
+            if (!visited[i]) {
                 path.push(nums[i]);
-                used[i] = true;
-                generatePermution(nums, used, curSize + 1, len, path, res);
+                visited[i] = true;
+                generatePermution(nums, visited, curSize + 1, len, path, res);
                 path.pop();
-                used[i] = false;
+                visited[i] = false;
             }
         }
     }
@@ -40,9 +40,11 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1, 2, 3};
+        int[] nums = new int[]{1, 2, 3, 4};
         Solution solution = new Solution();
         List<List<Integer>> permute = solution.permute(nums);
-        System.out.println(permute);
+        for (int i = 0; i < permute.size(); i++) {
+            System.out.println(permute.get(i));
+        }
     }
 }

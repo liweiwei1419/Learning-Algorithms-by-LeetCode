@@ -1,7 +1,10 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-// https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/description/
-public class Solution {
+public class Solution2 {
 
     public int[] intersect(int[] nums1, int[] nums2) {
         Map<Integer, Integer> map1 = new HashMap<>();
@@ -23,12 +26,11 @@ public class Solution {
         return result;
     }
 
-
     public static void main(String[] args) {
-        // write your code here
         int[] nums1 = {1, 2, 2, 1};
-        int[] nums2 = {2, 2}; // 返回 [2, 2].
-        Solution solution = new Solution();
+        int[] nums2 = {2, 2};
+        // 返回 [2, 2].
+        Solution2 solution = new Solution2();
         int[] intersect = solution.intersect(nums1, nums2);
         System.out.println(Arrays.toString(intersect));
     }

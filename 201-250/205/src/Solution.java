@@ -4,12 +4,9 @@ import java.util.Map;
 import java.util.Set;
 
 // https://leetcode-cn.com/problems/isomorphic-strings/description/
-// 越是简单的问题，越有小陷阱
-// 测试用例：输入：
-//"ab"
-//"aa"
-//输出：
-//false
+
+// 重点：建立映射关系的时候，要检查是不是两个 key 对应到同一个 value 上了
+
 public class Solution {
 
     public boolean isIsomorphic(String s, String t) {
@@ -24,10 +21,8 @@ public class Solution {
         for (int i = 0; i < n; i++) {
             curS = s.charAt(i);
             curT = t.charAt(i);
-
-
             if (map.containsKey(curS)) {
-                if (curT != map.get(curS)) {
+                if (!curT.equals(map.get(curS))) {
                     return false;
                 }
             } else {
@@ -38,14 +33,12 @@ public class Solution {
                     map.put(curS, curT);
                 }
             }
-
         }
         return true;
     }
 
 
     public static void main(String[] args) {
-        // write your code here
         // String s = "egg";String t = "add";
         // String s = "foo";String t = "bar";
         // String s = "paper";String t = "title";

@@ -12,6 +12,7 @@ public class Solution2 {
 
     // 二叉树的前序遍历（教科书一样的写法）
     // 要使用栈，而不是使用队列
+
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         if (root == null) {

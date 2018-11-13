@@ -2,38 +2,32 @@ import java.util.Stack;
 
 public class Solution {
 
-    // https://leetcode-cn.com/problems/valid-parentheses/description/
-    // 常规问题：使用栈就可以轻松解决，但是下面的代码显得有些臃肿，可以尝试优化一下
     public boolean isValid(String s) {
-        int length = s.length();
+        int len = s.length();
+        if (len == 0) {
+            return true;
+        }
         Stack<Character> stack = new Stack<>();
-        for (int i = 0; i < length; i++) {
-            if (s.charAt(i) == '(') {
-                stack.push(s.charAt(i));
-            }
-            if (s.charAt(i) == '[') {
-                stack.push(s.charAt(i));
-            }
-            if (s.charAt(i) == '{') {
-                stack.push(s.charAt(i));
-            }
-            if (s.charAt(i) == ')') { // 在判断的过程中，执行了出队的操作
-                if (stack.empty() || stack.pop() != '(') {
-                    return false;
-                }
-            }
-            if (s.charAt(i) == ']') {
-                if (stack.empty() || stack.pop() != '[') {
-                    return false;
-                }
-            }
-            if (s.charAt(i) == '}') {
-                if (stack.empty() || stack.pop() != '{') {
-                    return false;
-                }
+        for (int i = 0; i < len; i++) {
+            char c = s.charAt(i);
+            switch (c) {
+                case '(':
+                    stack.push(')');
+                    break;
+                case '[':
+                    stack.push(']');
+                    break;
+                case '{':
+                    stack.push('}');
+                    break;
+                default:
+                    if (stack.isEmpty() || stack.pop() != c) {
+                        return false;
+                    }
+                    break;
             }
         }
-        return stack.empty();
+        return stack.isEmpty();
     }
 
     // 括号匹配问题

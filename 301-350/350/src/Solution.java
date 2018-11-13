@@ -1,23 +1,28 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/description/
+ */
 public class Solution {
 
-    // https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/description/
-    // 很简单，基本是想都不要想的问题
     public int[] intersect(int[] nums1, int[] nums2) {
-        Map<Integer,Integer> map = new HashMap<>();
-        for(int e:nums1){
-            if(map.containsKey(e)){
-                map.put(e,map.get(e)+1);
-            }else {
-                map.put(e,1);
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int e : nums1) {
+            if (map.containsKey(e)) {
+                map.put(e, map.get(e) + 1);
+            } else {
+                map.put(e, 1);
             }
         }
         List<Integer> result = new ArrayList<>();
-        for(int e:nums2){
-            if(map.containsKey(e)&&map.get(e)>=1){
+        for (int e : nums2) {
+            if (map.containsKey(e) && map.get(e) >= 1) {
                 result.add(e);
-                map.put(e,map.get(e)-1);
+                map.put(e, map.get(e) - 1);
             }
         }
         int[] s = new int[result.size()];
@@ -28,13 +33,12 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-	// write your code here
-
         int[] nums1 = {1, 2, 2, 1};
+
         int[] nums2 = {2, 2};
-
-        int[] intersect = new Solution().intersect(nums1, nums2);
+        // 返回 [2, 2].
+        Solution solution = new Solution();
+        int[] intersect = solution.intersect(nums1, nums2);
         System.out.println(Arrays.toString(intersect));
-
     }
 }

@@ -3,12 +3,15 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-// https://leetcode-cn.com/problems/isomorphic-strings/description/
-public class Solution {
+/**
+ * https://leetcode-cn.com/problems/isomorphic-strings/description/
+ */
+public class Solution2 {
 
     // 两个字符不能映射到同一个字符上，但字符可以映射自己本身
     // 正例：ab cd
     // 反例：ab cc
+
     public boolean isIsomorphic(String s, String t) {
         int len = s.length();
         if (len != t.length()) {
@@ -26,8 +29,9 @@ public class Solution {
                 } else {
                     return false;
                 }
-            } else {// 如果当前遍历的字符以前出现过，检查取出的 value 是否匹配
-                if (map.get(curS) != curT) {
+            } else {
+                // 如果当前遍历的字符以前出现过，检查取出的 value 是否匹配
+                if (!map.get(curS).equals(curT)) {
                     return false;
                 }
             }

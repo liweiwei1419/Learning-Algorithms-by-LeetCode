@@ -60,5 +60,4 @@ public class Solution2 {
         List<Integer> rightSideView = solution2.rightSideView(treeNode1);
         System.out.println(rightSideView);
     }
-
 }

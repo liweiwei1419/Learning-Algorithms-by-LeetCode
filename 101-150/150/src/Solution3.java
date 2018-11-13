@@ -1,11 +1,9 @@
-package leetcode.q150;
-
 import java.util.Stack;
 
 /**
  * Created by liwei on 17/9/15.
  */
-public class Solution2 {
+public class Solution3 {
 
     public int evalRPN(String[] tokens) {
         Stack<Integer> stack = new Stack<>();
@@ -17,11 +15,11 @@ public class Solution2 {
             }
             if (token.matches("-?[0-9]+")) {
                 int num = Integer.valueOf(token);
-                System.out.println(num);
+                // System.out.println(num);
                 stack.push(num);
             }
             if (token.matches("[\\+\\-\\*/]")) {
-                System.out.println("加减乘除" + token);
+                // System.out.println("加减乘除" + token);
                 if (stack.size() >= 2) {
                     int num1 = stack.pop();
                     int num2 = stack.pop();
@@ -39,14 +37,13 @@ public class Solution2 {
                         case "/":
                             result = num2 /num1;
                             break;
+                        default:
+                            break;
                     }
                     stack.push(result);
                 }
             }
         }
-
         return stack.pop();
     }
-
-
 }

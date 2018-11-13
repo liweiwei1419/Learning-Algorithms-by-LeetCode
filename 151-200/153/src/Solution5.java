@@ -4,7 +4,6 @@ public class Solution5 {
 
     public int findMin(int[] nums) {
         int len = nums.length;
-
         if (len == 0) {
             throw new IllegalArgumentException("数组为空，不存在最小值");
         }
@@ -22,9 +21,7 @@ public class Solution5 {
                 left = mid + 1;
             }
         }
-
         assert left == right;
         return nums[left];
-
     }
 }
