@@ -11,6 +11,7 @@ public class Solution {
     // [2,2,2,1,3,0,4,0]
 
     // 思路：常规题，只要不等于指定元素，就交换，等于就放过
+
     public int removeElement(int[] nums, int val) {
         // 定义 [0,j) 这个区间里的数满足 不等于 val，所以是先交换，再 ++
         int j = 0;
