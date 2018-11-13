@@ -1,14 +1,17 @@
 import java.util.HashMap;
 
-// https://leetcode-cn.com/problems/implement-trie-prefix-tree/description/
-// 前缀树的实现其实很简单，不要畏难
-public class Trie {
+/**
+ * https://leetcode-cn.com/problems/implement-trie-prefix-tree/description/
+ * 前缀树的实现其实很简单，不要畏难
+ */
+public class Trie5 {
 
     private Node root;
 
     // 只在内部使用，因此访问控制符是 root
     private class Node {
         private boolean isWord;
+        // 可以使用数组，也可以使用哈希表
         // 不要忘记写上构造方法初始化 next 所对应的 Hash 表
         private HashMap<Character, Node> next;
 
@@ -21,7 +24,7 @@ public class Trie {
     /**
      * Initialize your data structure here.
      */
-    public Trie() {
+    public Trie5() {
         // 根节点不表示任何字符
         root = new Node();
     }
@@ -54,10 +57,12 @@ public class Trie {
             if (curNode.next.containsKey(c)) {
                 curNode = curNode.next.get(c);
             } else {
-                return false; // 中途就出错了
+                // 中途就出错了
+                return false;
             }
         }
-        return curNode.isWord; // 到了末尾还要判断一下
+        // 到了末尾还要判断一下
+        return curNode.isWord;
     }
 
     /**

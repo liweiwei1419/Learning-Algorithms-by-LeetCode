@@ -1,4 +1,3 @@
-
 class ListNode {
     int val;
     ListNode next;
@@ -32,6 +31,7 @@ class ListNode {
     }
 }
 
+
 /**
  * https://leetcode-cn.com/problems/swap-nodes-in-pairs/description/
  */
@@ -59,3 +59,6 @@ public class Solution {
         System.out.println(swapPairs);
     }
 }
+
+
+

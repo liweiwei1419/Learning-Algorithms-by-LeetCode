@@ -1,8 +1,4 @@
-/**
- * @author liwei
- * @date 18/7/2 上午10:40
- */
-public class Solution2 {
+public class Solution5 {
 
     public int reverse(int x) {
         if (x == 0) {
@@ -19,11 +15,10 @@ public class Solution2 {
         while (x != 0) {
             res = res * 10 + x % 10;
             x /= 10;
-
         }
 
         res *= sign;
-        if (res > Integer.MAX_VALUE || res < Integer.MIN_VALUE) {
+        if (res > Integer.MAX_VALUE || res< Integer.MIN_VALUE) {
             return 0;
         }
         return (int) res;

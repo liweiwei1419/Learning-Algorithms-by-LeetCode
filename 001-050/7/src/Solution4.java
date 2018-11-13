@@ -1,15 +1,11 @@
-/**
- * https://leetcode-cn.com/problems/reverse-integer/description/
- * 要特别注意到反转以后整数越界的问题
- *
- * @author liwei
- */
-public class Solution {
+public class Solution4 {
 
     public int reverse(int x) {
         int sign = x >= 0 ? 1 : -1;
         long res = 0;
+        // 这一步相当于取绝对值
         x = sign * x;
+        // 下面这一步其实是求每个个位数的套路
         while (x > 0) {
             res = res * 10 + x % 10;
             x = x / 10;

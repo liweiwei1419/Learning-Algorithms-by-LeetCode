@@ -1,9 +1,4 @@
-/**
- * @author liwei
- * @date 18/7/1 下午7:31
- */
-public class Solution5 {
-
+public class Solution8 {
     public int hammingWeight(int n) {
         int mask = 1;
         int count = 0;
@@ -16,4 +11,3 @@ public class Solution5 {
         return count;
     }
 }
-

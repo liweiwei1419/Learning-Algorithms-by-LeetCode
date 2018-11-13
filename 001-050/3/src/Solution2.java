@@ -6,6 +6,7 @@ import java.util.Map;
  * @date 18/6/22 下午6:46
  */
 public class Solution2 {
+
     public int lengthOfLongestSubstring(String s) {
         if (s.length() == 0) {
             return 0;
@@ -16,7 +17,7 @@ public class Solution2 {
         char[] chars = s.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             if (map.containsKey(chars[i])) {
-                if(map.get(chars[i]) >= start){
+                if (map.get(chars[i]) >= start) {
                     // 更新 start
                     start = map.get(chars[i]) + 1;
                 }
