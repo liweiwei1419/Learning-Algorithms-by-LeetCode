@@ -34,7 +34,6 @@ public class Solution {
                 duplicateTimes++;
                 // 重复 1 次的时候，也要赋值
                 if (duplicateTimes == 1) {
-
                     nums[j] = pre;
                     j++;
                 }
