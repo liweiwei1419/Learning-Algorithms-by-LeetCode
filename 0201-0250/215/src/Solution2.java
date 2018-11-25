@@ -14,7 +14,7 @@ public class Solution2 {
             throw new IllegalArgumentException("参数错误");
         }
         // 转换一下，这样比较好操作
-        // 第 k 大元素的索引是 len - k
+        // 【第 k 大元素的索引是 len - k】
         int target = len - k;
         int l = 0;
         int r = len - 1;
@@ -31,6 +31,7 @@ public class Solution2 {
     }
 
     // 在区间 [left, right] 这个区间执行 partition 操作
+
     private int partition(int[] nums, int left, int right) {
         // 在区间随机选择一个元素作为标定点（以下这两行代码非必需）
         // 这一步优化非必需

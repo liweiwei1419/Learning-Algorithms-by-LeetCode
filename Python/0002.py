@@ -18,9 +18,11 @@ class Solution:
         while l1 or l2:
             if l1:
                 s += l1.val
+                # 向后挪一位
                 l1 = l1.next
             if l2:
                 s += l2.val
+                # 向后挪一位
                 l2 = l2.next
             cur_node.next = ListNode(s % 10)
             cur_node = cur_node.next

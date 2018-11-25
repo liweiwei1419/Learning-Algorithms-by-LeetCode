@@ -6,6 +6,9 @@ class ListNode:
 
 
 class Solution:
+
+    # 【不推荐】这种方法，如果链表很长，转换成数字的时候，会越界
+
     def addTwoNumbers(self, l1, l2):
         """
         :type l1: ListNode
