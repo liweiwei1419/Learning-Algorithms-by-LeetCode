@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * 53. 最大子序和
  * https://leetcode-cn.com/problems/maximum-subarray/description/
@@ -28,6 +30,7 @@ public class Solution {
         for (int i = 1; i < len; i++) {
             dp[i] = Math.max(nums[i], dp[i - 1] + nums[i]);
         }
+        // System.out.println(Arrays.toString(dp));
         // 最后这一步，是求一个全局的最优值
         int res = dp[0];
         for (int i = 1; i < len; i++) {

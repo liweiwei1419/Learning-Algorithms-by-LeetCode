@@ -12,7 +12,7 @@ public class Solution {
         while (index < 13) {
             // 特别注意：这里是等号
             while (num >= nums[index]) {
-                stringBuilder.append(romans[index]);
+                stringBuilder.append(romans[index]+" ");
                 num -= nums[index];
             }
             index++;

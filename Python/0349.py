@@ -5,19 +5,14 @@ class Solution:
         :type nums2: List[int]
         :rtype: List[int]
         """
-
         result = []
-        # Python 中的 set 有一个 __contains__ 方法，用起来不太好看，所以就 dict
-        d = dict()
-        for num in nums1:
-            d[num] = 0
-
+        # 去重
+        s = set(nums1)
         for num in nums2:
-            if d.get(num) == 0:
+            if num in s:
                 result.append(num)
-                # 用完马上删掉，就可以避免重复问题了
-                del d[num]
-
+                # 发现一样的元素以后，就从 set 里删除，可以避免重复
+                s.remove(num)
         return result
 
 

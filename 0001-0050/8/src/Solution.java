@@ -4,6 +4,7 @@ public class Solution {
         if (str == null || str.length() == 0) {
             return 0;
         }
+        // 1、去掉左右空格
         str = str.trim();
         int len = str.length();
         int index = 0;
@@ -13,6 +14,7 @@ public class Solution {
         char signChar = str.charAt(0);
         long res = 0;
         int sign = 1;
+        // 2、看第一个字符的符号，如果是符号记录符号，如果不是数字，直接返回 0
         if (signChar == '+') {
             index++;
             sign = 1;
@@ -22,6 +24,7 @@ public class Solution {
         } else if (!Character.isDigit(signChar)) {
             return 0;
         }
+        // 3、注意越界问题
         for (int i = index; i < len; i++) {
             char c = str.charAt(i);
             if (Character.isDigit(c)) {

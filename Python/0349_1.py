@@ -1,24 +1,13 @@
-class Solution:
+class Solution(object):
     def intersection(self, nums1, nums2):
         """
         :type nums1: List[int]
         :type nums2: List[int]
         :rtype: List[int]
         """
-
-        result = []
-        # Python 中的 set 有一个 __contains__ 方法，用起来不太好看，所以就 dict
-        s = set()
-        for num in nums1:
-            s.add(num)
-
-        for num in nums2:
-            if s.__contains__(num):
-                result.append(num)
-                # 用完马上删掉，就可以避免重复问题了
-                s.remove(num)
-
-        return result
+        num1_set = set(nums1)
+        num2_set = set(nums2)
+        return list(num1_set & num2_set)
 
 
 if __name__ == '__main__':
