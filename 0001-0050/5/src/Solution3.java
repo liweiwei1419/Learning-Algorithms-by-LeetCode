@@ -33,6 +33,7 @@ public class Solution3 {
             return "";
         }
         String sDivided = generateSDivided(s, '#');
+        System.out.println(sDivided);
         int slen = sDivided.length();
         int[] p = new int[slen];
         int mx = 0;
