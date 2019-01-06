@@ -1,23 +1,41 @@
 import java.util.ArrayList;
 import java.util.List;
 
-// 刘宇波老师的解法
+/**
+ * 刘宇波老师的解法
+ */
 public class Solution4 {
-
-    private boolean[] col; // 记录在列上第几列已经放置了元素
-    private boolean[] dia1; // 记录在主对角线上哪些位置已经放置了元素
-    private boolean[] dia2; // 记录在副对角线上哪些位置已经放置了元素
+    /**
+     * 记录在列上第几列已经放置了元素
+     */
+    private boolean[] col;
+    /**
+     * 记录在主对角线上哪些位置已经放置了元素
+     */
+    private boolean[] dia1;
+    /**
+     * 记录在副对角线上哪些位置已经放置了元素
+     */
+    private boolean[] dia2;
     private List<List<String>> res = new ArrayList<>();
 
+    // 入口函数
     public List<List<String>> solveNQueens(int n) {
         col = new boolean[n];
-        dia1 = new boolean[2 * n - 1]; // 可以用归纳法得到对角线上的元素个数
-        dia2 = new boolean[2 * n - 1]; // 可以用归纳法得到对角线上的元素个数
+        // 可以用归纳法得到对角线上的元素个数
+        dia1 = new boolean[2 * n - 1];
+        // 可以用归纳法得到对角线上的元素个数
+        dia2 = new boolean[2 * n - 1];
         putQueue(n, 0, new ArrayList<Integer>());
         return res;
     }
 
-    // 尝试在一个 n 皇后的问题中，摆放第 index 行的皇后的位置
+    /**
+     * 递归调用函数：尝试在一个 n 皇后的问题中，摆放第 index 行的皇后的位置
+     * @param n
+     * @param index
+     * @param row
+     */
     private void putQueue(int n, int index, List<Integer> row) {
         if (index == n) {
             res.add(generateBoard(n, row));
@@ -31,7 +49,10 @@ public class Solution4 {
                 col[i] = true;
                 dia1[index + i] = true;
                 dia2[index - i + n - 1] = true;
+
+                // putQueue 的前后 4 行是对称的，这是一个典型的回溯的过程
                 putQueue(n, index + 1, row);
+
                 col[i] = false;
                 dia1[index + i] = false;
                 dia2[index - i + n - 1] = false;
@@ -59,7 +80,8 @@ public class Solution4 {
     // 测试用例
     public static void main(String[] args) {
         Solution4 solution4 = new Solution4();
-        List<List<String>> solveNQueens = solution4.solveNQueens(8);
+        int n = 4;
+        List<List<String>> solveNQueens = solution4.solveNQueens(n);
         for (int i = 0; i < solveNQueens.size(); i++) {
             System.out.println("第 " + (i + 1) + " 种解法：");
             List<String> sloveOne = solveNQueens.get(i);
