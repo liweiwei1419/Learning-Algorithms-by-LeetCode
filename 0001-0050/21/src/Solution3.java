@@ -3,7 +3,7 @@
  *
  * @author liwei
  */
-public class Solution4 {
+public class Solution3 {
 
     /**
      * 使用递归

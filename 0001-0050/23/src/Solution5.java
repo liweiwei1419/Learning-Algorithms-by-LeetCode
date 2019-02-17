@@ -1,3 +1,6 @@
+/**
+ * 同 Solution4、Solution5
+ */
 class Solution5 {
 
     public ListNode mergeKLists(ListNode[] lists) {

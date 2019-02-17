@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Solution {
@@ -23,6 +24,7 @@ public class Solution {
         for (int i = 0; i < len; i++) {
             res.add(counter[i]);
         }
+        System.out.println(Arrays.toString(nums));
         return res;
     }
 
@@ -72,16 +74,19 @@ public class Solution {
             } else if (j > r) {
                 indexes[k] = temp[i];
                 i++;
+                // 此时 j 用完了，[7,8,9 | 1,2,3]
+                // 之前的数就和后面的区间长度构成逆序
                 counter[indexes[k]] += (r - mid);
             } else if (nums[temp[i]] <= nums[temp[j]]) {
                 indexes[k] = temp[i];
                 i++;
+                // 此时 [4,5, 6   | 1,2,3 10 12 13]
+                //           mid          j
                 counter[indexes[k]] += (j - mid - 1);
             } else {
                 // nums[indexes[i]] > nums[indexes[j]] 构成逆序
                 indexes[k] = temp[j];
                 j++;
-
             }
         }
     }

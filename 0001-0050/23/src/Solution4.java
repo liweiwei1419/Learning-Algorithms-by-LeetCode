@@ -1,5 +1,8 @@
+/**
+ * 同 Solution3 分治思想
+ */
 class Solution4 {
-    // 同 Solution3
+
     public ListNode mergeKLists(ListNode[] lists) {
         int len = lists.length;
         if (len == 0) {
@@ -15,10 +18,10 @@ class Solution4 {
         int mid = l + (r - l) / 2;
         ListNode listNode1 = mergeKLists(lists, l, mid);
         ListNode listNode2 = mergeKLists(lists, mid + 1, r);
-        return mergeOfTwoListNode(listNode1, listNode2);
+        return mergeTwoSortedListNode(listNode1, listNode2);
     }
 
-    private ListNode mergeOfTwoListNode(ListNode listNode1, ListNode listNode2) {
+    private ListNode mergeTwoSortedListNode(ListNode listNode1, ListNode listNode2) {
         // 先处理递归到底的情况
         if (listNode1 == null) {
             return listNode2;
@@ -28,11 +31,11 @@ class Solution4 {
         }
         if (listNode1.val < listNode2.val) {
             // 把问题转化为一个更小的问题
-            listNode1.next = mergeOfTwoListNode(listNode1.next, listNode2);
+            listNode1.next = mergeTwoSortedListNode(listNode1.next, listNode2);
             return listNode1;
         } else {
             // 把问题转化为一个更小的问题
-            listNode2.next = mergeOfTwoListNode(listNode1, listNode2.next);
+            listNode2.next = mergeTwoSortedListNode(listNode1, listNode2.next);
             return listNode2;
         }
     }

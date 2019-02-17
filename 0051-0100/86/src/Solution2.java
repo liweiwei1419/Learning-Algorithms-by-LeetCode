@@ -32,7 +32,7 @@ public class Solution2 {
     public static void main(String[] args) {
         int[] nums = {1, 4, 3, 2, 5, 2};
         int x = 3;
-        ListNode head = new  ListNode(nums);
+        ListNode head = new ListNode(nums);
         Solution2 solution2 = new Solution2();
         System.out.println("分隔链表之后：");
         ListNode partition = solution2.partition(head, x);

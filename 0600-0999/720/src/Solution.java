@@ -25,10 +25,13 @@ public class Solution {
                 if (len1 != len2) {
                     return len1 - len2;
                 }
+                // 注意这里的顺序
                 return o2.compareTo(o1);
             }
         };
         Arrays.sort(words, comparator);
+        // System.out.println(Arrays.toString(words));
+        // 从后向前遍历
         for (int i = len - 1; i >= 0; i--) {
             if (judgeWordInDict(words[i], dict)) {
                 return words[i];

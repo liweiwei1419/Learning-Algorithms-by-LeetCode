@@ -24,13 +24,13 @@ public class Solution2 {
         int plen = prerequisites.length;
         for (int i = 0; i < plen; i++) {
             // 后继课程
-            int course = prerequisites[i][0];
+            int second = prerequisites[i][0];
             // 先行课程
-            int prerequisite = prerequisites[i][1];
+            int first = prerequisites[i][1];
             // 注意 dfs 中，后继课程作为 key，前驱课程作为 value
             // 这种方式不符合邻接表的习惯
             // 邻接表总是通过前驱得到后继
-            graph.get(course).add(prerequisite);
+            graph.get(second).add(first);
         }
         // System.out.println(graph);
         int[] visited = new int[numCourses];

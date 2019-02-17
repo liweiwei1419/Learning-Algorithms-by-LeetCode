@@ -3,6 +3,8 @@ import java.util.List;
 
 public class Solution2 {
 
+    // 同 Solution ，只不过不用 map，用数组了，因为 p 中出现的字母有限
+
     public List<Integer> findAnagrams(String s, String p) {
         List<Integer> res = new ArrayList<>();
         // 因为题目中说，只有 26 个英文小写字母

@@ -29,7 +29,6 @@ public class Solution6 {
             graph[i] = new HashSet<>();
         }
         // 初始化有向图 end
-
         // 有向图的 key 是前驱结点，value 是后继结点的集合
         for (int[] p : prerequisites) {
             graph[p[1]].add(p[0]);

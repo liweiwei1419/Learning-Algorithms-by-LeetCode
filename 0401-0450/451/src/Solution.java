@@ -10,6 +10,8 @@ public class Solution {
         for (Character c : s.toCharArray()) {
             map.put(c, map.containsKey(c) ? map.get(c) + 1 : 1);
         }
+
+        // 调试代码
         // System.out.println(map);
 
         Map<Integer, ArrayList<Character>> treeMap = new TreeMap<>(new Comparator<Integer>() {
@@ -29,6 +31,7 @@ public class Solution {
             }
         }
 
+        // 调试代码
         // System.out.println(treeMap);
 
         StringBuilder sb = new StringBuilder();

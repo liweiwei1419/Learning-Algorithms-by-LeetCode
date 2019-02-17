@@ -17,5 +17,4 @@ public class Solution2 {
         return p2;
     }
 
-
 }

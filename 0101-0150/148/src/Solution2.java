@@ -15,7 +15,7 @@ public class Solution2 {
         // 遍历到的最大的 counter 数组的索引
         int maxIndex = 0;
         while (curNode != null) {
-            // 先把当前元素暂存起来，稍候要把它放到 counter 数组合适的位置上
+            // 先把当前元素暂存起来，马上我们就要把它放到 counter 数组合适的位置上
             ListNode carryNode = curNode;
             // curNode 指针马上后移，方便下次处理
             curNode = curNode.next;

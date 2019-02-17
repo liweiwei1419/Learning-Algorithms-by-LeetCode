@@ -1,6 +1,3 @@
-
-// 从零开始学贪心算法 - CSDN博客  https://blog.csdn.net/qq_32400847/article/details/51336300
-
 public class Solution {
     /**
      * 在遍历的时候，记录之前遍历到的元素的最小值

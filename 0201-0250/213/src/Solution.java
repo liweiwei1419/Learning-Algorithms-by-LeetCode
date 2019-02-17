@@ -44,8 +44,6 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        // write your code here
-
         // 输入: [2,3,2]
         // 输出: 3
 

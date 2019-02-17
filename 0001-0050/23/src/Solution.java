@@ -38,6 +38,8 @@ class ListNode {
  * https://leetcode-cn.com/problems/merge-k-sorted-lists/description/
  * 参考资料：https://zhuanlan.zhihu.com/p/33050219
  *
+ * 优先队列的写法：推荐
+ *
  * @author liwei
  */
 public class Solution {

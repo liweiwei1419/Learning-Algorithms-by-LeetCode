@@ -31,6 +31,7 @@ public class Solution {
             Long ceiling = set.ceiling((long) nums[i]);
             boolean hasFloor = floor != null && nums[i] - floor <= t;
             boolean hasCeiling = ceiling != null && ceiling - nums[i] <= t;
+
             if (hasFloor || hasCeiling) {
                 return true;
             }
@@ -41,6 +42,7 @@ public class Solution {
             }
             // 每一次都加入元素
             set.add((long) nums[i]);
+            System.out.println("集合" + set);
             i++;
         }
         return false;
@@ -72,9 +74,9 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        int[] nums = {1, 5, 9, 1, 5, 9};
+        int[] nums = {3,6,0,2};
         int k = 2;
-        int t = 3;
+        int t = 2;
         Solution solution = new Solution();
         boolean containsNearbyAlmostDuplicate = solution.containsNearbyAlmostDuplicate(nums, k, t);
         System.out.println(containsNearbyAlmostDuplicate);

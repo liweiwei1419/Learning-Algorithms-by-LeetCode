@@ -19,8 +19,13 @@ public class Solution {
 
         int minSub = s.length() + 1;
         String res = "";
+        // 滑动窗口左边界
         int left = 0;
+        // 滑动窗口右边界
         int right = 0;
+
+        // 逻辑：右边界进来的时候，数组 s 的次数都加 1
+
         int count = 0;
         while (right < s.length()) {
             char rc = s.charAt(right);

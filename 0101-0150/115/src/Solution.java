@@ -22,7 +22,6 @@ public class Solution {
         }
         for (int i = 0; i < slen + 1; i++) {
             System.out.println(Arrays.toString(dp[i]));
-
         }
         return dp[slen][tlen];
     }

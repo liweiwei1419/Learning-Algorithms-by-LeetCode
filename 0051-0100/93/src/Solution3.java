@@ -22,7 +22,6 @@ public class Solution3 {
         if (splitTime == 4) {
             if (start == s.length()) {
                 res.add(transformToString(pre));
-                return;
             }
         } else {
             for (int i = 0; i < 3 && start + i < s.length(); i++) {

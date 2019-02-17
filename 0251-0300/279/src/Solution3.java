@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-// 与 Solution1 是同一种写法
+// 与 Solution2 是同一种写法
 public class Solution3 {
 
     public int numSquares(int n) {

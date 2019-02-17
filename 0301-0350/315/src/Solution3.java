@@ -7,6 +7,7 @@ public class Solution3 {
         private TreeNode left;
         private TreeNode right;
         private int val;
+        // 左子树的结点总数
         private int leftNodeSum;
         private int duplicateTimes = 1;
 
@@ -38,7 +39,7 @@ public class Solution3 {
      * @param node
      * @param val
      * @param index
-     * @param cumLeftNodeSum 累积左子树结点的个数
+     * @param cumLeftNodeSum 累积经过的比当前结点要小的数
      * @return 二分搜索树新的根
      */
     private TreeNode insert(TreeNode node, int val, int index, int cumLeftNodeSum) {
@@ -50,6 +51,7 @@ public class Solution3 {
         // 分类讨论：找到相同 val 的节点，插入左子树中，插入右子树中
         if (node.val == val) {
             node.duplicateTimes++;
+            // 最后要返回的是这个数组
             counter[index] = cumLeftNodeSum + node.leftNodeSum;
         } else if (val < node.val) {
             // 当前左子树包含的结点数 + 1
@@ -64,7 +66,7 @@ public class Solution3 {
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{5,2,6,1};
+        int[] nums = new int[]{5, 2, 6, 1};
         Solution3 solution3 = new Solution3();
         List<Integer> countSmaller = solution3.countSmaller(nums);
         System.out.println(countSmaller);

@@ -1,3 +1,5 @@
+// 打家劫舍（三）：房子呈二叉树分布
+
 class TreeNode {
     int val;
     TreeNode left;
@@ -16,13 +18,13 @@ public class Solution {
         }
         int val = root.val;
 
-        if(root.left!=null){
-            val+= rob(root.left.left) + rob(root.left.right);
+        if (root.left != null) {
+            val += rob(root.left.left) + rob(root.left.right);
         }
 
-        if(root.right!=null){
-            val+= rob(root.right.left) + rob(root.right.right);
+        if (root.right != null) {
+            val += rob(root.right.left) + rob(root.right.right);
         }
-        return Math.max(val,rob(root.left) + rob(root.right));
+        return Math.max(val, rob(root.left) + rob(root.right));
     }
 }

@@ -13,7 +13,6 @@ public class Solution4 {
             return res;
         }
 
-
         TreeSet<Integer> set = new TreeSet();
         for (int i = 0; i < len; i++) {
             set.add(nums[i]);

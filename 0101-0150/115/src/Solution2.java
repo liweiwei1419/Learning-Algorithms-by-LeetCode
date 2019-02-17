@@ -1,6 +1,4 @@
 /**
- *
- *
  * @author liwei
  */
 public class Solution2 {

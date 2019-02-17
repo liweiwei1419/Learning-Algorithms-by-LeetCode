@@ -34,7 +34,5 @@ public class Solution {
         int n = 3;
         int maxForm = solution.findMaxForm(strs, m, n);
         System.out.println(maxForm);
-
-
     }
 }
