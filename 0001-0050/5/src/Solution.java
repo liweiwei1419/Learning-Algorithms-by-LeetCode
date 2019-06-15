@@ -15,10 +15,10 @@ public class Solution {
         for (int i = 0; i < len; i++) {
             String palindromeOdd = centerSpread(s, len, i, i);
             String palindromeEven = centerSpread(s, len, i, i + 1);
-            String maxLen = palindromeOdd.length() > palindromeEven.length() ? palindromeOdd : palindromeEven;
-            if (maxLen.length() > longestPalindrome) {
-                longestPalindrome = maxLen.length();
-                longestPalindromeStr = maxLen;
+            String maxLenStr = palindromeOdd.length() > palindromeEven.length() ? palindromeOdd : palindromeEven;
+            if (maxLenStr.length() > longestPalindrome) {
+                longestPalindrome = maxLenStr.length();
+                longestPalindromeStr = maxLenStr;
             }
         }
         return longestPalindromeStr;

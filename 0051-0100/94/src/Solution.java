@@ -21,6 +21,8 @@ class TreeNode {
 public class Solution {
 
     private enum Action {
+        // GO 表示递归处理
+        // ADDTORESULT 表示当前马上执行将结点的值添加到结果集中
         GO, ADDTORESULT
     }
 
@@ -47,7 +49,8 @@ public class Solution {
                 res.add(command.node.val);
             } else {
                 assert command.action == Action.GO;
-                // 特别注意：以下的顺序是与递归执行的顺序反着来的，即：倒过来写的结果。
+                // 关键在这里：因为是模拟系统栈，应该把中序遍历的顺序倒过来写
+                // 调整一下顺序就可以完成前序遍历和后序遍历
                 if (command.node.right != null) {
                     stack.add(new Command(Action.GO, command.node.right));
                 }

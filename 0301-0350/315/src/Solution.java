@@ -24,7 +24,6 @@ public class Solution {
         for (int i = 0; i < len; i++) {
             res.add(counter[i]);
         }
-        System.out.println(Arrays.toString(nums));
         return res;
     }
 

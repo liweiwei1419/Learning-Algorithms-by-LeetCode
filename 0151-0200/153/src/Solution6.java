@@ -9,11 +9,12 @@ public class Solution6 {
         int right = len - 1;
         while (left < right) {
             int mid = left + (right - left) / 2;
-            if (nums[mid] < nums[right]) {
-                right = mid;
-            } else {
-                // 此时一定有 nums[mid] > nums[right]
+            if (nums[mid] > nums[right]) {
                 left = mid + 1;
+            } else {
+                // 因为题目中说：你可以假设数组中不存在重复元素。
+                // 此时一定有 nums[mid] < nums[right]
+                right = mid;
             }
         }
         return nums[left];

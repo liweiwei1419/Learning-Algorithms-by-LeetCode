@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * BST
+ */
 public class Solution3 {
 
     private class TreeNode {

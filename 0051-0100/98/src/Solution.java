@@ -28,10 +28,18 @@ public class Solution {
         }
     }
 
+    /**
+     * 程序入口，思路：递归
+     * @param root
+     * @return
+     */
     public boolean isValidBST(TreeNode root) {
         if (root == null) {
             return true;
         }
+        // 左结点小于当前结点的值，ifLeft 表示传入的结点是否是左结点
+        // 并且右边结点大于当前结点的值
+        // 并且左边、右边都得是 BST
         return dfs(root.left, root.val, true) &&
                 dfs(root.right, root.val, false) &&
                 isValidBST(root.left) && isValidBST(root.right);

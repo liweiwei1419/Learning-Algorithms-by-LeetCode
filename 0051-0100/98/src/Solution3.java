@@ -13,11 +13,15 @@ public class Solution3 {
         return helper(node.left, min, node.val) && helper(node.right, node.val, max);
     }
 
+    /**
+     *
+     * @param root
+     * @return
+     */
     public boolean isValidBST(TreeNode root) {
         if (root == null) {
             return true;
         }
         return helper(root, null, null);
     }
-
 }

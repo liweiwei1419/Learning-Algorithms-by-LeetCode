@@ -19,7 +19,7 @@ public class Solution2 {
         // [j+1,i-1] 一定要构成至少两个元素额区间（ 1 个元素的区间，s.charAt(i)==s.charAt(j) 已经判断过了）
         // 即 j+1 > i-1，即 j > i - 2 (取到等号的情况可以放在 dp[j + 1][i - 1] 里判断，肯定为 True，因为单个字符一定是回文串)
         // 应该反过来写
-        for (int i = 0; i < len; i++) {
+        for (int i = 1; i < len; i++) {
             for (int j = 0; j <= i; j++) {
                 // 区间应该慢慢放大
                 if (s.charAt(i) == s.charAt(j) && (j > i - 2 || dp[j + 1][i - 1])) {

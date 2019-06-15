@@ -15,7 +15,7 @@ public class Solution {
             return plen;
         }
 
-        // 按照起点进行排序
+        // 按照区间起点进行排序
         Arrays.sort(points, new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
