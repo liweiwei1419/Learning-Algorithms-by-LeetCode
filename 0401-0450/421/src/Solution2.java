@@ -14,6 +14,8 @@ public class Solution2 {
             // 注意点1：注意保留前缀的方法，mask 是这样得来的
             // 用异或也是可以的 mask = mask ^ (1 << i);
             mask = mask | (1 << i);
+
+            // System.out.println(Integer.toBinaryString(mask));
             Set<Integer> set = new HashSet<>();
             for (int num : nums) {
                 // 注意点2：这里使用 & ，保留前缀的意思（从高位到低位）

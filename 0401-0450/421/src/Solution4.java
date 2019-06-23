@@ -21,7 +21,7 @@ public class Solution4 {
             int xor = 0;
             TrieNode insert = root;
             TrieNode search = root;
-            for (int i = 30; i >= 0; i--) {
+            for (int i = 31; i >= 0; i--) {
                 int bit = (num >>> i) & 1;
                 // 1 变成 0 ，0 变成 1
                 int rbit = bit ^ 1;

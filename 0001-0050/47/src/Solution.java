@@ -3,11 +3,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
-// https://leetcode-cn.com/problems/permutations-ii/
 public class Solution {
 
     private List<List<Integer>> res = new ArrayList<>();
-    private boolean[] marked;
+    private boolean[] used;
 
     private void findPermuteUnique(int[] nums, int depth, Stack<Integer> stack) {
         if (depth == nums.length) {
@@ -15,17 +14,18 @@ public class Solution {
             return;
         }
         for (int i = 0; i < nums.length; i++) {
-            if (!marked[i]) {
-                // i > 0 是为了保证 marked[i - 1] 有意义，事实上 i = 0 是一定在解当中的
-                // 相当于树被剪枝，重点体会这一步剪枝操作是为什么，其实画个图就非常清楚了
-                if (i > 0 && nums[i] == nums[i - 1] && !marked[i - 1]) {
+            if (!used[i]) {
+                // 修改 2：因为排序以后重复的数一定不会出现在开始，故 i > 0
+                // 和之前的数相等，并且之前的数还未使用过，只有出现这种情况，才会出现相同分支
+                // 这种情况跳过即可
+                if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {
                     continue;
                 }
-                marked[i] = true;
+                used[i] = true;
                 stack.add(nums[i]);
                 findPermuteUnique(nums, depth + 1, stack);
                 stack.pop();
-                marked[i] = false;
+                used[i] = false;
             }
         }
     }
@@ -35,9 +35,9 @@ public class Solution {
         if (len == 0) {
             return res;
         }
-        // 这一步很关键，是后面剪枝的基础
+        // 修改 1：首先排序，之后才有可能发现重复分支
         Arrays.sort(nums);
-        marked = new boolean[len];
+        used = new boolean[len];
         findPermuteUnique(nums, 0, new Stack<>());
         return res;
     }

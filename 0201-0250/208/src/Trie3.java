@@ -6,6 +6,7 @@ public class Trie3 {
         private Node[] dict;
         private boolean isWord;
 
+        // 你可以假设所有的输入都是由小写字母 a-z 构成的。
         public Node() {
             dict = new Node[26];
             this.isWord = false;

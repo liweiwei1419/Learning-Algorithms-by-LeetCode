@@ -20,6 +20,10 @@ public class Solution {
 
     public static void main(String[] args) {
         int[] nums = {3, 10, 5, 25, 2, 8};
+        for (int num: nums) {
+            System.out.println(Integer.toBinaryString(num));
+        }
+        System.out.println(28);
         Solution solution = new Solution();
         int maximumXOR = solution.findMaximumXOR(nums);
         System.out.println(maximumXOR);

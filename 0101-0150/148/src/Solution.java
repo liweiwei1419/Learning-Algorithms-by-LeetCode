@@ -31,7 +31,7 @@ class ListNode {
 
 /**
  * https://leetcode-cn.com/problems/sort-list/description/
- * 自上而下进行归并
+ * 自上而下进行归并（分治法）
  *
  * @author liwei
  */

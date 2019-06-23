@@ -54,10 +54,12 @@ public class Trie {
             if (curNode.next.containsKey(c)) {
                 curNode = curNode.next.get(c);
             } else {
-                return false; // 中途就出错了
+                // 中途就出错了
+                return false;
             }
         }
-        return curNode.isWord; // 到了末尾还要判断一下
+        // 到了末尾还要判断一下
+        return curNode.isWord;
     }
 
     /**
@@ -80,14 +82,18 @@ public class Trie {
     public static void main(String[] args) {
         Trie trie = new Trie();
         trie.insert("apple");
-        boolean search1 = trie.search("apple");// 返回 true
+        // 返回 true
+        boolean search1 = trie.search("apple");
         System.out.println(search1);
-        boolean search2 = trie.search("app");     // 返回 false
+        // 返回 false
+        boolean search2 = trie.search("app");
         System.out.println(search2);
-        boolean startsWith = trie.startsWith("app");// 返回 true
+        // 返回 true
+        boolean startsWith = trie.startsWith("app");
         System.out.println(startsWith);
         trie.insert("app");
-        boolean search3 = trie.search("app");     // 返回 true
+        // 返回 true
+        boolean search3 = trie.search("app");
         System.out.println(search3);
     }
 }

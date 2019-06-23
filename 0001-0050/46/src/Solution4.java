@@ -31,6 +31,8 @@ public class Solution4 {
                 used[i] = true;
                 p.add(nums[i]);
                 generatePermutation(index + 1, p);
+                // 刚开始接触回溯算法的时候常常会忽略状态重置
+                // 回溯的时候，一定要记得状态重置
                 p.remove(p.size() - 1);
                 used[i] = false;
             }

@@ -19,7 +19,7 @@ public class Solution3 {
         // 将所有的 num 构建到 Trie 数中
         for (int num : nums) {
             TrieNode node = root;
-            for (int i = 30; i >= 0; i--) {
+            for (int i = 31; i >= 0; i--) {
                 // 看看最高位上是 1 还是 0
                 int cur = (num >>> i) & 1;
                 if (node.next[cur] == null) {
@@ -32,7 +32,7 @@ public class Solution3 {
         for (int num : nums) {
             TrieNode node = root;
             int xor = 0;
-            for (int i = 30; i >= 0; i--) {
+            for (int i = 31; i >= 0; i--) {
                 int cur = (num >>> i) & 1;
                 if (node.next[cur ^ 1] != null) {
                     xor |= (1 << i);
