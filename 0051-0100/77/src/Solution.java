@@ -2,28 +2,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-// https://leetcode-cn.com/problems/combinations/description/
 public class Solution {
 
     private List<List<Integer>> res = new ArrayList<>();
 
-    private void findCombinations(int n, int k, int begin, Stack<Integer> stack) {
-        if (stack.size() == k) {
+    private void findCombinations(int n, int k, int begin, Stack<Integer> pre) {
+        if (pre.size() == k) {
             // 够数了，就添加到结果集中
-            res.add(new ArrayList<>(stack));
+            res.add(new ArrayList<>(pre));
             return;
         }
-        // n - (k - stack.size()) + 1 是一步剪枝操作
-        // for (int i = index; i <= n; i++) {
         // 关键在于分析出 i 的上界
-        for (int i = begin; i <= n - (k - stack.size()) + 1; i++) {
-            stack.add(i);
-            findCombinations(n, k, i + 1, stack);
-            stack.pop();
+        for (int i = begin; i <= n; i++) {
+            pre.add(i);
+            findCombinations(n, k, i + 1, pre);
+            pre.pop();
         }
     }
 
     public List<List<Integer>> combine(int n, int k) {
+        // 特判
         if (n <= 0 || k <= 0 || n < k) {
             return res;
         }

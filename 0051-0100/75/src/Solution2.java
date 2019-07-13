@@ -40,26 +40,26 @@ public class Solution2 {
             return;
         }
         // 定义
-        // [0,l) 都等于 0
-        // [l,i) 都等于 1
-        // [r,len) 都等于 2
-        int l = 0;
+        // [0,left) 都等于 0
+        // [left,index) 都等于 1
+        // [right,len) 都等于 2
+        int left = 0;
 
-        // 初始值 r 在边界外，所以交换完 r 之后，r 的情况我们是已经知道的
-        int r = len;
-        int i = 0;
-        while (i < r) {
-            if (nums[i] == 0) {
+        // 初始值 right 在边界外，所以交换完 right 之后，right 的情况我们是已经知道的
+        int right = len;
+        int index = 0;
+        while (index < right) {
+            if (nums[index] == 0) {
                 // 交换
-                swap(nums, l, i);
-                l++;
-                i++;
-            } else if (nums[i] == 1) {
-                i++;
+                swap(nums, left, index);
+                left++;
+                index++;
+            } else if (nums[index] == 1) {
+                index++;
             } else {
-                assert nums[i] == 2;
-                r--;
-                swap(nums, i, r);
+                assert nums[index] == 2;
+                right--;
+                swap(nums, index, right);
             }
         }
     }

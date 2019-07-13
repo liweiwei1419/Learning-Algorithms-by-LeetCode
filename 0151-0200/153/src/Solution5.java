@@ -10,7 +10,8 @@ public class Solution5 {
         int left = 0;
         int right = len - 1;
         while (left < right) {
-            int mid = left + (right - left) / 2;
+            // int mid = left + (right - left) / 2;
+            int mid = (left + right) >>> 1;
             if (nums[mid] < nums[right]) {
                 // 右边是顺序数组
                 // 6 7 1 2 3
@@ -21,7 +22,6 @@ public class Solution5 {
                 left = mid + 1;
             }
         }
-        assert left == right;
         return nums[left];
     }
 }

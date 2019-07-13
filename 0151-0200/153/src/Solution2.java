@@ -19,7 +19,8 @@ public class Solution2 {
         if (left == right || left + 1 == right) {
             return Math.min(nums[left], nums[right]);
         }
-        int mid = left + (right - left) / 2;
+        // int mid = left + (right - left) / 2;
+        int mid = (left + right) >>> 1;
         // 8 9 1 2 3 4 5 6 7
         if (nums[mid] < nums[right]) {
             // 右边是顺序数组

@@ -19,7 +19,8 @@ public class Solution5 {
         if (nums[left] < nums[right]) {
             return nums[left];
         }
-        int mid = left + (right - left) / 2;
+        // int mid = left + (right - left) / 2;
+        int mid = (left + right) >>> 1;
         return Math.min(findMin(nums, left, mid - 1), findMin(nums, mid, right));
     }
 

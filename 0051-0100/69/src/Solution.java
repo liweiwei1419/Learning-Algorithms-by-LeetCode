@@ -9,23 +9,24 @@ public class Solution {
         if (x < 4) {
             return 1;
         }
-        long l = 1;
-        long r = x / 2;
-        while (l <= r) {
-            long mid = l + (r - l) / 2;
+        long left = 1;
+        long right = x / 2;
+        while (left <= right) {
+            // long mid = left + (right - left) / 2;
+            long mid = (left + right) >>> 1;
             long square = mid * mid;
             if (square <= x) {
-                l = mid + 1;
+                left = mid + 1;
             } else {
-                r = mid - 1;
+                right = mid - 1;
             }
         }
-        return (int) r;
+        return (int) right;
     }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        System.out.println(solution.mySqrt(4));
+        System.out.println(solution.mySqrt(2147395599));
         int max = 2147395599;
         for (int i = 0; i < max; i++) {
             int mySqrt = solution.mySqrt(i);

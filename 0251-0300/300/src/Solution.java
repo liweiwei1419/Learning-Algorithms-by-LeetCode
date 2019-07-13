@@ -4,6 +4,8 @@ import java.util.Arrays;
  * 最长上升子序列问题
  * 300. 最长上升子序列
  * https://leetcode-cn.com/problems/longest-increasing-subsequence/description/
+ * 思路：动态规划。
+ *
  */
 public class Solution {
 

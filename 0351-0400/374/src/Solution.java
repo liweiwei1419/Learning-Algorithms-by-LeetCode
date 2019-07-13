@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.Collections;
 
 class GuessGame {
 
@@ -19,19 +21,20 @@ public class Solution extends GuessGame {
     public int guessNumber(int n) {
         int left = 1;
         int right = n;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
+        while (left < right) {
+            // int mid = left + (right - left + 1) / 2;
+            int mid = (left + right + 1) >>> 1;
             int guessNum = guess(mid);
-            if (guessNum == 0) {
-                return mid;
-            } else if (guessNum == -1) {
+            if (guessNum == -1) {
                 right = mid - 1;
             } else {
-                left = mid + 1;
+                left = mid;
             }
         }
-        return -1;
+        // 最后剩下的数一定是所求，无需后处理
+        return left;
     }
+
 
     public static void main(String[] args) {
         Solution solution = new Solution();

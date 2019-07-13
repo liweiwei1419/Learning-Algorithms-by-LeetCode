@@ -8,7 +8,7 @@ public class Solution {
 
     public boolean containsNearbyDuplicate(int[] nums, int k) {
         int len = nums.length;
-        // 先将极端用例返回
+        // 特判
         if (len < 2) {
             return false;
         }
@@ -16,11 +16,14 @@ public class Solution {
         for (int i = 0; i < len; i++) {
             if (map.containsKey(nums[i])) {
                 if (i - map.get(nums[i]) <= k) {
+                    // 只要找到 1 个符合题意的就返回
                     return true;
                 }
             }
+            // 更新为最新的索引，这里有贪心选择的思想，索引越靠后，符合题意的数据对的存在性就越大
             map.put(nums[i], i);
         }
+        // 遍历完成以后，都没有符合题意的时候，才返回 False
         return false;
     }
 

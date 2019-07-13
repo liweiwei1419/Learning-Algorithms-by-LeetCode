@@ -16,7 +16,7 @@ public class Solution3 {
     }
 
     // p 可以声明成一个栈
-    // i 的极限值满足： n - i + 1 = (k-pre.size())。
+    // i 的极限值满足： n - i + 1 = (k - pre.size())。
     // 【关键】n - i + 1 是闭区间 [i,n] 的长度。
     // k - pre.size() 是剩下还要寻找的数的个数。
     private void findCombinations(int n, int k, int index, Stack<Integer> p) {

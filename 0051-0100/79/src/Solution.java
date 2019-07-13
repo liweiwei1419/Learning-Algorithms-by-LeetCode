@@ -6,9 +6,10 @@ public class Solution {
     // x,y-1  x,y    x,y+1
     //        x+1,y
     private int[][] direction = {{-1, 0}, {0, -1}, {0, 1}, {1, 0}};
-
-    private int m; // 盘面上有多少行
-    private int n; // 盘面上有多少列
+    // 盘面上有多少行
+    private int m;
+    // 盘面上有多少列
+    private int n;
     private String word;
     private char[][] board;
 

@@ -1,14 +1,16 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+
 /**
+ * 自己写的
  * @author liwei
  * @date 18/7/2 下午2:30
  */
-
-
-import java.util.*;
-
-
 public class Solution4 {
-
 
     private class Triad {
         private int a;

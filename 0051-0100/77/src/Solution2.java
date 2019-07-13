@@ -6,6 +6,7 @@ public class Solution2 {
     private List<List<Integer>> result = new ArrayList<>();
 
     public List<List<Integer>> combine(int n, int k) {
+        // 特判
         if (n <= 0 && k <= 0 && k > n) {
             return result;
         }
@@ -23,7 +24,7 @@ public class Solution2 {
      * @param pre   已经构成的数字列表
      */
     private void generateCombinations(int n, int k, int start, List<Integer> pre) {
-        if (pre.size() == k) { // pre.size() == k
+        if (pre.size() == k) {
             result.add(new ArrayList<>(pre));
             return;
         }

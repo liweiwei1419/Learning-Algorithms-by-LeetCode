@@ -20,7 +20,8 @@ public class Solution2 {
             return nums[left];
         }
 
-        int mid = left + (right - left) / 2;
+        // int mid = left + (right - left) / 2;
+        int mid = (left + right) >>> 1;
         if (nums[mid] == nums[right]) {
             return Math.min(findMin(nums, left, mid), findMin(nums, mid + 1, right));
         } else if (nums[mid] < nums[right]) {

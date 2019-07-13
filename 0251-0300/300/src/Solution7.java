@@ -19,7 +19,6 @@ public class Solution7 {
                 if (nums[j] < curVal) {
                     dp[i] = Integer.max(dp[i], dp[j] + 1);
                 }
-
             }
         }
         int res = 1;

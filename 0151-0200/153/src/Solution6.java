@@ -8,7 +8,8 @@ public class Solution6 {
         int left = 0;
         int right = len - 1;
         while (left < right) {
-            int mid = left + (right - left) / 2;
+            // int mid = left + (right - left) / 2;
+            int mid = (left + right) >>> 1;
             if (nums[mid] > nums[right]) {
                 left = mid + 1;
             } else {
@@ -17,6 +18,7 @@ public class Solution6 {
                 right = mid;
             }
         }
+        // 一定存在最小元素，因此无需再做判断
         return nums[left];
     }
 }

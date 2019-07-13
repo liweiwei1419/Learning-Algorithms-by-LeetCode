@@ -5,7 +5,8 @@ public class Solution4 {
         int left = 0;
         int right = len - 1;
         while (left < right) {
-            int mid = left + (right - left) / 2;
+            // int mid = left + (right - left) / 2;
+            int mid = (left + right) >>> 1;
             if (nums[mid] == nums[right]) {
                 // 2 2 1 2 2 2 2 2 2
                 // 2 2 2 2 2 2 3 2 2

@@ -40,6 +40,7 @@ public class Solution {
                     break;
                 }
                 int sum = nums[l] + nums[r];
+
                 if (sum > target) {
                     r--;
                 } else if (sum < target) {

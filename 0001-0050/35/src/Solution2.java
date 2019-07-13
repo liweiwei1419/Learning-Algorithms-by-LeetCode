@@ -8,8 +8,8 @@ public class Solution2 {
     // 特例： 3 6 7 8
 
     // System.out.println("尝试过的值：" + mid);
-// 1 2 3 5 5 5 5 5 5 6 ，target = 5
-// 1 2 3 3 5 5 5 6 target = 4
+    // 1 2 3 5 5 5 5 5 5 6 ，target = 5
+    // 1 2 3 3 5 5 5 6 target = 4
 
 
     public int searchInsert(int[] nums, int target) {

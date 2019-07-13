@@ -2,10 +2,11 @@ public class Solution2 {
 
     public int findDuplicate(int[] nums) {
         int len = nums.length;
-        int l = 1;
-        int r = len - 1;
-        while (l < r) {
-            int mid = l + (r - l) / 2;
+        int left = 1;
+        int right = len - 1;
+        while (left < right) {
+            // int mid = left + (right - left) / 2;
+            int mid = (left + right) >>> 1;
             int counter = 0;
             for (int num : nums) {
                 if (num <= mid) {
@@ -13,11 +14,11 @@ public class Solution2 {
                 }
             }
             if (counter > mid) {
-                r = mid;
+                right = mid;
             } else {
-                l = mid + 1;
+                left = mid + 1;
             }
         }
-        return l;
+        return left;
     }
 }

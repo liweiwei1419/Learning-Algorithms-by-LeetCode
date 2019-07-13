@@ -2,6 +2,8 @@ import java.util.TreeSet;
 
 public class Solution2 {
 
+    // 推荐的写法
+
     /**
      * 10             20     30   ,t = 3
      * 12   15  18
@@ -15,10 +17,14 @@ public class Solution2 {
     public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
         TreeSet<Long> set = new TreeSet<>();
         for (int i = 0; i < nums.length; i++) {
+
+            // 向右扩展看地板
             Long floor = set.floor((long) nums[i] + t);
             if ((floor != null && floor >= nums[i])) {
                 return true;
             }
+
+            // 向左扩展看天花板
 
             Long ceiling = set.ceiling((long) nums[i] - t);
             if ((ceiling != null && ceiling <= nums[i])) {

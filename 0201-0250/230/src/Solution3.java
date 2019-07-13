@@ -14,7 +14,6 @@ public class Solution3 {
         return res;
     }
 
-
     private void inOrder(TreeNode node, int[] k) {
         if (node == null) {
             return;
@@ -26,6 +25,4 @@ public class Solution3 {
         }
         inOrder(node.right, k);
     }
-
-
 }

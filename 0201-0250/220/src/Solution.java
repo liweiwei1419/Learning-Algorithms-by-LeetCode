@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.TreeSet;
 
 /**
@@ -8,6 +10,8 @@ import java.util.TreeSet;
  *
  */
 public class Solution {
+
+    // 这个解法不好理解
 
     /**
      * 要考虑到整型越界问题，所以要使用长整型
@@ -80,5 +84,11 @@ public class Solution {
         Solution solution = new Solution();
         boolean containsNearbyAlmostDuplicate = solution.containsNearbyAlmostDuplicate(nums, k, t);
         System.out.println(containsNearbyAlmostDuplicate);
+
+        int low = Integer.MAX_VALUE;
+        int high = Integer.MAX_VALUE;
+        System.out.println((low + high) / 2);
+        System.out.println((low + high) >>> 1);
+
     }
 }

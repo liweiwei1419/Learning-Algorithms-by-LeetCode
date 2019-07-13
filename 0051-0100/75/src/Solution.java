@@ -1,6 +1,5 @@
 import java.util.Arrays;
 
-// https://leetcode-cn.com/problems/sort-colors/description/
 
 public class Solution {
 
@@ -19,22 +18,22 @@ public class Solution {
     // 0 的时候，移动到 1 的前面
 
     public void sortColors(int[] nums) {
-        int l = -1;
-        int r = nums.length;
+        int left = -1;
+        int right = nums.length;
         for (int i = 0; i < nums.length; i++) {
-            if (i >= r) {
+            if (i >= right) {
                 break;
             }
             if (nums[i] == 0) {
-                l++;
-                swap(nums, l, i);
+                left++;
+                swap(nums, left, i);
             }
             if (nums[i] == 1) {
                 // 什么都不做
             }
             if (nums[i] == 2) {
-                r--;
-                swap(nums, r, i);
+                right--;
+                swap(nums, right, i);
                 i--; // i 的位置有了新的元素，所以还得判断一下
             }
         }
@@ -50,7 +49,6 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        // write your code here
         int[] nums = {1, 2, 0};
         new Solution().sortColors(nums);
         System.out.println(Arrays.toString(nums));
