@@ -23,7 +23,8 @@ class ListNode {
         StringBuilder s = new StringBuilder();
         ListNode cur = this;
         while (cur != null) {
-            s.append(cur.val + " -> ");
+            s.append(cur.val);
+            s.append(" -> ");
             cur = cur.next;
         }
         s.append("NULL");
@@ -31,34 +32,20 @@ class ListNode {
     }
 }
 
+
 public class Solution {
+
     public ListNode swapPairs(ListNode head) {
-        // 特判
         if (head == null || head.next == null) {
             return head;
         }
-
-        ListNode dummyNode = new ListNode(-1);
-        dummyNode.next = head;
-
-        ListNode curNode = dummyNode;
-        ListNode p1;
-        ListNode p2;
-        ListNode nextNode;
-        while (curNode.next != null && curNode.next.next != null) {
-            p1 = curNode.next;
-            p2 = p1.next;
-
-            // 先保存一下
-            nextNode = p2.next;
-            // 穿针引线
-            curNode.next = p2;
-            p2.next = p1;
-            p1.next = nextNode;
-            // 特别注意，下一轮 curNode 应该站在 p1
-            curNode = p1;
-        }
-        return dummyNode.next;
+        ListNode p1 = head;
+        ListNode p2 = head.next;
+        // 没有必要这么写
+        p2.next = swapPairs(p2.next);
+        p1.next = p2.next;
+        p2.next = p1;
+        return p2;
     }
 
     public static void main(String[] args) {
@@ -70,3 +57,6 @@ public class Solution {
         System.out.println(swapPairs);
     }
 }
+
+
+

@@ -30,6 +30,7 @@ class ListNode {
         s.append("NULL");
         return s.toString();
     }
+
 }
 
 // 快慢指针、虚拟结点
