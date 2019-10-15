@@ -6,6 +6,8 @@ import java.util.Stack;
  */
 public class Solution4 {
 
+    // 双指针
+
     public int trap(int[] height) {
         int len = height.length;
         // 特判
@@ -14,23 +16,30 @@ public class Solution4 {
         }
         int res = 0;
 
-        Stack<Integer> stack = new Stack<>();
-        for (int i = 0; i < len; i++) {
-            int last = 0;
 
-            while (!stack.empty() && height[stack.peek()] <= height[i]) {
-                int top = stack.pop();
-                res += (i - top - 1) * (height[top] - last);
-                last = height[top];
-            }
+        int leftMax = 0;
+        int rightMax = 0;
+        // 注意初值的选取
+        int left = 0;
+        int right = len - 1;
 
-            if (!stack.empty()) {
-                res += (i - stack.peek() - 1) * (height[i] - last);
+        while (left < right) {
+            leftMax = Math.max(leftMax, height[left]);
+            rightMax = Math.max(rightMax, height[right]);
+
+            if (height[left] < height[right]) {
+                res += leftMax - height[left];
+                left++;
+            } else {
+                res += rightMax - height[right];
+                right--;
             }
-            stack.push(i);
         }
         return res;
     }
+
+
+
 
     public static void main(String[] args) {
         int[] height = new int[]{3, 0, 0, 1, 0, 2, 0, 4};

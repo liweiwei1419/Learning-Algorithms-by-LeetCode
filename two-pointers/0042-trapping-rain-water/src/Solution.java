@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class Solution {
 
-    // 三次扫描法
+    // 暴力解法：中心扩散，找到两边最高的那个高度，还要减去自己的高度
 
     public int trap(int[] height) {
         int len = height.length;
@@ -10,36 +10,33 @@ public class Solution {
         if (len < 3) {
             return 0;
         }
-
-        int[] leftMax = new int[len];
-        int[] rightMax = new int[len];
-
-        leftMax[0] = height[0];
-        // 从当前位置向左边看最高的高度
-        for (int i = 1; i < len; i++) {
-            leftMax[i] = Math.max(leftMax[i - 1], height[i]);
-        }
-
-        rightMax[len - 1] = height[len - 1];
-        // 从当前位置向左边看最高的高度
-        for (int i = len - 2; i >= 0; i--) {
-            rightMax[i] = Math.max(rightMax[i + 1], height[i]);
-        }
-
-        // System.out.println(Arrays.toString(leftMax));
-        // System.out.println(Arrays.toString(rightMax));
-
         int res = 0;
         for (int i = 1; i < len - 1; i++) {
-            res += (Math.min(leftMax[i], rightMax[i]) - height[i]);
+            int leftMax = leftMax(i, height);
+            int rightMax = rightMax(i, height, len);
+
+            // 核心逻辑
+            if (height[i] < Math.min(leftMax, rightMax)) {
+                res += Math.min(leftMax, rightMax) - height[i];
+            }
         }
         return res;
     }
 
-    public static void main(String[] args) {
-        int[] height = new int[]{2, 0, 2};
-        Solution solution = new Solution();
-        int res = solution.trap(height);
-        System.out.println(res);
+    private int leftMax(int center, int[] height) {
+        int res = 0;
+        for (int i = center - 1; i >= 0; i--) {
+            res = Math.max(res, height[i]);
+        }
+        return res;
+    }
+
+    private int rightMax(int center, int[] height, int n) {
+        // 看看向右最多能走多远
+        int res = 0;
+        for (int i = center + 1; i < n; i++) {
+            res = Math.max(res, height[i]);
+        }
+        return res;
     }
 }
