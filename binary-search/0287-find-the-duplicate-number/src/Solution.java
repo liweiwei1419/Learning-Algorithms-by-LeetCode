@@ -1,27 +1,27 @@
 public class Solution {
 
+    // 桶排序思想
+
     public int findDuplicate(int[] nums) {
         int len = nums.length;
-        int left = 1;
-        // 注意这里的边界
-        int right = len - 1;
-
-        while (left < right) {
-            int mid = (left + right + 1) >>> 1;
-
-            int count = 0;
-            for (int num : nums) {
-                if (num < mid) {
-                    count++;
+        for (int i = 0; i < len; i++) {
+            while (nums[i] != i + 1) {
+                if (nums[i] == nums[nums[i] - 1]) {
+                    return nums[i];
                 }
-            }
-            // 容易出错，需要仔细分析
-            if (count < mid) {
-                left = mid;
-            } else {
-                right = mid - 1;
+                swap(nums, i, nums[i] - 1);
             }
         }
-        return left;
+        // 数组中没有重复的整数，测试用例错误
+        return 0;
+    }
+
+    private void swap(int[] nums, int index1, int index2) {
+        if (index1 == index2) {
+            return;
+        }
+        int temp = nums[index1];
+        nums[index1] = nums[index2];
+        nums[index2] = temp;
     }
 }
