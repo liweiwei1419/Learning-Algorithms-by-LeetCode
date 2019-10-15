@@ -6,7 +6,7 @@ import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Solution {
+public class Solution3 {
 
     private List<List<Integer>> res = new ArrayList<>();
     private boolean[] used;

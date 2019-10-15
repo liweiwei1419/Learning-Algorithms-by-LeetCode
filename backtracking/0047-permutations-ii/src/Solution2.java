@@ -5,6 +5,8 @@ import java.util.Stack;
 
 public class Solution2 {
 
+    // 尽量使用成员变量，减少方法参数的传递
+
     private List<List<Integer>> res = new ArrayList<>();
     private boolean[] marked;
     private int[] nums;
@@ -27,7 +29,6 @@ public class Solution2 {
                 stack.pop();
                 marked[i] = false;
             }
-
         }
     }
 
