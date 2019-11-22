@@ -3,7 +3,8 @@
  * @date 2019/10/13 2:24 上午
  */
 public class Solution {
-    // [0, i) 非零
+
+    // 循环不变式：[0, i) 非零
 
     public void moveZeroes(int[] nums) {
         int len = nums.length;
@@ -12,13 +13,14 @@ public class Solution {
         }
 
         int next = 0;
-        for (int i = 0; i < len; i++){
-            if (nums[i] != 0){
+        for (int i = 0; i < len; i++) {
+            if (nums[i] != 0) {
                 nums[next] = nums[i];
                 next++;
             }
         }
-        for (int i = next; i < len; i++){
+
+        for (int i = next; i < len; i++) {
             nums[next] = 0;
             next++;
         }

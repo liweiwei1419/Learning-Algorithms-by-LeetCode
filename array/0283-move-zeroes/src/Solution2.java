@@ -14,6 +14,7 @@ public class Solution2 {
         if (len < 2) {
             return;
         }
+
         int notZero = 0;
         for (int i = 0; i < len; i++) {
             if (nums[i] != 0) {
