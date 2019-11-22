@@ -41,6 +41,8 @@ class ListNode {
 
 public class Solution {
 
+    // 穿针引线
+
     public ListNode removeElements(ListNode head, int val) {
         ListNode dummyNode = new ListNode(-1);
         dummyNode.next = head;
@@ -48,9 +50,9 @@ public class Solution {
         while (cur.next != null) {
             if (cur.next.val == val) {
                 // 待删除的结点
-                ListNode delete = cur.next;
-                cur.next = delete.next;
-                delete.next = null;
+                ListNode deleteNode = cur.next;
+                cur.next = deleteNode.next;
+                deleteNode.next = null;
             } else {
                 cur = cur.next;
             }

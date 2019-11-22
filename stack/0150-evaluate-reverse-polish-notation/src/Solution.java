@@ -38,7 +38,8 @@ public class Solution {
                     c = b / a;
                 }
                 stack.push(c);
-            } else { // 是数字
+            } else {
+                // 是数字
                 stack.push(Integer.parseInt(tokens[i]));
             }
         }

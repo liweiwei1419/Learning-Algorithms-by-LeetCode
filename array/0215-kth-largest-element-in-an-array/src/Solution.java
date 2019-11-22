@@ -1,8 +1,12 @@
+import java.util.Random;
+
 /**
  * @author liweiwei1419
  * @date 2019/10/9 6:03 下午
  */
 public class Solution {
+
+    private static final Random RANDOM = new Random();
 
     public int findKthLargest(int[] nums, int k) {
         // 第 k 大，索引为 len - k
@@ -14,7 +18,6 @@ public class Solution {
         int targetIndex = len - k;
         while (left <= right) {
             int pIndex = partition(nums, left, right);
-            System.out.println(pIndex);
             if (pIndex == targetIndex) {
                 return nums[pIndex];
             } else if (pIndex < targetIndex) {
@@ -43,6 +46,10 @@ public class Solution {
      * @return
      */
     private int partition(int[] nums, int left, int right) {
+
+        int randomIndex = left + RANDOM.nextInt(right - left + 1);
+        swap(nums, randomIndex, left);
+
         int pivot = nums[left];
         int i = left + 1;
         int j = right;

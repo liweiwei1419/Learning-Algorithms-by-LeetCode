@@ -1,31 +1,41 @@
+/**
+ * @author liweiwei1419
+ * @date 2019/10/28 10:40 上午
+ */
 public class Solution4 {
-    /**
-     * 在遍历的时候，记录之前遍历到的元素的最小值
-     *
-     * @param prices
-     * @return
-     */
+
+    // 动态规划
+
     public int maxProfit(int[] prices) {
         int len = prices.length;
-        if (len == 0) {
+        if (len < 2) {
             return 0;
         }
-        int res = 0;
-        // 之前遍历到的所有元素的最小值
-        int preMinimum = prices[0];
-        // 从索引为 1 的元素开始
-        for (int i = 1; i < len; i++) {
-            // 当前值减去之前遍历到的元素的最小值，从中取出最大，即为所求
-            res = Math.max(res, prices[i] - preMinimum);
-            preMinimum = Math.min(preMinimum, prices[i]);
-        }
-        return res;
-    }
 
-    public static void main(String[] args) {
-        int[] prices = {7, 1, 5, 3, 6, 4};
-        Solution solution = new Solution();
-        int maxProfit = solution.maxProfit(prices);
-        System.out.println(maxProfit);
+        // 0：不进行任何操作
+        // 1：用户执行了一次买入操作
+        // 2：用户执行了一次卖出操作
+
+        // 状态转移方程：
+        // dp[i][0] 永远等于 0
+        // dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] - prices[i])
+        // dp[i][2] = max(dp[i - 1][2], dp[i - 1][1] + prices[i])
+
+
+        // 注意：如果是 `[7, 6, 5, 4, 3]` 这种波动，应该不交易，
+        // 因此输出是：max(dp[len - 1][0], dp[len - 1][2])
+
+        int[][] dp = new int[len][3];
+        dp[0][0] = 0;
+        dp[0][1] = -prices[0];
+        // 这里状态 2 不应该有值，设置为 0 不影响正确性
+        dp[0][2] = 0;
+        for (int i = 1; i < len; i++) {
+            // 可以不显式赋值，因为 int 的初值就是 0
+            dp[i][0] = 0;
+            dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
+            dp[i][2] = Math.max(dp[i - 1][2], dp[i - 1][1] + prices[i]);
+        }
+        return Math.max(dp[len - 1][0], dp[len - 1][2]);
     }
 }

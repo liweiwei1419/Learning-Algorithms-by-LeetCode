@@ -1,43 +1,78 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
+/**
+ * @author liweiwei1419
+ * @date 2019/11/1 4:59 下午
+ */
 public class Solution3 {
+
+    class Node {
+        /**
+         * 当前得到的字符串
+         */
+        private String res;
+        /**
+         * 剩余左括号数量
+         */
+        private int left;
+        /**
+         * 剩余右括号数量
+         */
+        private int right;
+
+        public Node(String res, int left, int right) {
+            this.res = res;
+            this.left = left;
+            this.right = right;
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "res='" + res + '\'' +
+                    ", left=" + left +
+                    ", right=" + right +
+                    '}';
+        }
+    }
 
     public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
         if (n == 0) {
             return res;
         }
-        help("", n, n, res);
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(new Node("", n, n));
+        // 总共需要拼凑的字符总数是 2 * n
+        n = 2 * n;
+        while (n > 0) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                Node curNode = queue.poll();
+                if (curNode.left > 0) {
+                    queue.offer(new Node(curNode.res + "(", curNode.left - 1, curNode.right));
+                }
+                if (curNode.right > 0 && curNode.left < curNode.right) {
+                    queue.offer(new Node(curNode.res + ")", curNode.left, curNode.right - 1));
+                }
+            }
+            n--;
+        }
+
+        // 最后一层就是题目要求的结果集
+        while (!queue.isEmpty()) {
+            res.add(queue.poll().res);
+        }
         return res;
     }
 
-    /**
-     * @param curString 当前递归得到的结果
-     * @param left      左括号还有几个没有用掉
-     * @param right     右边的括号还有几个没有用掉
-     * @param res       结果集
-     */
-    private void help(String curString, int left, int right, List<String> res) {
-        if (left == 0 && right == 0) {
-            res.add(curString);
-            return;
-        }
-        // 还有左括号没有用掉，于是考虑用掉左括号
-        if (left > 0) {
-            help(curString + "(", left - 1, right, res);
-        }
-        // 左边括号剩余的比右边括号剩余的少
-        // 也就是说，左边括号用得多，于是考虑使用右边括号
-        if (left < right) {
-            help(curString + ")", left, right - 1, res);
-        }
-    }
-
     public static void main(String[] args) {
-        int n = 3;
-        Solution solution = new Solution();
-        List<String> generateParenthesis = solution.generateParenthesis(n);
-        System.out.println(generateParenthesis);
+        Solution3 solution3 = new Solution3();
+        int n = 2;
+        List<String> res = solution3.generateParenthesis(n);
+        System.out.println(res);
     }
 }

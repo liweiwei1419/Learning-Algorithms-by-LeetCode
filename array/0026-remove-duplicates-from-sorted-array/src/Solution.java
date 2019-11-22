@@ -8,15 +8,16 @@ public class Solution {
         if (len < 2) {
             return len;
         }
-        int next = 0;
+        // 循环不变量：[0, j）是移除重复元素以后的数组
+        int j = 1;
         for (int i = 1; i < len; i++) {
-            if (nums[i] != nums[next]) {
+            if (nums[i] != nums[j - 1]) {
                 // 注意顺序：先更新值，再递增脚标
-                next++;
-                nums[next] = nums[i];
+                nums[j] = nums[i];
+                j++;
             }
         }
-        return next + 1;
+        return j;
     }
 
     public static void main(String[] args) {

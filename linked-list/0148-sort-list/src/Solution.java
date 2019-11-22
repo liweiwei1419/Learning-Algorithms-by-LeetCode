@@ -29,95 +29,52 @@ class ListNode {
     }
 }
 
+// 分治法不符合要求：常数级空间复杂度
+
 public class Solution {
+
     public ListNode sortList(ListNode head) {
-        int len = getLenOfListNode(head);
-
-        ListNode dummyNode = new ListNode(-1);
-        dummyNode.next = head;
-
-        ListNode cur;
-        ListNode tail;
-        ListNode left;
-        ListNode right;
-
-        for (int sz = 1; sz < len; sz += sz) {
-            cur = dummyNode.next;
-            // tail 一开始也是指向虚拟结点的，全局用一个就好
-            // 每次重复用这个 dummy 结点
-            tail = dummyNode;
-
-            while (cur != null) {
-                left = cur;
-                right = cut(left, sz);
-                cur = cut(right, sz);
-
-                // tail 一直都指向排序链表的尾部
-                tail.next = mergeTwoLists(left, right);
-                // 然后把 tail 一直放在最后
-                while (tail.next != null) {
-                    tail = tail.next;
-                }
-            }
+        // 递归终止的条件，即满足下面条件就不用找中点，可以直接返回
+        if (head == null || head.next == null) {
+            return head;
         }
-        return dummyNode.next;
+        // 使用归并排序、分治思想，先要找到链表的中间结点
+        ListNode fast = head;
+        ListNode slow = head;
+        // 下面这段代码是找链表中间结点的一般做法
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        // 定义位于中间结点的下一个结点，从它那里将一个链表切开
+        ListNode midNext = slow.next;
+        // 这里一定要记得从中间切开，分割成两个链表
+        slow.next = null;
+        ListNode listNodeLeft = sortList(head);
+        ListNode listNodeRight = sortList(midNext);
+        // 合并两个已经排序的单链表，这是我们很熟悉的操作了
+        return mergeOfTwoSortListNode(listNodeLeft, listNodeRight);
     }
 
-    private ListNode cut(ListNode head, int n) {
-        // 切下链表的头 n 个结点，返回剩下的链表的头结点
-        ListNode cur = head;
-        // 向前走 n - 1 步，然后切断链表
-        for (int i = 0; i < n - 1 && cur != null; i++) {
-            cur = cur.next;
+    private ListNode mergeOfTwoSortListNode(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
         }
-        if (cur == null) {
-            return null;
+        if (l2 == null) {
+            return l1;
         }
-        ListNode next = cur.next;
-        // 切断链接
-        cur.next = null;
-        return next;
+        if (l1.val < l2.val) {
+            l1.next = mergeOfTwoSortListNode(l1.next, l2);
+            return l1;
+        } else {
+            l2.next = mergeOfTwoSortListNode(l1, l2.next);
+            return l2;
+        }
     }
 
-    private int getLenOfListNode(ListNode head) {
-        int len = 0;
-        while (head != null) {
-            len++;
-            head = head.next;
-        }
-        return len;
-    }
-
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode dummyNode = new ListNode(-1);
-        ListNode p1 = l1;
-        ListNode p2 = l2;
-        ListNode curNode = dummyNode;
-        // 两者都不为空的时候，才有必要进行比较
-        while (p1 != null && p2 != null) {
-            if (p1.val < p2.val) {
-                // 指针修改发生在这里
-                curNode.next = p1;
-                p1 = p1.next;
-            } else {
-                // 指针修改发生在这里
-                curNode.next = p2;
-                p2 = p2.next;
-            }
-            curNode = curNode.next;
-        }
-        // 跳出循环是因为 p1 == null 或者 p2 == null
-        if (p1 == null) {
-            curNode.next = p2;
-        }
-        if (p2 == null) {
-            curNode.next = p1;
-        }
-        return dummyNode.next;
-    }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{-1, 5, 3, 4, 0};
+        int[] nums = new int[]{12, 10, 8, 9, 6, 5, 4, 3};
         ListNode head = new ListNode(nums);
         System.out.println(head);
         Solution solution = new Solution();

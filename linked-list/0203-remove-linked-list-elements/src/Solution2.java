@@ -1,5 +1,7 @@
 public class Solution2 {
 
+    // 递归
+
     public ListNode removeElements(ListNode head, int val) {
         if (head == null) {
             return head;

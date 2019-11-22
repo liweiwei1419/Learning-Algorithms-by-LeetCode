@@ -4,28 +4,27 @@
  */
 public class Solution {
 
+    // 暴力解法，时间复杂度太高，我们应该使用指针对撞的方法
+
     public int maxArea(int[] height) {
         int len = height.length;
         if (len < 2) {
             return 0;
         }
-
-        int left = 0;
-        int right = len - 1;
-
         int res = 0;
-        while (left < right) {
-            int minH = Math.min(height[left], height[right]);
-            res = Math.max(res, minH * (right - left));
-
-            if (height[left] == minH) {
-                left++;
-            } else {
-                right--;
+        for (int i = 0; i < len - 1; i++) {
+            for (int j = i + 1; j < len; j++) {
+                res = Math.max(res, Math.min(height[i], height[j]) * (j - i));
             }
         }
         return res;
     }
+
+
+
+
+
+
 
     public static void main(String[] args) {
         int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};

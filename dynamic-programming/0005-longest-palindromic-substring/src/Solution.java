@@ -1,39 +1,42 @@
 /**
- * 中心扩散方法
+ * 最朴素的做法：
  *
- * @author liwei
+ * @author liweiwei1419
+ * @date 2019/10/22 11:16 上午
  */
 public class Solution {
 
     public String longestPalindrome(String s) {
         int len = s.length();
-        if (len == 0) {
-            return "";
+        if (len < 2) {
+            return s;
         }
-        int longestPalindrome = 1;
-        String longestPalindromeStr = s.substring(0, 1);
-        for (int i = 0; i < len; i++) {
-            String palindromeOdd = centerSpread(s, len, i, i);
-            String palindromeEven = centerSpread(s, len, i, i + 1);
-            String maxLenStr = palindromeOdd.length() > palindromeEven.length() ? palindromeOdd : palindromeEven;
-            if (maxLenStr.length() > longestPalindrome) {
-                longestPalindrome = maxLenStr.length();
-                longestPalindromeStr = maxLenStr;
+
+        int maxLen = 1;
+        String res = s.substring(0, 1);
+
+        // 枚举所有长度大于等于 2 的子串
+        for (int i = 0; i < len - 1; i++) {
+            for (int j = i + 1; j < len; j++) {
+                if (j - i + 1 > maxLen && valid(s, i, j)) {
+                    maxLen = j - i + 1;
+                    res = s.substring(i, j + 1);
+                }
             }
         }
-        return longestPalindromeStr;
+        return res;
     }
 
-    private String centerSpread(String s, int len, int left, int right) {
-        int l = left;
-        int r = right;
-        while (l >= 0 && r < len && s.charAt(l) == s.charAt(r)) {
-            l--;
-            r++;
+    private boolean valid(String s, int left, int right) {
+        // 验证子串 s[left, right] 是否为回文串
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
         }
-        // 这里要特别小心，跳出 while 循环的时候，是第 1 个满足 s.charAt(l) != s.charAt(r) 的时候
-        // 所以，不能取 l，不能取 r
-        return s.substring(l + 1, r);
+        return true;
     }
 
     public static void main(String[] args) {

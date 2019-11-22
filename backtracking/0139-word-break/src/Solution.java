@@ -10,24 +10,22 @@ public class Solution {
         // 状态定义：以 s[i] 结尾的子字符串是否符合题意
         boolean[] dp = new boolean[len];
 
-        // 预处理
-        Set<String> wordSet = new HashSet<>();
-        for (String word : wordDict) {
-            wordSet.add(word);
-        }
+        // 预处理：使用哈希表判重更快
+        Set<String> wordSet = new HashSet<>(wordDict);
 
         // 动态规划问题一般都有起点，起点也相对好判断一些
         // dp[0] = wordSet.contains(s.charAt(0));
-        for (int r = 0; r < len; r++) {
-            if (wordSet.contains(s.substring(0, r + 1))) {
-                dp[r] = true;
+
+        for (int right = 0; right < len; right++) {
+            if (wordSet.contains(s.substring(0, right + 1))) {
+                dp[right] = true;
                 continue;
             }
-            for (int l = 0; l < r; l++) {
-                // dp[l] 写在前面会更快一点，否则还要去切片，然后再放入 hash 表判重
-                if (dp[l] && wordSet.contains(s.substring(l + 1, r + 1))) {
-                    dp[r] = true;
-                    // 这个 break 很重要，一旦得到 dp[r] = True ，循环不必再继续
+            for (int left = 0; left < right; left++) {
+                // dp[left] 写在前面会更快一点，否则还要去切片，然后再放入 hash 表判重
+                if (dp[left] && wordSet.contains(s.substring(left + 1, right + 1))) {
+                    dp[right] = true;
+                    // 这个 break 很重要，一旦得到 dp[right] = True ，循环不必再继续
                     break;
                 }
             }

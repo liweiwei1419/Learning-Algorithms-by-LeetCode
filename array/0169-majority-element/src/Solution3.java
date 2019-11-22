@@ -10,20 +10,20 @@ public class Solution3 {
             return nums[0];
         }
         int count = 1;
-        int pre = nums[0];
+        int res = nums[0];
         for (int i = 1; i < len; i++) {
-            if (nums[i] == pre) {
+            if (nums[i] == res) {
                 count++;
             } else {
-                // 此时 nums[i] != pre
+                // 此时 nums[i] != res
                 count--;
                 if (count == 0) {
-                    pre = nums[i];
+                    res = nums[i];
                     // 这一步很关键
                     count = 1;
                 }
             }
         }
-        return pre;
+        return res;
     }
 }

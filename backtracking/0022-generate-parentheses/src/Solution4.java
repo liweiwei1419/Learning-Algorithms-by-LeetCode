@@ -1,42 +1,48 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author liweiwei1419
+ * @date 2019/11/1 7:29 下午
+ */
 public class Solution4 {
 
-    public List<String> generateParenthesis(int n) {
-        List<String> res = new ArrayList<>();
-        if (n == 0) {
-            return res;
-        }
-        helper("", 0, 0, n, res);
-        return res;
-    }
 
-    /**
-     * @param curString
-     * @param left      已经使用掉的左边括号数量
-     * @param right     已经使用掉的右边括号数量
-     * @param n
-     * @param res
-     */
-    private void helper(String curString, int left, int right, int n, List<String> res) {
-        if (left == n && right == n) {
-            res.add(curString);
-            return;
+    // 把结果集保存在动态规划的数组里
+
+    public List<String> generateParenthesis(int n) {
+        if (n == 0) {
+            return new ArrayList<>();
         }
-        if (left < n) {
-            helper(curString + "(", left + 1, right, n, res);
+        // 这里 dp 数组我们把它变成列表的样子，方便调用而已
+        List<List<String>> dp = new ArrayList<>(n);
+
+        List<String> dp0 = new ArrayList<>();
+        dp0.add("");
+        dp.add(dp0);
+
+        for (int i = 1; i <= n; i++) {
+            List<String> cur = new ArrayList<>();
+            for (int j = 0; j < i; j++) {
+                List<String> str1 = dp.get(j);
+                List<String> str2 = dp.get(i - 1 - j);
+                for (String s1 : str1) {
+                    for (String s2 : str2) {
+                        // 枚举右括号的位置
+                        cur.add("(" + s1 + ")" + s2);
+                    }
+                }
+
+            }
+            dp.add(cur);
         }
-        // 如果左边括号比右边括号多，则可以考虑加上右边括号
-        if (left > right) {
-            helper(curString + ")", left, right + 1, n, res);
-        }
+        return dp.get(n);
     }
 
     public static void main(String[] args) {
-        int n = 3;
-        Solution2 solution2 = new Solution2();
-        List<String> generateParenthesis = solution2.generateParenthesis(n);
-        System.out.println(generateParenthesis);
+        Solution4 solution4 = new Solution4();
+        int n = 2;
+        List<String> res = solution4.generateParenthesis(n);
+        System.out.println(res);
     }
 }

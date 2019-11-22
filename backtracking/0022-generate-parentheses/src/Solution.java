@@ -3,9 +3,6 @@ import java.util.List;
 
 public class Solution {
 
-    // 隐式回溯
-    // 方法 1：用减法
-
     public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
         // 特判
@@ -13,7 +10,7 @@ public class Solution {
             return res;
         }
 
-        // 这里的 dfs 是隐式回溯
+        // 执行深度优先遍历，搜索可能的结果
         dfs("", n, n, res);
         return res;
     }
@@ -31,6 +28,9 @@ public class Solution {
             return;
         }
 
+        // 因为每一次尝试，都使用新的字符串变量，所以没有显式的回溯过程
+        // 在递归终止的时候，直接把它添加到结果集即可，与「力扣」第 46 题、第 39 题区分
+
         // 如果左边还有剩余，继续递归下去
         if (left > 0) {
             // 拼接上一个左括号，并且剩余的左括号个数减 1
@@ -40,13 +40,13 @@ public class Solution {
         // 不能用等号，因为只有先拼了左括号，才能拼上右括号
         if (right > 0 && left < right) {
             // 拼接上一个右括号，并且剩余的右括号个数减 1
-            dfs(curStr + ")", left , right - 1, res);
+            dfs(curStr + ")", left, right - 1, res);
         }
     }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        List<String> res = solution.generateParenthesis(3);
+        List<String> res = solution.generateParenthesis(2);
         System.out.println(res);
     }
 }

@@ -1,10 +1,8 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
 public class Solution {
-
 
     public List<List<Integer>> permuteUnique(int[] nums) {
         int len = nums.length;
@@ -33,7 +31,7 @@ public class Solution {
         }
         for (int i = 0; i < len; i++) {
             if (!used[i]) {
-                // 在这里"剪枝"，used[i-1] 前面加不加感叹号均可
+                // 在这里"剪枝"，used[i - 1] 前面加不加感叹号均可
                 if (i > 0 && nums[i - 1] == nums[i] && used[i - 1]) {
                     continue;
                 }
@@ -48,7 +46,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1, 1, 2};
+        int[] nums = new int[]{1, 1, 1, 2};
         // [[1, 1, 2], [1, 2, 1], [2, 1, 1]]
         Solution solution = new Solution();
         List<List<Integer>> res = solution.permuteUnique(nums);

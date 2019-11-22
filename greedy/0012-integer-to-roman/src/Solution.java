@@ -15,7 +15,7 @@ public class Solution {
             // 特别注意：这里是等号
             while (num >= nums[index]) {
                 // 注意：这里是等于号，表示尽量使用大的"面值"
-                stringBuilder.append(romans[index] + " ");
+                stringBuilder.append(romans[index]).append(" ");
                 num -= nums[index];
             }
             index++;

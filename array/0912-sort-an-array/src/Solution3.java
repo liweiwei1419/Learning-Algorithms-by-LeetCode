@@ -1,4 +1,5 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author liweiwei1419
@@ -6,27 +7,57 @@ import java.util.Arrays;
  */
 public class Solution3 {
 
-    private int[] temp;
+    // 归并排序
 
-    public int[] sortArray(int[] nums) {
+    /**
+     * 列表大小等于或小于该大小，将优先于 mergesort 使用插入排序
+     */
+    private static final int INSERTION_SORT_THRESHOLD = 7;
+
+    public List<Integer> sortArray(int[] nums) {
         int len = nums.length;
-        temp = new int[len];
-        mergeSort(nums, 0, len - 1);
-        return nums;
+        int[] temp = new int[len];
+        mergeSort(nums, 0, len - 1, temp);
+
+        List<Integer> res = new ArrayList<>(len);
+        for (int i = 0; i < len; i++) {
+            res.add(nums[i]);
+        }
+        return res;
     }
 
-    private void mergeSort(int[] nums, int left, int right) {
-        if (left >= right) {
+    private void mergeSort(int[] nums, int left, int right, int[] temp) {
+        if (right - left <= INSERTION_SORT_THRESHOLD) {
+            insertionSort(nums, left, right);
             return;
         }
         int mid = (left + right) >>> 1;
-        // 注意：1、这样写安全，因为 mid + 1 一定有值
-        mergeSort(nums, left, mid);
-        mergeSort(nums, mid + 1, right);
+        mergeSort(nums, left, mid, temp);
+        mergeSort(nums, mid + 1, right, temp);
         if (nums[mid] <= nums[mid + 1]) {
             return;
         }
-        mergeOfTwoSortedArray(nums, left, mid, right);
+        mergeOfTwoSortedArray(nums, left, mid, right, temp);
+    }
+
+    /**
+     * 对数组给定的部分使用插入排序
+     *
+     * @param arr   给定数组
+     * @param left  左边界，能取到
+     * @param right 右边界，能取到
+     */
+    private void insertionSort(int[] arr, int left, int right) {
+        // 第 1 遍不用插入，所以是总长度减去 1
+        for (int i = left + 1; i <= right; i++) {
+            int temp = arr[i];
+            int j = i;
+            while (j > left && arr[j - 1] > temp) {
+                arr[j] = arr[j - 1];
+                j--;
+            }
+            arr[j] = temp;
+        }
     }
 
     /**
@@ -34,8 +65,10 @@ public class Solution3 {
      * @param left
      * @param mid   [left, mid] 有序，[mid + 1, right] 有序
      * @param right
+     * @param temp
      */
-    private void mergeOfTwoSortedArray(int[] nums, int left, int mid, int right) {
+    private void mergeOfTwoSortedArray(int[] nums, int left, int mid, int right, int[] temp) {
+        // 全局使用一个 temp 数组，避免多次创建和销毁
         for (int i = left; i <= right; i++) {
             temp[i] = nums[i];
         }
@@ -62,10 +95,4 @@ public class Solution3 {
         }
     }
 
-    public static void main(String[] args) {
-        int[] nums = {5, 2, 3, 1};
-        Solution3 solution3 = new Solution3();
-        int[] res = solution3.sortArray(nums);
-        System.out.println(Arrays.toString(res));
-    }
 }

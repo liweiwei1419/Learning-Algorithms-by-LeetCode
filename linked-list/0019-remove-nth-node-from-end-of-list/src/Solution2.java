@@ -2,71 +2,39 @@
  * @author liwei
  * @date 2019/8/14 4:18 AM
  */
+
+/**
+ * @author liweiwei1419
+ * @date 2019/10/11 11:31 上午
+ */
 public class Solution2 {
 
+    /**
+     * 快慢指针：给定的 n 保证是有效的。
+     *
+     * @param head
+     * @param n
+     * @return
+     */
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummyNode = new ListNode(-1);
         dummyNode.next = head;
+
+        // 来到倒数第 N + 1 个结点的位置
+        ListNode fastNode = dummyNode;
+        for (int i = 0; i < n + 1; i++) {
+            fastNode = fastNode.next;
+        }
+
         ListNode slowNode = dummyNode;
-        ListNode fastNode = head;
-        for (int i = 0; i < n; i++) {
+        while (fastNode.next != null) {
             fastNode = fastNode.next;
-        }
-        while (fastNode != null) {
             slowNode = slowNode.next;
-            fastNode = fastNode.next;
         }
 
-        ListNode delete = slowNode.next;
-        slowNode.next = delete.next;
-        delete.next = null;
-        return dummyNode.next;
-    }
-
-    // 假设删除的是倒数第 3 个节点 4
-    // -1 1 2 3 4 5 6
-    // p  e
-    //          e
-    //    p       e
-    //      p       e
-    //        p       e
-
-    public ListNode removeNthFromEnd2(ListNode head, int n) {
-        ListNode dummyNode = new ListNode(-1);
-        dummyNode.next = head;
-        ListNode pre = dummyNode;
-        ListNode end = head;
-        for (int i = 0; i < n; i++) {
-            end = end.next;
-        }
-        while (end != null) {
-            pre = pre.next;
-            end = end.next;
-        }
-        ListNode delete = pre.next;
-        pre.next = delete.next;
-        delete.next = null;
-        return dummyNode.next;
-    }
-
-    public ListNode removeNthFromEnd3(ListNode head, int n) {
-        ListNode dummyNode = new ListNode(-1);
-        dummyNode.next = head;
-        ListNode curNode = dummyNode;
-        // 要走 n 步
-        while (curNode != null && n != -1) {
-            curNode = curNode.next;
-            n--;
-        }
-        ListNode pre = dummyNode;
-        while (curNode != null) {
-            pre = pre.next;
-            curNode = curNode.next;
-        }
-        // 走到这里 curNode == null ，即 来到了链表的尾结点
-        // 并且 pre 来到了要删除结点的下一个结点
-        ListNode deleteNode = pre.next;
-        pre.next = deleteNode.next;
+        // 此时 slowNode 来到了待删除的结点的上一个结点
+        ListNode deleteNode = slowNode.next;
+        slowNode.next = deleteNode.next;
         deleteNode.next = null;
         return dummyNode.next;
     }

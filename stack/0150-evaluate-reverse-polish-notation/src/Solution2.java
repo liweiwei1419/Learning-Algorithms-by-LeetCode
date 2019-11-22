@@ -5,7 +5,7 @@ public class Solution2 {
     public int evalRPN(String[] tokens) {
         int len = tokens.length;
         if (len == 1) {
-            return Integer.valueOf(tokens[0]);
+            return Integer.parseInt(tokens[0]);
         }
 
         Stack<Integer> stack = new Stack<>();
@@ -13,7 +13,7 @@ public class Solution2 {
             String token = tokens[i];
             if (token.matches("^-?\\d+$")) {
                 // 整数
-                int num = Integer.valueOf(token);
+                int num = Integer.parseInt(token);
                 stack.push(num);
             } else {
                 // token.matches("[\\+\\-\\*/]"

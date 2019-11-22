@@ -11,11 +11,7 @@ public class Solution2 {
         boolean[] dp = new boolean[len + 1];
 
         // 预处理
-        Set<String> wordSet = new HashSet<>();
-        for (String word : wordDict) {
-            wordSet.add(word);
-        }
-
+        Set<String> wordSet = new HashSet<>(wordDict);
         // 这个状态的设置非常关键，说明前部分的字符串已经在 wordSet 中
         dp[0] = true;
         for (int r = 1; r < len + 1; r++) {

@@ -1,39 +1,33 @@
 /**
- * 思路1：处理成 LeetCode 第 121 题
- * 要特别注意的就是边界情况了
- *
- * @author liwei
+ * @author liweiwei1419
+ * @date 2019/10/20 9:49 下午
  */
 public class Solution {
-
     public int maxProfit(int[] prices) {
-        int len = prices.length;
-        int maxProfit = 0;
-        for (int i = 1; i < len; i++) {
-            maxProfit = Integer.max(maxProfit(prices, 0, i) + maxProfit(prices, i + 1, len - 1), maxProfit);
-        }
-        return maxProfit;
-    }
-
-    private int maxProfit(int[] prices, int l, int r) {
-        int len = prices.length;
-        if (len == 0 || l < 0 || l >= len) {
+        int size = prices.length;
+        if (size < 2) {
             return 0;
         }
-        int preMinimum = prices[l];
-        int maxProfit = 0;
-        for (int i = l + 1; i <= r; i++) {
-            maxProfit = Integer.max(prices[i] - preMinimum, maxProfit);
-            preMinimum = Integer.min(preMinimum, prices[i]);
-        }
-        return maxProfit;
-    }
 
-    public static void main(String[] args) {
-        // int[] prices = {3, 3, 5, 0, 0, 3, 1, 4};
-        int[] prices = {1, 2, 3, 4, 5};
-        Solution solution = new Solution();
-        int maxProfit = solution.maxProfit(prices);
-        System.out.println(maxProfit);
+        int dp1 = -prices[0];
+        // 注意 1：这里要使用 16 位 int 类型值
+        int dp2 = Integer.MIN_VALUE;
+        int dp3 = Integer.MIN_VALUE;
+        int dp4 = Integer.MIN_VALUE;
+
+        for (int i = 1; i < size; ++i) {
+            if (dp3 != Integer.MIN_VALUE) {
+                dp4 = Math.max(dp4, dp3 + prices[i]);
+            }
+
+            if (dp2 != Integer.MIN_VALUE) {
+                dp3 = Math.max(dp3, dp2 - prices[i]);
+            }
+
+            dp2 = Math.max(dp2, dp1 + prices[i]);
+            dp1 = Math.max(dp1, -prices[i]);
+        }
+        // 注意 2：最后要和 0 比较一下，因为在股票价格连续下降的时候可以不做交易
+        return Math.max(0, Math.max(dp2, dp4));
     }
 }

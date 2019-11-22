@@ -2,46 +2,30 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * 贪心算法：如果区间结尾得越早，后面能够接上一个新区间的概率就越大
+ * @author liweiwei1419
+ * @date 2019/11/2 10:09 上午
  */
 public class Solution2 {
 
-    public int eraseOverlapIntervals(Interval[] intervals) {
-        int ilen = intervals.length;
-        if (ilen == 0) {
+    // 贪心算法：区间按照结尾端点升序排序
+
+    public int eraseOverlapIntervals(int[][] intervals) {
+        int len = intervals.length;
+        if (len < 2) {
             return 0;
         }
-        Arrays.sort(intervals, new Comparator<Interval>() {
-            @Override
-            public int compare(Interval o1, Interval o2) {
-                if (o1.end != o2.end) {
-                    return o1.end - o2.end;
-                }
-                return o1.start - o2.start;
-            }
-        });
+
+        // 区间按照结尾端点升序排序
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[1]));
+
         int res = 1;
-        int pre = 0;
-        for (int i = 1; i < ilen; i++) {
-            if (intervals[i].start >= intervals[pre].end) {
-                res++;
-                pre = i;
+        int end = intervals[0][1];
+        for (int i = 1; i < len; i++) {
+            if (intervals[i][0] >= end) {
+                res += 1;
+                end = intervals[i][1];
             }
         }
-        return ilen - res;
-    }
-
-    public static void main(String[] args) {
-        Interval interval1 = new Interval(1, 2);
-        Interval interval2 = new Interval(1, 2);
-        Interval interval3 = new Interval(1, 2);
-        Interval[] intervals = new Interval[3];
-        intervals[0] = interval1;
-        intervals[1] = interval2;
-        intervals[2] = interval3;
-
-        Solution2 solution2 = new Solution2();
-        int eraseOverlapIntervals = solution2.eraseOverlapIntervals(intervals);
-        System.out.println(eraseOverlapIntervals);
+        return len - res;
     }
 }

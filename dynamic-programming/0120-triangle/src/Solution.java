@@ -1,19 +1,17 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Solution {
 
-
     public int minimumTotal(List<List<Integer>> triangle) {
         int len = triangle.size();
-
         if (len == 0) {
             return 0;
         }
+        // 注意：这里 len + 1 是为了防止越界
         int[] dp = new int[len + 1];
         for (int i = len - 1; i >= 0; i--) {
-            for (int j = 0; j < triangle.get(i).size(); j++) {
+            for (int j = 0; j < i + 1; j++) {
                 dp[j] = Integer.min(dp[j], dp[j + 1]) + triangle.get(i).get(j);
             }
             // 每一步观察是不是我们想要的，这是调试的重要方法

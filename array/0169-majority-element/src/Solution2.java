@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -18,7 +19,7 @@ public class Solution2 {
             return nums[0];
         }
         int half = len / 2;
-        Map<Integer, Integer> map = new TreeMap<>();
+        Map<Integer, Integer> map = new HashMap<>(len);
         for (int num : nums) {
             Integer count = map.get(num);
             if (count == null) {

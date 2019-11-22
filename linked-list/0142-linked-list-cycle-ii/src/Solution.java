@@ -24,7 +24,8 @@ class ListNode {
         StringBuilder s = new StringBuilder();
         ListNode cur = this;
         while (cur != null) {
-            s.append(cur.val + " -> ");
+            s.append(cur.val);
+            s.append(" -> ");
             cur = cur.next;
         }
         s.append("NULL");
@@ -70,5 +71,4 @@ public class Solution {
         }
         return slow;
     }
-
 }

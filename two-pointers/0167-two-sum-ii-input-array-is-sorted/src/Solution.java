@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Solution {
 
     public int[] twoSum(int[] numbers, int target) {
@@ -17,5 +19,14 @@ public class Solution {
             }
         }
         return new int[]{-1, -1};
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3, 5, 8, 10, 2147483647};
+        int target = 8;
+        Solution solution = new Solution();
+        int[] res = solution.twoSum(nums, target);
+        System.out.println(Arrays.toString(res));
+
     }
 }
