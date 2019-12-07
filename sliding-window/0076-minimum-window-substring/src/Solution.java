@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public class Solution {
 
     public String minWindow(String s, String t) {
@@ -57,10 +54,7 @@ public class Solution {
                 left++;
             }
         }
-
         return minLen == sLen + 1 ? "" : s.substring(start, start + minLen);
-
-
     }
 
     public static void main(String[] args) {

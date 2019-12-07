@@ -22,7 +22,7 @@ public class Solution {
             r++;
             // 注意2：这里的 = 号不要忘记了
             while (sum >= s) {
-                minSubArrayLen = Integer.min(minSubArrayLen, r - l + 1);
+                minSubArrayLen = Math.min(minSubArrayLen, r - l + 1);
                 sum -= nums[l];
                 l++;
             }

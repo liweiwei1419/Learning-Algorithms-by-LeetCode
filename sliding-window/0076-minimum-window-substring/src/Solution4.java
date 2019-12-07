@@ -2,7 +2,7 @@
  * @author liweiwei1419
  * @date 2019/10/9 1:05 下午
  */
-public class Solution {
+public class Solution4 {
     /**
      * 首先建立文本串和模式串的概念
      *

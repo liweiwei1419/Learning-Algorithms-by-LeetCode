@@ -2,7 +2,7 @@
  * @author liweiwei1419
  * @date 2019/10/12 1:33 下午
  */
-public class Solution2 {
+public class Solution5 {
     public String minWindow(String s, String t) {
         int sLen = s.length();
         int tLen = t.length();
