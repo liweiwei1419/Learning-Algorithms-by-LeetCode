@@ -2,7 +2,7 @@
  * @author liweiwei1419
  * @date 2019/10/11 5:06 下午
  */
-public class Solution6 {
+public class Solution2 {
 
     public int lengthOfLongestSubstring(String s) {
         int len = s.length();
@@ -20,7 +20,6 @@ public class Solution6 {
                 repeating = true;
             }
             right++;
-            // 当滑动窗口内有重复元素的时候，才收缩左区间
             while (repeating) {
                 window[s.charAt(left)]--;
                 if (window[s.charAt(left)] == 1) {
