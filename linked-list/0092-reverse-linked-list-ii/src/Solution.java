@@ -1,3 +1,5 @@
+// 参考资料：https://www.youtube.com/watch?v=EJeyuYtvcEA
+// https://www.jianshu.com/p/fbe6012c9e52
 class ListNode {
     int val;
     ListNode next;
@@ -31,62 +33,33 @@ class ListNode {
     }
 }
 
-
-// 利用第 206 题：穿针引线
-
 public class Solution {
 
     public ListNode reverseBetween(ListNode head, int m, int n) {
-        // 因为有头结点有可能发生变化，使用虚拟头结点可以避免复杂的分类讨论
+        // 设置 dummyNode 是这一类问题的一般做法
         ListNode dummyNode = new ListNode(-1);
         dummyNode.next = head;
-
-        ListNode p1 = dummyNode;
-        // 第 1 步：从虚拟头结点走 m - 1 步，来到 m 结点的前一个结点
-        // 建议写在 for 循环里，语义清晰
+        ListNode pre = dummyNode;
         for (int i = 0; i < m - 1; i++) {
-            p1 = p1.next;
+            pre = pre.next;
         }
-
-        // 第 2 步：从 p1 再走 n - m + 1 步，来到 n 结点
-        ListNode p2 = p1;
-        for (int i = 0; i < n - m + 1; i++) {
-            p2 = p2.next;
-        }
-
-        // 第 3 步：切断出一个子链表（截取链表）
-        ListNode p1Next = p1.next;
-        ListNode p2Next = p2.next;
-
-        p1.next = null;
-        p2.next = null;
-
-        // 第 4 步：反转子链表
-        reverseLinkedList(p1Next);
-
-        // 第 5 步：接回到原来的链表中
-        p1.next = p2;
-        p1Next.next = p2Next;
-
-        return dummyNode.next;
-
-    }
-
-    private ListNode reverseLinkedList(ListNode head) {
-        // 也可以使用递归反转一个链表
-        ListNode pre = null;
-        ListNode cur = head;
-        // 在循环开始之前声明，可以避免在循环中反复声明新变量
+        ListNode cur = pre.next;
         ListNode next;
-
-        while (cur != null) {
+        for (int i = 0; i < n - m; i++) {
             next = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = next;
+            cur.next = next.next;
+            next.next = pre.next;
+            pre.next = next;
         }
-        // 注意：返回的是 pre
-        return pre;
+        return dummyNode.next;
     }
 
+    public static void main(String[] args) {
+        int[] nums = new int[]{1, 2, 3, 4, 5};
+        ListNode head = new ListNode(nums);
+        System.out.println(head);
+        System.out.println("反转之后");
+        ListNode reverseBetween = new Solution().reverseBetween(head, 2, 4);
+        System.out.println(reverseBetween);
+    }
 }

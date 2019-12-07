@@ -1,27 +1,23 @@
-/**
- * @author liwei
- * @date 2019/8/14 3:19 PM
- */
 public class Solution2 {
-
-    // 复杂的"穿针引线"，看图说话了
-
     public ListNode reverseBetween(ListNode head, int m, int n) {
-        ListNode dummyNode = new ListNode(-1);
-        dummyNode.next = head;
-        ListNode pre = dummyNode;
-        for (int i = 0; i < m - 1; i++) {
-            pre = pre.next;
+        // 创建一个虚拟的节点（dummy）
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode pre = dummy;
+        int k = 0;
+        while (++k < m) {
+            if (pre != null) {
+                pre = pre.next;
+            }
         }
-        ListNode cur = pre.next;
-
-        ListNode next;
-        for (int i = 0; i < n - m; i++) {
-            next = cur.next;
-            cur.next = next.next;
-            next.next = pre.next;
-            pre.next = next;
+        // tail 是尾巴的意思
+        ListNode tail = pre.next;
+        while (++k <= n) {
+            ListNode temp = pre.next;
+            pre.next = tail.next;
+            tail.next = tail.next.next;
+            pre.next.next = temp;
         }
-        return dummyNode.next;
+        return dummy.next;
     }
 }
