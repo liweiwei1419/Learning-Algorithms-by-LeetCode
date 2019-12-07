@@ -1,24 +1,19 @@
-/**
- * 338. Bit位计数
- * https://leetcode-cn.com/problems/counting-bits/description/
- */
 public class Solution2 {
+
     public int[] countBits(int num) {
-        int[] dp = new int[num + 1];
-        dp[0] = 0;
-        for (int i = 1; i <= num; i++) {
-            if ((i & (i - 1)) == 0) {
-                dp[i] = 1;
-                continue;
-            }
-            // 000111010
-            //
-            dp[i] = dp[i - 1] + 1;
+        int[] ret = new int[num + 1];
+        for (int i = 0; i <= num; i++) {
+            ret[i] = bitCount(i);
         }
-        return dp;
+        return ret;
     }
 
-    public static void main(String[] args) {
-        System.out.println(Integer.toBinaryString(6));
+    private int bitCount(int num) {
+        int count = 0;
+        while (num != 0) {
+            num = num & (num - 1);
+            count++;
+        }
+        return count;
     }
 }

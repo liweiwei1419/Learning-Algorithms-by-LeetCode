@@ -1,33 +1,22 @@
-import java.util.Arrays;
-
-/**
- * @author liwei
- * @date 18/7/3 下午4:03
- */
 public class Solution3 {
 
-    // 每个都计算一下，也不会超时
-
     public int[] countBits(int num) {
-        int[] ret = new int[num + 1];
-        for (int i = 0; i <= num; i++) {
-            ret[i] = bitCount(i);
+        int[] dp = new int[num + 1];
+        dp[0] = 0;
+        for (int i = 1; i <= num; i++) {
+            // 特判，很重要，只有 1 个的话，就直接是 1
+            if ((i & (i - 1)) == 0) {
+                dp[i] = 1;
+                continue;
+            }
+            dp[i] = dp[i - 1] + 1;
         }
-        return ret;
-    }
-
-    private int bitCount(int num) {
-        int count = 0;
-        while (num != 0) {
-            num = num & (num - 1);
-            count++;
-        }
-        return count;
+        return dp;
     }
 
     public static void main(String[] args) {
-        Solution3 solution4 = new Solution3();
-        int[] countBits = solution4.countBits(5);
-        System.out.println(Arrays.toString(countBits));
+        for (int i = 0; i < 16; i++) {
+            System.out.println(String.format("%04d", Integer.parseInt(Integer.toBinaryString(i))));
+        }
     }
 }
