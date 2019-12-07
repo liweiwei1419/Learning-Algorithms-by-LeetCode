@@ -10,13 +10,17 @@ public class Solution {
         long left = 0;
         long right = x;
         while (left < right) {
-            long mid = (left + right + 1) >>> 1;
-            if (mid * mid > x) {
+            long mid = (left + right + 1) / 2;
+            if (mid > x / mid) {
                 right = mid - 1;
             } else {
                 left = mid;
             }
         }
         return (int) left;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Integer.MAX_VALUE);
     }
 }
