@@ -1,4 +1,4 @@
-public class Solution {
+public class Solution3 {
 
     // 中间元素和右边界比较
 
