@@ -14,8 +14,8 @@ public class Solution4 {
         if (len < 3) {
             return 0;
         }
-        int res = 0;
 
+        int res = 0;
 
         int leftMax = 0;
         int rightMax = 0;
