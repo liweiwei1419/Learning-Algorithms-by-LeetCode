@@ -1,22 +1,26 @@
+/**
+ * @author liweiwei1419
+ * @date 2019/9/19 9:10 下午
+ */
 public class Solution {
 
     public int[] searchRange(int[] nums, int target) {
-        int lowerBound = findLowerBound(nums, target);
+        int len = nums.length;
+        if (len == 0) {
+            return new int[]{-1, -1};
+        }
+
+        int lowerBound = findLowerBound(nums, len, target);
         if (lowerBound == -1) {
             return new int[]{-1, -1};
         }
-        int upBound = findUpBound(nums, target);
+        int upBound = findUpBound(nums, len, target);
         return new int[]{lowerBound, upBound};
     }
 
-    private int findLowerBound(int[] nums, int target) {
-        int len = nums.length;
-        if (len == 0) {
-            return -1;
-        }
+    private int findLowerBound(int[] nums, int len, int target) {
         int left = 0;
         int right = len - 1;
-
         while (left < right) {
             int mid = (left + right) >>> 1;
             if (nums[mid] < target) {
@@ -31,12 +35,9 @@ public class Solution {
         return -1;
     }
 
-    private int findUpBound(int[] nums, int target) {
-        // 这里也不用对 len 长度为 0 的时候做特判
-        int len = nums.length;
+    private int findUpBound(int[] nums, int len, int target) {
         int left = 0;
         int right = len - 1;
-
         while (left < right) {
             int mid = (left + right + 1) >>> 1;
             if (nums[mid] > target) {
@@ -45,8 +46,7 @@ public class Solution {
                 left = mid;
             }
         }
-        // 这里可以不用后处理，因为在查找 lower bound 的时候处理过
-        // 目标值一定存在在排序数组中，才会执行到这个方法
+        // 因为先 findLowerBound 才走到这里，保证了 target 一定在 nums 中，因此无需后处理
         return left;
     }
 }
