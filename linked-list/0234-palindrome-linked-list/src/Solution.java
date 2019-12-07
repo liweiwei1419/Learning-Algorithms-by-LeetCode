@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class ListNode {
     int val;
     ListNode next;
@@ -23,7 +26,8 @@ class ListNode {
         StringBuilder s = new StringBuilder();
         ListNode cur = this;
         while (cur != null) {
-            s.append(cur.val + " -> ");
+            s.append(cur.val);
+            s.append(" -> ");
             cur = cur.next;
         }
         s.append("NULL");
@@ -34,33 +38,28 @@ class ListNode {
 
 public class Solution {
 
+    // 放在一个动态数组中，然后判断这个动态数组的回文性
+
     public boolean isPalindrome(ListNode head) {
-        if (head == null || head.next == null) {
-            return true;
+        List<Integer> arr = new ArrayList<>();
+        while (head != null) {
+            arr.add(head.val);
+            head = head.next;
         }
-        ListNode slow = head;
-        ListNode fast = head;
-        while (fast.next != null && fast.next.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        // slow 的下一个就是新链表，反转它
-        ListNode cur = slow.next;
-        slow.next = null;
-        ListNode pre = null;
-        while (cur != null) {
-            ListNode next = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = next;
-        }
-        // 此时 pre 成为新链表开头
-        while (head != null && pre != null) {
-            if (head.val != pre.val) {
+        return judgeArrPalindrome(arr);
+    }
+
+    private boolean judgeArrPalindrome(List<Integer> arr) {
+        int left = 0;
+        int right = arr.size() - 1;
+
+        while (left < right) {
+            if (arr.get(left).equals(arr.get(right))) {
+                left++;
+                right--;
+            } else {
                 return false;
             }
-            head = head.next;
-            pre = pre.next;
         }
         return true;
     }

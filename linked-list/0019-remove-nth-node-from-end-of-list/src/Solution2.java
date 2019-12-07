@@ -1,9 +1,4 @@
 /**
- * @author liwei
- * @date 2019/8/14 4:18 AM
- */
-
-/**
  * @author liweiwei1419
  * @date 2019/10/11 11:31 上午
  */
@@ -21,6 +16,7 @@ public class Solution2 {
         dummyNode.next = head;
 
         // 来到倒数第 N + 1 个结点的位置
+        // 快指针先走 N + 1 步
         ListNode fastNode = dummyNode;
         for (int i = 0; i < n + 1; i++) {
             fastNode = fastNode.next;

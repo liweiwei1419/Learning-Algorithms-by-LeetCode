@@ -24,24 +24,12 @@ public class Solution2 {
         ListNode mergeNode;
         if (l1.val < l2.val) {
             // l1 被选出，谁小谁在前面
-            mergeNode = l1;
-            mergeNode.next = mergeTwoLists(l1.next, l2);
+            l1.next = mergeTwoLists(l1.next, l2);
+            return l1;
         } else {
             // l2 被选出，谁小谁在前面
-            mergeNode = l2;
-            mergeNode.next = mergeTwoLists(l1, l2.next);
+            l2.next = mergeTwoLists(l1, l2.next);
+            return l2;
         }
-        return mergeNode;
-    }
-
-    public static void main(String[] args) {
-        int[] nums1 = {1, 3, 5, 7};
-        int[] nums2 = {2, 4, 6};
-        ListNode l1 = new ListNode(nums1);
-        ListNode l2 = new ListNode(nums2);
-
-        Solution2 solution2 = new Solution2();
-        ListNode mergeTwoLists = solution2.mergeTwoLists(l1, l2);
-        System.out.println(mergeTwoLists);
     }
 }

@@ -39,5 +39,4 @@ public class Solution4 {
             return bigStart;
         }
     }
-
 }

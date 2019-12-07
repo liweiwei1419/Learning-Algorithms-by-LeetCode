@@ -23,7 +23,7 @@ class ListNode {
         StringBuilder s = new StringBuilder();
         ListNode cur = this;
         while (cur != null) {
-            s.append(cur.val );
+            s.append(cur.val);
             s.append(" -> ");
             cur = cur.next;
         }
@@ -35,43 +35,29 @@ class ListNode {
 public class Solution {
 
     public ListNode insertionSortList(ListNode head) {
-        // 先写最特殊的情况
-        if (head == null) {
-            return null;
-        }
         ListNode dummyNode = new ListNode(-1);
-        dummyNode.next = head;
+
         ListNode curNode = head;
-        ListNode pre;
-        ListNode next;
-        while (true) {
-            // 如果遍历下去，是顺序排列的话，那最简单了，curNode 指针向前就行了
-            // 这一步是一个循环的过程
-            // 暂存当前结点的下一结点
-            while (curNode.next != null && curNode.val <= curNode.next.val) {
-                curNode = curNode.next;
+        while (curNode != null) {
+            // 第 1 步：先把下一个结点存一下，下一次遍历就从 nextNode 开始
+            ListNode nextNode = curNode.next;
+
+            // 第 2 步：需要找到要插入的位置的前一个结点的位置，这需要从前向后找，这一点非常不一样
+            // 每一次 preNode 都得从头开始
+            ListNode preNode = dummyNode;
+
+            // 因为有 preNode.next ，所以应该先判断非空
+            while (preNode.next != null && preNode.next.val < curNode.val) {
+                // 严格小于就可以了，没有必要移到小于等于的最后一个，不用保证稳定性
+                preNode = preNode.next;
             }
-            // 下面针对上一步跳出循环的两个条件进行特殊处理
-            if (curNode.next == null) {
-                // 如果后面没有元素了，那就说明，此时链表已经有序，可以结束我们的排序逻辑了
-                break;
-            } else {
-                // 否则就一定满足 curNode.val > curNode.next.val; 为真
-                // pre 打回到起点
-                pre = dummyNode;
-                next = curNode.next;
-                // 把 pre 挪到可以放置 next 结点的上一个位置
-                while (pre.next.val < next.val) {
-                    pre = pre.next;
-                }
-                // 穿针引线的 3 个步骤，请见图 https://liweiwei1419.github.io/images/leetcode-solution/147-1.jpg
-                // 穿针引线步骤 1
-                curNode.next = next.next;
-                // 穿针引线步骤 2
-                next.next = pre.next;
-                // 穿针引线步骤 2
-                pre.next = next;
-            }
+            // 退出循环的时候，preNode.next.val >= curNode.val
+            // 第 3 步：穿针引线
+            curNode.next = preNode.next;
+            preNode.next = curNode;
+
+            // 第 4 步：循环变量更新
+            curNode = nextNode;
         }
         return dummyNode.next;
     }

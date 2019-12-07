@@ -18,32 +18,32 @@ public class Solution2 {
         }
 
         Stack<Integer> stack = new Stack<>();
-        ListNode fast = head;
-        ListNode slow = head;
-        stack.add(slow.val);
+        ListNode fastNode = head;
+        ListNode slowNode = head;
+        stack.add(slowNode.val);
 
-        while (fast.next != null && fast.next.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-            stack.add(slow.val);
+        while (fastNode.next != null && fastNode.next.next != null) {
+            slowNode = slowNode.next;
+            fastNode = fastNode.next.next;
+            stack.add(slowNode.val);
         }
-        if (fast.next == null) {
+        if (fastNode.next == null) {
             // 链表有奇数个结点
             stack.pop();
         }
-        slow = slow.next;
-        while (slow != null) {
-            if (stack.pop() != slow.val) {
+        slowNode = slowNode.next;
+        while (slowNode != null) {
+            if (stack.pop() != slowNode.val) {
                 return false;
             }
-            slow = slow.next;
+            slowNode = slowNode.next;
         }
         return true;
     }
 
     public static void main(String[] args) {
         Solution2 solution2 = new Solution2();
-        int[] nums = {1, 2, 3, 2, 1};
+        int[] nums = {1, 2,  2, 1};
         ListNode head = new ListNode(nums);
         boolean palindrome = solution2.isPalindrome(head);
         System.out.println(palindrome);

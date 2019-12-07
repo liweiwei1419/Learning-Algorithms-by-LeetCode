@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 class ListNode {
     int val;
     ListNode next;
@@ -23,7 +25,8 @@ class ListNode {
         StringBuilder s = new StringBuilder();
         ListNode cur = this;
         while (cur != null) {
-            s.append(cur.val + " -> ");
+            s.append(cur.val);
+            s.append(" -> ");
             cur = cur.next;
         }
         s.append("NULL");
@@ -32,6 +35,9 @@ class ListNode {
 }
 
 public class Solution {
+
+    // 空间复杂度为 O(1) 的解法：穿针引线
+
 
     public ListNode partition(ListNode head, int x) {
         // 比 x 小的虚拟头结点
@@ -45,19 +51,18 @@ public class Solution {
         int val;
         while (head != null) {
             val = head.val;
-            // 接在 L 的后面
             if (val < x) {
-                curL.next = new ListNode(val);
+                curL.next = head;
                 curL = curL.next;
             } else {
-                // 接在 R 的后面
-                curR.next = new ListNode(val);
+                curR.next = head;
                 curR = curR.next;
             }
             head = head.next;
         }
-        // 把较小的链表接在较大的链表后面
         curL.next = dummyNodeR.next;
+        // 特别注意：最后这一步不能忘记，否则会产生一个循环链表
+        curR.next = null;
         return dummyNodeL.next;
     }
 

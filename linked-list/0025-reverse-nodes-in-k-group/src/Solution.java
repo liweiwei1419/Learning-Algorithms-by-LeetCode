@@ -42,13 +42,13 @@ public class Solution {
         }
         // 探测长度的结点
         ListNode tempNode = head;
-        int curK = k;
-        while (tempNode != null && curK != 0) {
-            curK--;
+        int curk = k;
+        while (tempNode != null && curk != 0) {
+            curk--;
             tempNode = tempNode.next;
         }
         // 如果够数了，先考虑反转
-        if (curK == 0) {
+        if (curk == 0) {
             // 下面开始反转
             ListNode pre = null;
             ListNode curNode = head;

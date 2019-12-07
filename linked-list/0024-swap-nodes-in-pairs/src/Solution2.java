@@ -1,7 +1,3 @@
-/**
- * @author liwei
- * @date 18/7/4 下午9:42
- */
 public class Solution2 {
 
     public ListNode swapPairs(ListNode head) {

@@ -38,6 +38,7 @@ class ListNode {
 // 学会调试链表程序
 
 public class Solution {
+
     public ListNode removeNthFromEnd(ListNode head, int n) {
         int len = getLenOfNode(head);
 
