@@ -40,5 +40,4 @@ public class Solution4 {
         curNode.right = clone(root.right, k);
         return curNode;
     }
-
 }
