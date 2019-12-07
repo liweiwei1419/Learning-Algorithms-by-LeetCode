@@ -1,7 +1,7 @@
 import java.util.Stack;
 
 /**
- * @author liwei
+ * @author liweiwei1419
  * @date 2019/8/22 10:32 PM
  */
 public class Solution3 {
@@ -30,8 +30,9 @@ public class Solution3 {
                 case ']':
                     if (!stack.isEmpty() && stack.peek() == '[') {
                         stack.pop();
-                    } else
+                    } else{
                         return false;
+                    }
                     break;
                 case ')':
                     if (!stack.isEmpty() && stack.peek() == '(') {

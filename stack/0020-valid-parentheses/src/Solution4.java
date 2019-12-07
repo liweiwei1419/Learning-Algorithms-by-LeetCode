@@ -3,9 +3,9 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * // 定义 Person 类
+ * 定义 Person 类
  *
- * @author liwei
+ * @author liweiwei1419
  * @date 2019/8/23 1:14 AM
  */
 
@@ -44,7 +44,6 @@ class Person {
         return age;
     }
 }
-
 
 public class Solution4 {
 
